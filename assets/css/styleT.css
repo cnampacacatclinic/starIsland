@@ -22,6 +22,12 @@ body{
     color:#c63757;
     font-size: 1.5em;
 }
+a{
+    color:#f8ced7;
+}
+a:hover{
+    color:#c63757;
+}
 h1{
     font-size: 2em;
     opacity: 0.6;

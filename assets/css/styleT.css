@@ -28,6 +28,12 @@ a{
 a:hover{
     color:#c63757;
 }
+#audio{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-bottom: 50px;
+}
 h1{
     font-size: 2em;
     opacity: 0.6;

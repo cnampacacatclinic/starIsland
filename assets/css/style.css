@@ -161,10 +161,18 @@ footer{
     border-radius: 30px;
     height: 30px;
 }
+
 #navFooter li{
     padding: 0;
     margin: 0;
 }
+.liNav{
+    display:none;
+}
+#liDiscord{
+    display:block;
+}
+
 .fontIceland {
     font-family:'Iceland';
     font-size: 8em;

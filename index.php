@@ -12,7 +12,7 @@
             }
             ?>
 <section class="fontImage1">
-    <h1>BIENVENUE SUR STAR</h1>
+    <h1>BIENVENUE SUR STAR'S ISLAND</h1>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

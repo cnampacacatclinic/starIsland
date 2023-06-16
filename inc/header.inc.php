@@ -6,20 +6,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
-    <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.js.map"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js.map"></script>
-    <script src="assets/bootstrap/js/bootstrap.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.js.map"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js.map"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
+    <meta name="author" content="Catherine Jules"/>
+    <title>Star's Island</title>
+	<meta name="description" content="Page du site du serveur Star's Island"/>
+    
+    <!-- Debut des balises meta Facebook-->
+    <meta property="og:site_name" content="Star's Island serveur GTA 5"/>
+    <meta property="og:title" content="Star's Island"/>
+    <meta property="og:description" content="Page du site du serveur Star's Island"/>
+    <meta property="og:url" content="https://starisland.fr"/>
+    <meta property="og:image" content="assets/img/logo_starisland.png"/>
+    <meta property="og:image:alt" content="logo du site du serveur Star's Island"/>
+    <meta property="og:type" content="website"/>
+ 
+    <!-- Debut des balises meta Twitter-->
+    <meta name="twitter:title" content="Star's Island serveur GTA 5"/>
+    <meta name="twitter:description" content="Page du site du serveur Star's Island"/>
+    <meta name="twitter:image" content="assets/img/logo_starisland.png"/>
+    <meta name="twitter:domain" content="https://starisland.fr"/>
+
+    <!-- Debut des balises link pour le CSS -->
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-grid.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css.map" referrerpolicy="no-referrer" />

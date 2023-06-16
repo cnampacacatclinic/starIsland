@@ -37,6 +37,9 @@ main{
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 40px 40px 0px 40px;
 }
+label{
+    color:black;
+}
 .paddingMarginZero{
     margin:0;
     padding:0;
@@ -219,8 +222,7 @@ margin: 1.5em;
 fieldset{
     display: flex;
     flex-direction: column;
-    width: 8
-    100%;
+    width: 100%;
     align-items: center;
 }
 input{

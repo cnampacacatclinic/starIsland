@@ -85,11 +85,11 @@
     <form class="form-group topServeur">
         <fieldset class="form-group">
             <label>Votre avis nous interesse</label>
-            <div><span class="fa fa-star checked"></span>
+            <span><span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star noChecked"></span>
-            <span class="fa fa-star noChecked"></span></div>
+            <span class="fa fa-star noChecked"></span></span>
             <input type="texte" class="form-control" placeholder="Ecire votre commentaire"/>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>

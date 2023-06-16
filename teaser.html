@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styleT.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section id="descritpion">
+            <img id="petitLogo" alt="logo" src="assets/img/petit_logo.png">
+            <figure>
+                <img alt="mec" class="drop-shadow" id="imgPersoL" src="assets/img/predation.png">
+                <figcaption id="demo" class="fontIceland"></figcaption>
+        </section>
+        <section id="description">
+            <h1>Bienvenue sur Star 's Island !</h1>
+            <p>Notre serveur permet de jouer à GTA 5, développé par Rockstar. C'est un jeu vidéo de simulation de crime en monde ouvert. Disponible en mode freetoplay, il offre une expérience de jeu gratuite à une vaste communauté de joueurs. Les joueurs ont la possibilité d'incarner des personnages impliqués dans des activités de gang, de jouer le rôle de policiers ou de participer à des scénarios qui leur permettront une fantastique évasion.<br>
+                Le jeu est apprécié pour sa liberté d'action et sa capacité à créer des histoires uniques grâce à son mode de jeu de rôle (RP) très populaire.<br>
+                Sur notre serveur nous proposons également des événements réguliers, vous pourrez travailler dans la police ou participer à des braquages. Ici les joueurs peuvent coopérer pour réaliser des missions complexes et lucratives. Le mode GTA 5 offre est très distrayant. Les joueurs vont plonger dans un monde virtuel riche et interactif.</p>
+                
+        </section>
+    </main>
+    <footer>
+        <nav id="navFooter">
+            <ul>
+                <li><a title=""><img alt="logo" src="assets/img/logo_instagram.png"></a></li>
+                <li><a title=""><img alt="logo" src="assets/img/logo_facebook.png"></a></li>
+                <li><a title=""><img alt="logo" src="assets/img/logo_tick_tock.png"></a></li>
+                <li><a title=""><img id="logoDiscord" class="sizeLogo" alt="logo discord" src="assets/img/logo_discord_rose.png"></a></li>
+                <li><a title=""><img alt="logo" src="assets/img/logo_twitter.png"></a></li>
+                <li><a title=""><img alt="logo" src="assets/img/logo_twitsh.png"></a></li>
+                <li><a title=""><img alt="logo" src="assets/img/logo_youtube_2.png"></a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script>
+
+        // Set the date we're counting down to
+        var countDownDate = new Date("Jul 1, 2023 00:00:00").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        
+          // Get today's date and time
+          var now = new Date().getTime();
+        
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+        
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var daysh= (days*24)+hours;
+          // Display the result in the element with id="demo"
+          document.getElementById("demo").innerHTML = daysh + ":"
+          + minutes + ":" + seconds;
+        
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+          }
+        }, 1000);
+
+    /**/
+        </script>
+</body>
+</html>

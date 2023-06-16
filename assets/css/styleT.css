@@ -205,12 +205,15 @@ a:hover{
     #descritpion p{
         font-size: 1em;
     }
-
+    h1{
+        text-align: center;
+    }
     main{
      margin-bottom: 100px;
     }
     #navFooter{
         flex-direction: column;
+        margin-top:100px;
     }
     #navFooter ul:hover{
         box-shadow: none;

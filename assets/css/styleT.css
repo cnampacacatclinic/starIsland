@@ -17,51 +17,28 @@ body{
     flex-direction: column;
     width: 100%;
     background-color:black;
-    color:white;
+    /*background: -webkit-linear-gradient(#ea4c6f,#fdf0bb);*/
     font-family: 'Inter';
+    color:#c63757;
     font-size: 1.5em;
 }
-.avis{
-    position: absolute;
-    width: 322px;
-    height: 105px;
-    left: 337px;
-    top: 95px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 40px 40px 0px 40px;
+h1{
+    font-size: 2em;
+    opacity: 0.6;
+}
+p{
+    font-size: 1em;
+    opacity: 0.6;
 }
 .paddingMarginZero{
     margin:0;
     padding:0;
 }
-.fontInter{
-    font-family: 'Inter', sans-serif;
-}
-.fontImage1{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    width: 1980px;
-    height: 1000px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('../img/Wallpaper4_1.png');
-}
+
 header{
     height: 107px;
 }
-.fontImage2{
-    display: flex;
-    flex-direction: column;
-    width: 1980px;
-    height: 1000px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('../img/Wallpaper1.png');
-    margin:0;
-    padding:0;
-}
+
 section{
     display: flex;
     flex-direction: row;
@@ -193,22 +170,7 @@ a:hover{
 #navFooter .sizeLogo{
     width: 4em;
 }
-/*--------------------------------*/
-/*
-#navFooter li{
-    opacity: 0;
-    position: absolute;
-}
-#navFooter li:hover{
-    padding: 30px;
-    transition-duration: 2s;
-    opacity: 1;
-    position: relative;
-}
-/*---------------------------*/
-header, nav {
-    background-color: transparent;
-}
+
 #navStartIsland{
     height:107px;
 }
@@ -216,15 +178,6 @@ header, nav {
     width: 8.5em;
 }
 
-#favHome img{
-    width: 3em;
-}
-#favHome {
-    padding: 0;
-    padding-right: 40px;
-    padding-left: 100px;
-    margin: 0;
-}
 #menuStarisland{
     height:30px;
     background-color: #212121;

@@ -33,7 +33,12 @@ a:hover{
     flex-direction: column;
     width: 300px;
     margin-bottom: 50px;
+    background: transparent !important;
 }
+audio{
+    background: linear-gradient(#c63757, #f8ced7) !important;
+}
+
 h1{
     font-size: 2em;
     opacity: 0.6;

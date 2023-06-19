@@ -47,6 +47,7 @@ label{
 .fontInter{
     font-family: 'Inter', sans-serif;
 }
+
 section{
     display: flex;
     flex-direction: row;
@@ -96,22 +97,15 @@ h1, h2{
 }
 figure{
     display: flex;
-    flex-direction: row-reverse;
+    /*flex-direction: row-reverse;*/
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    position: relative;
     text-align: center;
     margin: 0;
     padding: 0;
 }
-figcaption{
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left: 10px;
-}
+
 #descritpion{
     display: flex;
     flex-direction: column;
@@ -166,8 +160,14 @@ footer{
     padding: 0;
     margin: 0;
 }
-.liNav{
+/*.liNav{
     display:none;
+}*/
+.liNav{
+    opacity: 0.2;
+}
+.liNav:hover{
+    opacity: 1;
 }
 #liDiscord{
     display:block;
@@ -191,7 +191,29 @@ a:hover{
 #navFooter .sizeLogo{
     width: 4em;
 }
+.avisAvatar{
+    width: 2em;
+    height: 2em;
+    margin:2px;
+    border-radius: 50%;
+}
+
 #avis div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
+    align-items: center;
+    justify-content: space-around;
+}
+#avis figure{
+    width: 390px;
+    align-items:flex-end;
+    margin: 1.5em;
+    /*margin-bottom: 1.5em;
+    margin-top: 1.5em;*/
+}
+#avis figcaption{
 width: 322px;
 height: 105px;
 left: 337px;
@@ -199,12 +221,19 @@ top: 95px;
 background: rgba(255, 255, 255, 0.7);
 border: 1px solid rgba(0, 0, 0, 0.5);
 text-align: center;
-margin: 1.5em;
+margin:0;
+margin-bottom: 1.5em;
 }
-#avis div:nth-child(odd){
+#avis figure:nth-child(even){
+    flex-direction: row-reverse;
+}
+#avis figure:nth-child(odd){
+    flex-direction: row;
+}
+#avis figure:nth-child(even) figcaption{
     border-radius: 40px 40px 0px 40px;
 }
-#avis div:nth-child(even){
+#avis figure:nth-child(odd) figcaption{
     border-radius: 40px 40px 40px 0px;
 }
 #avis p{
@@ -214,8 +243,8 @@ margin: 1.5em;
 .noChecked{
     color:#111111;
 }
-.topServeur{
-    width: 340px;
+#topServeur{
+    width: 540px;
     /*height: 340px;*/
     background: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
@@ -225,6 +254,9 @@ fieldset{
     flex-direction: column;
     width: 100%;
     align-items: center;
+}
+label{
+    text-align: center;
 }
 input{
     width: 300px !important;
@@ -275,14 +307,32 @@ header, nav {
 .checked{
     color: yellow;
 }
+
 /*Version telephone*/
 @media (max-width: 815px) {
+    #avis figure{
+        margin:0;
+        margin-bottom: 1.5em;
+        margin-top: 1.5em;
+    }
+    #avis div{
+        flex-direction: column;
+        width: 100%;
+    }
     #descritpion p{
         font-size: 1em;
     }
-
+    footer{
+        box-shadow:none;
+    }
+    .liNav{
+        opacity: 1;
+    }
     main{
      margin-bottom: 100px;
+    }
+    footer{
+        margin-top:200px;
     }
     #navFooter{
         flex-direction: column;
@@ -292,6 +342,11 @@ header, nav {
     }
     #navFooter li:hover{
         padding: 0;
+        padding-bottom: 1em;
+    }
+    #navFooter li{
+        padding: 0;
+        padding-bottom: 1em;
     }
     #navFooter ul{
         flex-direction: column;
@@ -316,6 +371,9 @@ header, nav {
     #navFooter .sizeLogo{
         width: 2em;
     }
+    #topServeur{
+        width: 390px;
+    }
 
 }
 @media (max-width: 600px) {
@@ -324,15 +382,47 @@ header, nav {
      margin:0;
      left: 0;
     }
-    figcaption{
-        position: relative;
-        left: 0;
+}
+@media (max-width: 400px) {
+    #petitLogo{
+     position: relative;
+     margin:0;
+     left: 0;
     }
-    figure{
-        flex-direction: column-reverse;
+    #avis figure{
+        width: 360px;
     }
-    #imgPersoL{
-        width: 100%;
+    #avis figcaption{
+    width: 300px;
     }
-
+    #avis p{
+       margin: 0;
+       padding: 5px;
+    }
+    #topServeur{
+        width: 299px;
+    }
+    input{
+        width: 240px !important;
+    }
+}
+@media (max-width: 300px) {
+   
+    #avis figure{
+        width: 275px;
+    }
+    #avis figcaption{
+    width: 225px;
+    }
+    #avis p{
+        margin: 0;
+        padding: 2px;
+     }
+    #topServeur{
+        width: 275px;
+    }
+    input{
+        width: 200px !important;
+    }
+   
 }

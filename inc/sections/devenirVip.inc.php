@@ -2,7 +2,7 @@
     <h2>Devenir V.I.P.</h2>
     
     <article class="divFlexRow">
-        <figure><img class="eventImg" src="assets/img/Perso1-removebg-preview.png"></figure>
+        <figure><img alt="portrait d'un membre VIP" src="assets/img/Perso1-removebg-preview.png"></figure>
         <div>
             <h3>V.I.P.</h3>
             <p>
@@ -14,7 +14,7 @@
     </article>
 
     <article class="divFlexRow">
-        <figure><img class="eventImg" src="assets/img/Perso2-removebg-preview.png"></figure>
+        <figure><img alt="portrait d'un membre VIP" src="assets/img/Perso2-removebg-preview.png"></figure>
         <div>
             <h3>V.I.P.</h3>
             <p>

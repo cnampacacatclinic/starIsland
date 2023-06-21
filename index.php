@@ -18,6 +18,7 @@ if (isset($_GET['a']) && $_GET['a']=='dis'){
 include 'inc/sections/accueil.inc.php';
 include 'inc/sections/gallerie.inc.php';
 include 'inc/sections/devenirVip.inc.php';
+include 'inc/sections/event.inc.php';
 include 'inc/sections/avis.inc.php';
 
 /* le footer */

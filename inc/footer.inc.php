@@ -17,6 +17,8 @@
             <li class="liNav"><a target="_blank" title="youtube" href="https://www.youtube.com/channel/UCI7G6fNN-17g1_tOVMKRCpQ"><img alt="logo" src="assets/img/logo_youtube_2.png"></a></li>
         </ul>
     </nav>
+    <div id="logoGTA" class="divFlexRow"><img alt="PEGI 18" src="assets/img/PEGI18.png">
+    <img alt="logo GTA" src="assets/img/gtalogo.png"></div>
 </footer>
   <script src="assets/jquery/jquery.min.js"></script>
  <script src="assets/bootstrap/js/bootstrap.js"></script>

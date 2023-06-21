@@ -17,6 +17,7 @@ body{
     color:white;
     font-family: 'Inter';
     font-size: 1em;
+    opacity: 0.9;
 }
 main{
     display: flex;
@@ -26,6 +27,21 @@ main{
     padding: 0;
     align-items: center;
     justify-content: space-around;
+}
+a{
+    color:#EA4C6F !important;
+}
+a:hover{
+    color:white !important;
+    transition-duration: 2s !important;
+}
+
+nav a{
+    color:white !important;
+}
+nav a:hover{
+    color:#EA4C6F !important;
+    transition-duration: 2s !important;
 }
 
 .avis{
@@ -56,14 +72,28 @@ section{
     margin:0;
     padding: 0;
 }
+.backgroundColor{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.divFlexColumn{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+}
+.divFlexRow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
 .fontImage1{
     flex-direction: column;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: linear-gradient(
-        rgba(181, 112, 112, 0.6), 
-        rgba(112, 122, 181, 0.6)
+        rgba(139, 113, 113, 0.6), 
+        rgba(49, 50, 53, 0.6)
       ),url('../img/Wallpaper4_1.png');
 }
 
@@ -73,8 +103,8 @@ section{
     background-size: cover;
     background-repeat: no-repeat;
     background-image: linear-gradient(
-        rgba(181, 112, 112, 0.6), 
-        rgba(112, 122, 181, 0.6)
+        rgba(139, 113, 113, 0.6), 
+        rgba(49, 50, 53, 0.6)
       ),url('../img/Wallpaper1.png');
 }
 
@@ -92,9 +122,10 @@ h1, h2{
     margin-top: 30px;
     text-align: center;
 }
-.drop-shadow {
-    filter: drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5));
+h1{
+    margin-bottom: 60px;
 }
+
 figure{
     display: flex;
     flex-direction: row;
@@ -122,13 +153,21 @@ footer{
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-shadow: 0px -10px 5px #212121;
-    opacity: 0.8;
+    /*box-shadow: 0px -10px 5px #212121;*/
+}
+#logoGTA {
+    justify-content:flex-end;
+}
+#logoGTA img{
+    width: 3.5em;
+    padding: 10px;
 }
 #navFooter img{
-    width: 2em;
+    width: 3em;
 }
 #navFooter {
+    position: fixed;
+    bottom: 0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -138,7 +177,6 @@ footer{
     align-items: center;
     border-radius: 30px;
 }
-
 #navFooter ul{
     margin: 0;
     padding: 0;
@@ -154,14 +192,13 @@ footer{
     border-radius: 30px;
     height: 30px;
 }
-
 #navFooter li{
     padding: 0;
     margin: 0;
 }
 
 .liNav{
-    opacity: 0.2;
+    opacity: 0.6;
 }
 .liNav:hover{
     opacity: 1;
@@ -186,7 +223,7 @@ a:hover{
     transition-duration: 2s;
 }
 #navFooter .sizeLogo{
-    width: 4em;
+    width: 5.5em;
 }
 .avisAvatar{
     width: 3em;
@@ -196,8 +233,24 @@ a:hover{
     border: solid 3px #EA4C6F;
 }
 #accueil p{
-    width: 80%;
+    width: 60%;
 }
+.rond{
+    width: 1.5em;
+    height: 1.5em;
+    margin:0;
+    border-radius: 50%;
+    border: solid 3px #f1dfe3;
+    display: inline-block; /* necessaire pour que le span devienne un rond */
+}
+.rond:hover{
+    border: solid 3px #EA4C6F;
+}
+#accueil{
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
 #avis div{
     display: flex;
     flex-direction: row;
@@ -249,6 +302,9 @@ margin-bottom: 1.5em;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
 }
+#topServeur label{
+    font-size: 2em;
+}
 fieldset{
     display: flex;
     flex-direction: column;
@@ -288,11 +344,11 @@ header, nav {
     margin: 20px;
 }
 #logo{
-    width: 6em;
+    width: 6.5em;
 }
 
 #favHome img{
-    width: 2em;
+    width: 2.5em;
 }
 #favHome {
     padding: 0;
@@ -309,7 +365,11 @@ header, nav {
 }
 
 /*Version telephone*/
-@media (max-width: 815px) {
+@media (max-width: 825px) {
+    h1{
+        margin-bottom: 10px;
+    }
+
     #avis figure{
         margin:0;
         margin-bottom: 1.5em;
@@ -333,6 +393,7 @@ header, nav {
     }
     #navFooter{
         flex-direction: column;
+        position: relative;
     }
     #navFooter ul:hover{
         box-shadow: none;
@@ -347,7 +408,12 @@ header, nav {
     }
     #navFooter ul{
         flex-direction: column;
-
+    }
+    #logoGTA{
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        top: 200px;
     }
     #petitLogo{
         z-index: 8;
@@ -366,7 +432,7 @@ header, nav {
         width: 90%;
     }
     #navFooter .sizeLogo{
-        width: 2em;
+        width: 2.5em;
     }
     #topServeur{
         width: 390px;
@@ -381,6 +447,9 @@ header, nav {
     }
 }
 @media (max-width: 400px) {
+    #accueil{
+        padding:5px;
+    }
     #petitLogo{
      position: relative;
      margin:0;

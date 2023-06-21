@@ -16,7 +16,7 @@ body{
     background-color:#111111;
     color:white;
     font-family: 'Inter';
-    font-size: 1.5em;
+    font-size: 1em;
 }
 main{
     display: flex;
@@ -97,7 +97,6 @@ h1, h2{
 }
 figure{
     display: flex;
-    /*flex-direction: row-reverse;*/
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
@@ -160,9 +159,7 @@ footer{
     padding: 0;
     margin: 0;
 }
-/*.liNav{
-    display:none;
-}*/
+
 .liNav{
     opacity: 0.2;
 }
@@ -192,17 +189,21 @@ a:hover{
     width: 4em;
 }
 .avisAvatar{
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
     margin:2px;
     border-radius: 50%;
+    border: solid 3px #EA4C6F;
 }
-
+#accueil p{
+    width: 80%;
+}
 #avis div{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 60%;
+    /*width: 60%;*/
+    width: 950px;
     align-items: center;
     justify-content: space-around;
 }
@@ -210,8 +211,6 @@ a:hover{
     width: 390px;
     align-items:flex-end;
     margin: 1.5em;
-    /*margin-bottom: 1.5em;
-    margin-top: 1.5em;*/
 }
 #avis figcaption{
 width: 322px;
@@ -238,14 +237,15 @@ margin-bottom: 1.5em;
 }
 #avis p{
     color:#111111;
-    font-size: 0.5em;
+    font-size: 0.8em;
+    padding:0;
+    margin: 0.5em;
 }
 .noChecked{
     color:#111111;
 }
 #topServeur{
     width: 540px;
-    /*height: 340px;*/
     background: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
 }
@@ -263,7 +263,7 @@ input{
 }
 
 header, nav {
-    background-color: transparent;
+    background-color: transdrent;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -318,9 +318,6 @@ header, nav {
     #avis div{
         flex-direction: column;
         width: 100%;
-    }
-    #descritpion p{
-        font-size: 1em;
     }
     footer{
         box-shadow:none;
@@ -397,7 +394,7 @@ header, nav {
     }
     #avis p{
        margin: 0;
-       padding: 5px;
+       padding: 3px;
     }
     #topServeur{
         width: 299px;

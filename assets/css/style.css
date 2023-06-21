@@ -43,7 +43,11 @@ nav a:hover{
     color:#EA4C6F !important;
     transition-duration: 2s !important;
 }
-
+img{
+    margin:0;
+    padding:0;
+    border:none;
+}
 .avis{
     width: 322px;
     height: 105px;
@@ -365,7 +369,47 @@ header, nav {
 .checked{
     color: yellow;
 }
-
+/* //////////// Section devenir VIP //////////// */
+#devenirVIP{
+    flex-direction: column;
+    align-items: center;
+}
+#devenirVIP figure{
+    height: 250px;/*la hauteur de la figure est plus petite que celle de l'image car c'est demandé sur la maquette*/
+    width: auto;
+    border:solid 3px #EA4C6F;
+    align-items: flex-end;
+}
+#devenirVIP img{
+    height: 300px;/*la hauteur de l'image est plus grande que celle de la figure car c'est demandé sur la maquette*/
+    width: auto;
+}
+#devenirVIP p{
+    margin:50px;
+}
+#devenirVIP h3{
+    color:#EA4C6F;
+    font-size: 1.5em;
+    text-decoration: underline;
+    position:absolute;
+}
+#devenirVIP article{
+    width: 800px;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+#devenirVIP article:nth-child(odd){
+    flex-direction: row;
+}
+#devenirVIP article:nth-child(even){
+    flex-direction: row-reverse;
+    justify-content:flex-end;
+}
+#devenirVIP div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /*Version tablettte et telephone*/
 @media (max-width: 825px) {
     body{
@@ -423,7 +467,7 @@ header, nav {
     #logoGTA{
         flex-direction: column;
         align-items: center;
-        position: relative;
+        position: relative;/*pour utiliser top, il faut déclarer une position*/
         top: 200px;
     }
     #petitLogo{
@@ -447,6 +491,20 @@ header, nav {
     }
     #topServeur{
         width: 390px;
+    }
+    #devenirVIP article{
+        align-items: center;
+        width: 95%;
+    }
+    #devenirVIP figure{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    #devenirVIP article:nth-child(odd){
+        flex-direction: column;
+    }
+    #devenirVIP article:nth-child(even){
+        flex-direction: column;
     }
 
 }

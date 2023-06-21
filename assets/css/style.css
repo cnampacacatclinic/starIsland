@@ -242,6 +242,7 @@ a:hover{
     margin:0;
     border-radius: 50%;
     border: solid 3px #f1dfe3;
+    transition-duration: 2s;
     display: inline-block; /* necessaire pour que le span devienne un rond */
 }
 .rond:hover{
@@ -365,7 +366,7 @@ header, nav {
     color: yellow;
 }
 
-/*Version telephone*/
+/*Version tablettte et telephone*/
 @media (max-width: 825px) {
     body{
         background-color: #111111;

@@ -445,6 +445,71 @@ header, nav {
     width: 30px;
 }
 
+/* //////////// section team //////////// */
+#team ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 1px #EA4C6F;
+}
+.teamUl{
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+    border-radius: 30px;
+    height: 60px;
+    /*margin à été refusé par le navigateur donc je 
+    lui donne une position pour pouvoir lui donner un top à la place*/
+    position : relative;
+    top:100px;
+}
+.teamReseauxSociaux{
+    flex-direction: column;
+    width: 6em;
+}
+.teamUl li{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-left:solid 2px #EA4C6F;
+    height: 60px;
+    
+}
+.teamUl li:nth-child(1){
+    border-left:none;
+}
+
+.teamAvatar {
+    width: 6em;
+    height: 6em;
+    margin:2px;
+    border-radius: 50%;
+    border: solid 2px #EA4C6F;
+}
+#team div{
+    margin: 0;
+    margin-top: 200px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+}
+#team figure{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#team figcaption{
+    flex-direction: column;
+    align-items: center;
+}
 
 /*Version tablettte et telephone*/
 @media (max-width: 825px) {

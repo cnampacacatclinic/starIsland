@@ -14,9 +14,10 @@
 #spanChangeSection{
     position:absolute;
     bottom: 0;
-    align-items: center;
-    width: 100%;
+    justify-content:space-around;
+    width: 150px;
 }
+
 body{
     display: flex;
     flex-direction: column;
@@ -258,6 +259,7 @@ a:hover{
     width: 1.5em;
     height: 1.5em;
     margin:0;
+    padding:0;
     border-radius: 50%;
     border: solid 3px #f1dfe3;
     transition-duration: 2s;

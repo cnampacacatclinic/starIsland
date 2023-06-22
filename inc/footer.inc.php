@@ -33,15 +33,21 @@
     }
         page1.addEventListener("click", function(){
             home.innerHTML=`<?php include "inc/sections/accueil.inc.php"; ?>`;
-
+            page1.style.border='solid 3px #EA4C6F';
+            page2.style.border='solid 3px #f1dfe3';
+            page3.style.border='solid 3px #f1dfe3';
         });
         page2.addEventListener("click", function(){
             home.innerHTML=`<?php include "inc/sections/gallerie.inc.php"; ?>`;
-
+            page2.style.border='solid 3px #EA4C6F';
+            page1.style.border='solid 3px #f1dfe3';
+            page3.style.border='solid 3px #f1dfe3';
         });
         page3.addEventListener("click", function(){
             home.innerHTML=`<?php include "inc/sections/topserveurVote.inc.php"; ?>`;
-
+            page3.style.border='solid 3px #EA4C6F';
+            page2.style.border='solid 3px #f1dfe3';
+            page1.style.border='solid 3px #f1dfe3';
         });
     
 </script>

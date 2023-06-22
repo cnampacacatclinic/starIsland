@@ -75,6 +75,8 @@ section{
     align-items: center;
     margin:0;
     padding: 0;
+    padding-top: 90px;
+    padding-bottom: 90px;
 }
 .backgroundColor{
     background-color: rgba(0, 0, 0, 0.5);
@@ -529,6 +531,12 @@ header, nav {
 #team figcaption{
     flex-direction: column;
     align-items: center;
+}
+#team figcaption img{
+    width: 2.5em;
+}
+.couleurSVG {
+    filter: invert(100%) brightness(40%) sepia(100%) hue-rotate(280deg) saturate(1000%) contrast(0.8);
 }
 
 

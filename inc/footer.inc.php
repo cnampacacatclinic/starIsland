@@ -23,7 +23,6 @@
   <script src="assets/jquery/jquery.min.js"></script>
  <script src="assets/bootstrap/js/bootstrap.js"></script>
  <script src="assets/js/timerJs.js"></script>
- <script src="assets/js/overlayJs.js"></script>
 </body>
 </html>
 

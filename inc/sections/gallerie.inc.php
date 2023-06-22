@@ -1,4 +1,4 @@
-<section class="fontImage1">
+<section id="gallerie" class="fontImage1">
     <h2>Gallerie</h2>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -8,14 +8,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block" width="700px"
+      <img class="d-block" 
       src="assets/img/Wallpaper1.png" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block" width="700px" src="assets/img/Wallpaper2.png" alt="Second slide">
+      <img class="d-block"  src="assets/img/Wallpaper2.png" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block" width="700px" src="assets/img/Wallpaper3.png" alt="Third slide">
+      <img class="d-block"  src="assets/img/Wallpaper3.png" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -3,8 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta name="author" content="Catherine Jules"/>
@@ -45,7 +44,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon pink"></span>
         </button>
-        <div id="menuStartisland" class="collapse navbar-collapse" id="navbarColor01">
+        <div id="menuStartisland" class="collapse navbar-collapse">
         <a id="favHome" href="<?=  BASE_PATH; ?>"><img alt="Acceuil" src="assets/img/symbole_home_1.png">
                         <span class="visually-hidden"></span>
                     </a>

@@ -526,7 +526,7 @@ header, nav {
 #team figure:hover figcaption{
     opacity: 1;
     display: block;
-    transition-duration: 2s;
+    transition: all 2s;
 }
 #team figcaption{
     flex-direction: column;
@@ -540,12 +540,53 @@ header, nav {
 }
 /*////////// Section Gallerie ///////////*/
 #gallerie img{
-    width: 700px;
+    width: 100%;
 }
-
+/*////////// Section topserver ///////////*/
+#topServeur2 {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    justify-content: space-around;
+}
+#topServeur2 fieldset{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 3px #EA4C6F;
+    border-radius: 30px;
+    height: 440px;
+    width: 90%;
+}
+#topServeur2 textarea{
+    display: flex;
+    flex-direction: row;
+    width: 80% !important;
+    height: 200px;
+}
+#topServeur2 img{
+    width: 4em;
+}
+#topServeur2 label{
+   font-size: 3em;
+}
+#topServeur2 button{
+    margin: 10px;
+ }
 
 /*Version tablettte et telephone*/
+@media (max-width: 915px) {
+    #topServeur2 textarea{
+        height: auto;
+    }
+    #topServeur2 fieldset{
+        height: 100%;
+    }
+}
 @media (max-width: 825px) {
+
     body{
         background-color: #111111;
     }
@@ -683,6 +724,12 @@ header, nav {
     #team div{
         margin-top: 500px;
     }
+    #topServeur2 {
+        width: 80%;
+    }
+    #topServeur2 textarea{
+        width: 90% !important;
+    }
 }
 @media (max-width: 600px) {
     #petitLogo{
@@ -693,6 +740,9 @@ header, nav {
     #event img{
         width: 200px;
     }
+    #topServeur2 label{
+        font-size: 2em;
+     }
 }
 @media (max-width: 400px) {
     #accueil{

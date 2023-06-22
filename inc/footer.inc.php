@@ -23,6 +23,21 @@
   <script src="assets/jquery/jquery.min.js"></script>
  <script src="assets/bootstrap/js/bootstrap.js"></script>
  <script src="assets/js/timerJs.js"></script>
+ <script>
+        let page1 = document.getElementById("s1");
+        let page2 = document.getElementById("s2");
+        let page3 = document.getElementById("s3");
+        
+        page1.addEventListener("click", function(){
+            alert('page 1');
+        });
+        page2.addEventListener("click", function(){
+            alert('page 2');
+        });
+        page3.addEventListener("click", function(){
+            alert('page 3');
+        });
+</script>
 </body>
 </html>
 

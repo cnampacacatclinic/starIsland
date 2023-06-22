@@ -16,14 +16,21 @@ if (isset($_GET['a']) && $_GET['a']=='dis'){
 ?>
 <!--div><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . <span class="rond" id="s3"></span></div>
 -->
+<div class="divFlexRow">
+
 <div id="home"></div>
+<div id="spanChangeSection" class="divFlexRow"><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . 
+<span class="rond" id="s3"></span></div>
+
+</div>
+
 <?php
 /* les sections */
-include 'inc/sections/accueil.inc.php';
-include 'inc/sections/gallerie.inc.php';
+//include 'inc/sections/accueil.inc.php';
+//include 'inc/sections/gallerie.inc.php';
 include 'inc/sections/devenirVip.inc.php';
 include 'inc/sections/event.inc.php';
-include 'inc/sections/topserveurVote.inc.php';
+//include 'inc/sections/topserveurVote.inc.php';
 include 'inc/sections/team.inc.php';
 include 'inc/sections/avis.inc.php';
 

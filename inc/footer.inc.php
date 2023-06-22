@@ -28,21 +28,22 @@
         let page2 = document.getElementById("s2");
         let page3 = document.getElementById("s3");
         let home = document.getElementById("home");
-    page1.addEventListener("click", function(){
-            alert('page 1');
+    if(home.innerHTML ===''){
+        home.innerHTML=`<?php include "inc/sections/accueil.inc.php"; ?>`;
+    }
+        page1.addEventListener("click", function(){
             home.innerHTML=`<?php include "inc/sections/accueil.inc.php"; ?>`;
 
         });
         page2.addEventListener("click", function(){
-            alert('page 2');
             home.innerHTML=`<?php include "inc/sections/gallerie.inc.php"; ?>`;
 
         });
         page3.addEventListener("click", function(){
-            alert('page 3');
             home.innerHTML=`<?php include "inc/sections/topserveurVote.inc.php"; ?>`;
 
         });
+    
 </script>
 </body>
 </html>

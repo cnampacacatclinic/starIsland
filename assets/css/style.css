@@ -6,7 +6,17 @@
     font-family: 'Inter';
     src: url('../font/static/Inter-Medium.ttf') format('truetype');
 }
-
+#home {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#spanChangeSection{
+    position:absolute;
+    bottom: 0;
+    align-items: center;
+    width: 100%;
+}
 body{
     display: flex;
     flex-direction: column;

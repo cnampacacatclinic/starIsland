@@ -8,14 +8,15 @@
         <li>Mappers</li>
         <li>Helpers</li>
     </ul>
-    <div class="divFlexRow">
-    <?php 
-    for ($i=0;$i<=40;$i++) {
+    <div id="teamAlbum" class="divFlexRow">
+    <?php
+    for ($i=0;$i<=30;$i++) {
+        for ($e=1;$e<=4;$e++) {
     ?>
-        <figure class="over">
-            <img class="teamAvatar" src="assets/img/avatar-3.png">
-            <figcaption class="overlay">
-                Role<br>
+        <figure>
+            <img class="teamAvatar" src="assets/img/avatar-<?php echo $e++;?>.png">
+            <figcaption class="teamReseauxSociaux">
+                Role: Admin<br>
                 Nom
                 <ul class="teamReseauxSociaux">
                     <li><a title="resaux social" href="#">icone</a></li>
@@ -27,7 +28,7 @@
         </figure>
     <?php 
         $i++;
-    }
+    }}
     ?>
     </div>
 </section>

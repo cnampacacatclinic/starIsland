@@ -452,8 +452,6 @@ header, nav {
     list-style: none;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: solid 1px #EA4C6F;
 }
 .teamUl{
     flex-direction: row;
@@ -465,6 +463,12 @@ header, nav {
     lui donne une position pour pouvoir lui donner un top à la place*/
     position : relative;
     top:100px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 1px #EA4C6F;
+}
+#team li:hover{
+    color:#EA4C6F;
+    transition-duration: 2s;
 }
 .teamReseauxSociaux{
     flex-direction: column;
@@ -506,10 +510,27 @@ header, nav {
     flex-direction: column;
     align-items: center;
 }
+#team figure:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 1px #EA4C6F;
+    transition-duration: 2s;
+    border-top-left-radius: 45%;
+    border-bottom-right-radius: 45%;
+}
+#team figcaption{
+    opacity: 0;
+    display: none;
+}
+#team figure:hover figcaption{
+    opacity: 1;
+    display: block;
+    transition-duration: 2s;
+}
 #team figcaption{
     flex-direction: column;
     align-items: center;
 }
+
 
 /*Version tablettte et telephone*/
 @media (max-width: 825px) {
@@ -620,6 +641,35 @@ header, nav {
     }
     #event h2{
         margin-top: 20px;
+    }
+    #team h2{
+        margin-bottom: 100px;
+    }
+    #team figcaption{
+        opacity: 1;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: solid 1px #EA4C6F;
+        border-top-left-radius: 45%;
+        border-bottom-right-radius: 45%;
+    }
+    .teamUl{
+        flex-direction: column;
+        background-color: transparent;
+        border: none;
+        top:200px;
+    }
+    .teamUl li{
+        background-color: rgba(255, 255, 255, 0.3);
+        border: solid 1px #EA4C6F;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+    .teamUl li:nth-child(1){
+        border-left:solid 1px #EA4C6F;
+    }
+    #team div{
+        margin-top: 500px;
     }
 }
 @media (max-width: 600px) {

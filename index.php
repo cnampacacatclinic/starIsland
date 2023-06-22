@@ -13,7 +13,11 @@ if (isset($_GET['a']) && $_GET['a']=='dis'){
   header('location:./');
   exit();
 }
-
+?>
+<!--div><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . <span class="rond" id="s3"></span></div>
+-->
+<div id="home"></div>
+<?php
 /* les sections */
 include 'inc/sections/accueil.inc.php';
 include 'inc/sections/gallerie.inc.php';

@@ -27,17 +27,22 @@
         let page1 = document.getElementById("s1");
         let page2 = document.getElementById("s2");
         let page3 = document.getElementById("s3");
-        
-        page1.addEventListener("click", function(){
+        let home = document.getElementById("home");
+    page1.addEventListener("click", function(){
             alert('page 1');
+            home.innerHTML=`<?php include "inc/sections/accueil.inc.php"; ?>`;
+
         });
         page2.addEventListener("click", function(){
             alert('page 2');
+            home.innerHTML=`<?php include "inc/sections/gallerie.inc.php"; ?>`;
+
         });
         page3.addEventListener("click", function(){
             alert('page 3');
+            home.innerHTML=`<?php include "inc/sections/topserveurVote.inc.php"; ?>`;
+
         });
 </script>
 </body>
 </html>
-

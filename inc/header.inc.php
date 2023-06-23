@@ -31,8 +31,6 @@
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css.map" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-reboot.css" referrerpolicy="no-referrer">
-    <!-- TODO a retirer -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     
 </head>

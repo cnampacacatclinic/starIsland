@@ -72,6 +72,9 @@ img{
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 40px 40px 0px 40px;
 }
+.starChecked{
+    filter: invert(100%) brightness(40%) sepia(100%) hue-rotate(15deg) saturate(6000%) contrast(0.8);
+}
 label{
     color:#111111;
 }
@@ -285,7 +288,7 @@ a:hover{
     padding-top: 60px;
     padding-bottom: 60px;
 }
-
+/*/////////// Section avis /////////*/
 #avis div{
     display: flex;
     flex-direction: row;
@@ -329,9 +332,11 @@ margin-bottom: 1.5em;
     padding:0;
     margin: 0.5em;
 }
-.noChecked{
-    color:#111111;
+#avis .starChecked{
+    width: 1.2em;
+    margin:0.2;
 }
+/*///////// section topserver //////////// */
 #topServeur{
     width: 540px;
     background: rgba(255, 255, 255, 0.8);
@@ -395,9 +400,7 @@ header, nav {
     height:30px;
     background-color: #212121;
 }
-.checked{
-    color: yellow;
-}
+
 /* //////////// Section devenir VIP //////////// */
 #devenirVIP{
     flex-direction: column;
@@ -604,7 +607,6 @@ header, nav {
     margin: 10px;
 }
 #topServeur2 .starChecked{
-    filter: invert(100%) brightness(40%) sepia(100%) hue-rotate(15deg) saturate(6000%) contrast(0.8);
     width: 3em;
     margin:1em;
 }
@@ -772,6 +774,10 @@ header, nav {
     #spanChangeSection{
         top:10px;
     }
+    #topServeur2 .starChecked{
+        width: 2em;
+        margin:0.5em;
+    }
 }
 @media (max-width: 600px) {
     #petitLogo{
@@ -811,6 +817,10 @@ header, nav {
     input{
         width: 240px !important;
     }
+    #topServeur2 .starChecked {
+        width: 1.5em;
+        margin: 0.2em;
+    }
 }
 @media (max-width: 300px) {
    
@@ -833,5 +843,4 @@ header, nav {
     /*#event img{
         width: 180px;
     }*/
-   
 }

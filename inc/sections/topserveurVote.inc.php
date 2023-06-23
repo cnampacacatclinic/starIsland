@@ -3,11 +3,13 @@
         <fieldset class="form-group">
             <label>Star's island</label>
             <img alt="logo" src="assets/img/logo_topserveur.png"/>
-            <span><span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star noChecked"></span></span>
+            <span>
+                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+            </span>
             <textarea class="form-control" rows="4" cols="25" name="texte" placeholder="Ecire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>

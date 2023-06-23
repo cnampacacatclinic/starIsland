@@ -26,6 +26,17 @@
                 </ul>
             </figcaption>
         </figure>
+        <figure>
+            <img class="teamAvatar" src="assets/img/avatar-4.png">
+            <figcaption class="teamReseauxSociaux">
+                Role: Dev<br>
+                Nom
+                <ul class="teamReseauxSociaux">
+                    <li><a title="resaux social" href="#"><img alt="avatar" class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/brands/facebook-square.svg"></a></li>
+                    <li><a title="resaux social" href="#"><img alt="avatar" class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/brands/discord.svg"></a></li>
+                </ul>
+            </figcaption>
+        </figure>
     <?php 
         $i++;
     }}

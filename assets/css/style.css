@@ -268,6 +268,15 @@ a:hover{
 .rond:hover{
     border: solid 3px #EA4C6F;
 }
+.center{
+    justify-content: center;
+}
+#intro, #accueil, #gallerie, #topserveurVote{
+    height: 700px;
+}
+#carouselExampleIndicators, #carousel1, .active{
+    height: 500px;
+}
 #accueil{
     padding-top: 60px;
     padding-bottom: 60px;
@@ -553,6 +562,9 @@ header, nav {
 /*////////// Section Gallerie ///////////*/
 #gallerie img{
     width: 100%;
+}
+#gallerie {
+    padding: 0;
 }
 /*////////// Section topserver ///////////*/
 #topServeur2 {

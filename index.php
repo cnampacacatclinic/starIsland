@@ -16,7 +16,7 @@ if (isset($_GET['a']) && $_GET['a']=='dis'){
 ?>
 <!--div><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . <span class="rond" id="s3"></span></div>
 -->
-<div class="divFlexRow">
+<div id="intro" class="divFlexRow center">
 
 <div id="home"></div>
 <div id="spanChangeSection" class="divFlexRow"><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . 

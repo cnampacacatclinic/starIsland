@@ -6,7 +6,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
-  <div class="carousel-inner">
+  <div id="carousel1" class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block" 
       src="assets/img/Wallpaper1.png" alt="First slide">

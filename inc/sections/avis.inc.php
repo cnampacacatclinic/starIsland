@@ -1,4 +1,5 @@
 <section id="avis" class="fontImage2">
+<h2>Les avis &#10084;</h2>
 <div>      
     <figure>
         <img class="avisAvatar" src="assets/img/avatar-1.png">
@@ -65,7 +66,7 @@
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star noChecked"></span>
             <span class="fa fa-star noChecked"></span></span>
-            <input type="texte" class="form-control" placeholder="Ecire votre commentaire"/>
+            <input type="text" name="avis" class="form-control" value="" placeholder="Ecire votre commentaire">
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>

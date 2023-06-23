@@ -2,34 +2,36 @@
 <!doctype html>
 <html lang="fr">
 <head>
+    <!-- Catherine Jules -->
+    <!--    Juin 2023    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="author" content="Catherine Jules"/>
     <title>Star's Island</title>
-	<meta name="description" content="Page du site du serveur Star's Island"/>
+	<meta name="description" content="Page du site du serveur Star's Island">
     
     <!-- Debut des balises meta Facebook-->
-    <meta property="og:site_name" content="Star's Island serveur GTA 5"/>
-    <meta property="og:title" content="Star's Island"/>
-    <meta property="og:description" content="Page du site du serveur Star's Island"/>
-    <meta property="og:url" content="https://starisland.fr"/>
-    <meta property="og:image" content="assets/img/logo_starisland.png"/>
-    <meta property="og:image:alt" content="logo du site du serveur Star's Island"/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Star's Island serveur GTA 5">
+    <meta property="og:title" content="Star's Island">
+    <meta property="og:description" content="Page du site du serveur Star's Island">
+    <meta property="og:url" content="https://starisland.fr">
+    <meta property="og:image" content="assets/img/logo_starisland.png">
+    <meta property="og:image:alt" content="logo du site du serveur Star's Island">
+    <meta property="og:type" content="website">
  
     <!-- Debut des balises meta Twitter-->
-    <meta name="twitter:title" content="Star's Island serveur GTA 5"/>
-    <meta name="twitter:description" content="Page du site du serveur Star's Island"/>
-    <meta name="twitter:image" content="assets/img/logo_starisland.png"/>
-    <meta name="twitter:domain" content="https://starisland.fr"/>
+    <meta name="twitter:title" content="Star's Island serveur GTA 5">
+    <meta name="twitter:description" content="Page du site du serveur Star's Island">
+    <meta name="twitter:image" content="assets/img/logo_starisland.png">
+    <meta name="twitter:domain" content="https://starisland.fr">
 
     <!-- Debut des balises link pour le CSS -->
-    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-grid.css" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css.map" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-reboot.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-grid.css" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css.map" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-reboot.css" referrerpolicy="no-referrer">
+    <!-- TODO a retirer -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     

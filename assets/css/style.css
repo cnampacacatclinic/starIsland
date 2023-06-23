@@ -147,6 +147,7 @@ p{
 h1, h2{
     margin-top: 30px;
     text-align: center;
+    text-transform: uppercase;
 }
 h1{
     margin-bottom: 60px;
@@ -456,11 +457,7 @@ header, nav {
 #event img{
     width: 400px;
 }
-#event h2{
-    margin-top: 0;
-    font-style: italic;
-    font-size: 1.5em;
-}
+
 #event div{
     padding: 0;
 }
@@ -468,11 +465,21 @@ header, nav {
     margin-top: 60px;
     margin-bottom: 60px;
 }
+#event h3:first-child{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-style: italic;
+    font-size: 1.5em;
 
+}
+#timerJs {
+    font-size: 0.8em;
+}
 .spanTimer{
     background-color: black;
     display: inline-block; /*necessaire pour que le span devienne un block, ca permet de mettre un border etc..*/
     width: 30px;
+    font-size: 0.8em;
 }
 
 /* //////////// section team //////////// */
@@ -588,7 +595,7 @@ header, nav {
     background-color: rgba(255, 255, 255, 0.3);
     border: solid 3px #EA4C6F;
     border-radius: 30px;
-    height: 440px;
+    height: 470px;
     width: 90%;
 }
 #topServeur2 textarea{
@@ -598,7 +605,7 @@ header, nav {
     height: 200px;
 }
 #topServeur2 img{
-    width: 4em;
+    width: 3.5em;
 }
 #topServeur2 label{
    font-size: 3em;
@@ -793,6 +800,9 @@ header, nav {
     }
 }
 @media (max-width: 400px) {
+    h1{
+        font-size: 2em;
+    }
     #accueil{
         padding:5px;
     }
@@ -823,7 +833,7 @@ header, nav {
     }
 }
 @media (max-width: 300px) {
-   
+    
     #avis figure{
         width: 275px;
     }
@@ -840,7 +850,7 @@ header, nav {
     input{
         width: 200px !important;
     }
-    /*#event img{
-        width: 180px;
-    }*/
+    #timerJs {
+        font-size: 0.6em;
+    }
 }

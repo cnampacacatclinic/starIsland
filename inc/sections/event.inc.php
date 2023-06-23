@@ -1,8 +1,9 @@
 <section id="event" class="fontImage1">
+  <h2>L'event</h2>
   <article>
     <figure><img alt="event" src="assets/img/predation.png"></figure>
     <div>
-      <h2>Time reaming</h2>
+      <h3>Time reaming<h3>
       <div id="timerJs"></div>
       <h3>Titre de l'event</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>

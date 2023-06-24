@@ -1,4 +1,6 @@
 
+<?php require_once 'config/function.php'; ?>
+
 <!doctype html>
 <html lang="fr">
 <head>

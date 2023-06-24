@@ -5,7 +5,7 @@ session_start();
 
 const CONFIG=[
     'db'=>[
-        'HOST'=>'localhost',
+        'HOST'=>'127.0.0.1',
         'PORT'=>'3306',
         'NAME'=>'star_island',
         'USER'=>'root',

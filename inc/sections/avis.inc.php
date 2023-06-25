@@ -76,7 +76,7 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
-            <input type="text" name="avis" class="form-control" value="" placeholder="Ecire votre commentaire">
+            <textarea class="form-control" rows="4" cols="25" name="texte" placeholder="Ecire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>

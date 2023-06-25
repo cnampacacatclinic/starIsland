@@ -63,20 +63,16 @@ img{
     padding:0;
     border:none;
 }
-.avis{
-    width: 322px;
-    height: 105px;
-    left: 337px;
-    top: 95px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 40px 40px 0px 40px;
-}
 .starChecked{
     filter: invert(100%) brightness(40%) sepia(100%) hue-rotate(15deg) saturate(6000%) contrast(0.8);
 }
 label{
     color:#111111;
+}
+textarea{
+    word-break: break-word;
+    max-height: 300px;
+    min-height: 200px;
 }
 .paddingMarginZero{
     margin:0;
@@ -253,13 +249,7 @@ a:hover{
 #navFooter .sizeLogo{
     width: 5.5em;
 }
-.avisAvatar{
-    width: 3em;
-    height: 3em;
-    margin:2px;
-    border-radius: 50%;
-    border: solid 3px #EA4C6F;
-}
+
 #accueil p{
     width: 60%;
 }
@@ -337,10 +327,32 @@ margin-bottom: 1.5em;
     width: 1.2em;
     margin:0.2;
 }
+#avis button{
+    margin-top: 10px;
+}
+#avis textarea{
+width: 300px !important;
+}
+.avisAvatar{
+    width: 3em;
+    height: 3em;
+    margin:2px;
+    border-radius: 50%;
+    border: solid 3px #EA4C6F;
+}
+.avis{
+    width: 322px;
+    height: 105px;
+    left: 337px;
+    top: 95px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 40px 40px 0px 40px;
+}
 /*///////// section topserver //////////// */
 #topServeur{
     width: 540px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
 }
 #topServeur label{
@@ -558,6 +570,9 @@ header, nav {
     opacity: 0;
     display: none;
 }
+#team figure{
+    justify-content: flex-start;
+}
 #team figure:hover figcaption{
     opacity: 1;
     display: block;
@@ -748,6 +763,10 @@ header, nav {
         border-top-left-radius: 45%;
         border-bottom-right-radius: 45%;
     }
+    #team figure{
+        background-color: transparent;
+        border: none;
+    }
     .teamUl{
         flex-direction: column;
         background-color: transparent;
@@ -830,6 +849,9 @@ header, nav {
     #topServeur2 .starChecked {
         width: 1.5em;
         margin: 0.2em;
+    }
+    #avis textarea{
+        width: 240px !important;
     }
 }
 @media (max-width: 300px) {

@@ -2,7 +2,7 @@
 //on demande la liste des roles
 $roles=execute("SELECT DISTINCT role_team FROM team ORDER BY role_team")->fetchAll(PDO::FETCH_ASSOC);
 //on demande les renseigenemt sur les membres de l'equipe
-$data=execute("SELECT nickname_team, role_team FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_ASSOC);
+$data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,21 +17,35 @@ $data=execute("SELECT nickname_team, role_team FROM team ORDER BY nickname_team"
     <div id="teamAlbum" class="divFlexRow">
     
     <?php //on va afficher les nom et les roles des membres
-    foreach($data as $membre): 
+    foreach($data as $membre):
+        $mom=$membre['nickname_team'];
+        $idTeam=$membre['id_team'];
+
+        //on demande les avatars des membres de l'equipe
+        $img=execute("SELECT name_media FROM media_media_type
+        INNER JOIN media
+        ON media.id_media=media_media_type.id_media
+        INNER JOIN team_media
+        ON team_media.id_media=media_media_type.id_media
+        WHERE id_media_type=2 AND team_media.id_team=$idTeam")->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($img as $avatar):
     ?>
         <figure>
-            <img alt="avatar" class="teamAvatar" src="assets/img/avatar-1.png">
+            
+            <img alt="avatar" class="teamAvatar" src="assets/img/<?php echo $avatar['name_media'];?>">
             <figcaption class="teamReseauxSociaux">
                 Role: <?php echo $membre['role_team'];?><br>
                 <?php echo $membre['nickname_team'];
-                $mom=$membre['nickname_team'];
                 //on demande les media des membres de l'equipe
-                $medias=execute("SELECT title_media,name_media FROM media 
+                $medias=execute("SELECT title_media,name_media FROM media
+                INNER JOIN media_media_type
+                ON media_media_type.id_media=media.id_media
                 INNER JOIN team_media
                 ON media.id_media=team_media.id_media
                 INNER JOIN team
                 ON team_media.id_team=team.id_team
-                WHERE nickname_team='$mom'")->fetchAll(PDO::FETCH_ASSOC);
+                WHERE nickname_team='$mom' AND id_media_type=1")->fetchAll(PDO::FETCH_ASSOC);
                 
                 //si il y a un reseau social
                 if($medias!==NULL):?>
@@ -49,6 +63,7 @@ $data=execute("SELECT nickname_team, role_team FROM team ORDER BY nickname_team"
                 </ul>
             </figcaption>
         </figure>
-        <?php endforeach; ?>
+        <?php endforeach;
+        endforeach; ?>
     </div>
 </section>

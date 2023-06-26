@@ -358,6 +358,9 @@ width: 300px !important;
 #topServeur label{
     font-size: 2em;
 }
+#topServeur input{
+    margin-bottom: 0.5em;
+}
 fieldset{
     display: flex;
     flex-direction: column;

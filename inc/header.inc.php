@@ -40,18 +40,15 @@
 
 <header>
 
-<nav id="navStartIsland" class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="<?=  BASE_PATH; ?>"><img id="logo" alt="logo" src="assets/img/logo_starisland.png"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon pink"></span>
-        </button>
-        <div id="menuStartisland" class="collapse navbar-collapse">
-        <a id="favHome" href="<?=  BASE_PATH; ?>"><img alt="Acceuil" src="assets/img/symbole_home_1.png">
-                        <span class="visually-hidden"></span>
-                    </a>
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="<?=  BASE_PATH; ?>"><img id="logo" alt="logo" src="assets/img/logo_starisland.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon pink"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+	<a id="favHome" href="<?=  BASE_PATH; ?>"><img alt="Acceuil" src="assets/img/symbole_home_1.png"></a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
                     <a class="nav-link" href="#">Gallerie</a>
                 </li>
                 <li class="nav-item">
@@ -63,7 +60,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1ca-sSQERai88NWyIMIXPckhgQ3li5AeXv7zzT1ux_I4/edit#gid=582164751">Réglement</a>
                 </li>
-                <?php     if (connect()):           ?>
+                <li class="nav-item liSmall">
+                    <a class="nav-link" href="#">Event</a>
+                </li>
+                <li class="nav-item liSmall">
+                    <a class="nav-link" href="#">Tuto</a>
+                </li>
+     <?php     if (connect()):           ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>
                     <div class="dropdown-menu">
@@ -75,13 +78,20 @@
                     </div>
                 </li>
                 <?php     endif;           ?>
-
             </ul>
             <?php     if (connect()):           ?>
             <a href="<?=  BASE_PATH.'?a=dis'; ?>" class="btn btn-primary">Déconnexion</a>
             <?php        endif;        ?>
-
-        </div>
+            <div id="divEventTuto">
+                <ul id="buttonsNav">
+                        <li class="nav-item liBig">
+                            <a class="nav-link" href="#"><img class="buttonNav" alt="lien tuto" src="assets/img/bouton-event.png"></a>
+                        </li>
+                        <li class="nav-item liBig">
+                            <a class="nav-link" href="#"><img class="buttonNav" alt="lien event" src="assets/img/bouton_tuto.png"></a>
+                        </li>
+                </ul>
+            </div>
     </div>
 </nav>
 </header>

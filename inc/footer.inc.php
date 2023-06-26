@@ -22,6 +22,7 @@
 </footer>
   <script src="assets/jquery/jquery.min.js"></script>
  <script src="assets/bootstrap/js/bootstrap.js"></script>
+ <script src="assets/bootstrap/js/bootstrap.min.js"></script>
  <script src="assets/js/timerJs.js"></script>
  <script>
         let page1 = document.getElementById("s1");

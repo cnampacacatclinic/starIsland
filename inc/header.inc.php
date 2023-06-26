@@ -60,6 +60,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Serveur</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1ca-sSQERai88NWyIMIXPckhgQ3li5AeXv7zzT1ux_I4/edit#gid=582164751">Réglement</a>
+                </li>
                 <?php     if (connect()):           ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>

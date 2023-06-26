@@ -333,6 +333,9 @@ margin-bottom: 1.5em;
 #avis textarea{
 width: 300px !important;
 }
+#avis figcaption p{
+    word-break: break-word;
+}
 .avisAvatar{
     width: 3em;
     height: 3em;

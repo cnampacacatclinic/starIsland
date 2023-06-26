@@ -1,10 +1,20 @@
 <section id="avis" class="fontImage2">
 <h2>Les avis &#10084;</h2>
-<div>      
+<div>    
+  <?php
+  //On interroge la BDD pour avoir les 4 dernier avis
+  $comments=execute("SELECT * FROM comment ORDER BY publish_date_comment DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
+  foreach($comments as $comment):
+    $idComment=$comment['id_comment'];
+    $idMediaComment=$comment['id_media'];
+    //On demande les photos
+    $imgComment=execute("SELECT name_media FROM media WHERE id_media=$idMediaComment")->fetchAll(PDO::FETCH_ASSOC);
+    foreach($imgComment as $avatarComment):
+  ?> 
     <figure>
-        <img class="avisAvatar" src="assets/img/avatar-1.png">
+        <img class="avisAvatar" src="assets/img/<?= $avatarComment['name_media']; ?>">
         <figcaption>
-          <p>Peusdo
+          <p><?= $comment['nickname_comment']; ?>
               <span>
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
@@ -13,58 +23,12 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
               </span>
           </p>
-          <p>Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!</p>
-          <p>Le 19/06/2023</p>
+          <p><?= $comment['comment_text']; ?></p>
+          <p><?= $comment['publish_date_comment']; ?></p>
         </figcaption>
     </figure>
-    <figure>
-        <img class="avisAvatar" src="assets/img/avatar-2.png">
-        <figcaption>
-          <p>Peusdo
-            <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-            </span>
-          </p>
-          <p>Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!</p>
-          <p>Le 19/06/2023</p>
-        </figcaption>
-    </figure>
-    <figure>
-    <img class="avisAvatar" src="assets/img/avatar-3.png">
-      <figcaption>
-          <p>Peusdo
-            <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-            </span>
-          </p>
-          <p>Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!</p>
-          <p>Le 19/06/2023</p>
-        </figcaption>
-    </figure>
-    <figure>
-        <img class="avisAvatar" src="assets/img/avatar-4.png">
-        <figcaption>
-          <p>Peusdo
-            <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-            </span>
-          </p>
-          <p>Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!</p>
-          <p>Le 19/06/2023</p>
-        </figcaption>
-    </figure>
+    <?php endforeach;
+    endforeach;?>
     </div> 
     <form id="topServeur" class="form-group">
         <fieldset class="form-group">
@@ -76,8 +40,8 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
-            <input type="text" name="pseudo" class="form-control" placeholder="Votre pseudo" value="">
-            <textarea class="form-control" rows="4" cols="25" name="message" placeholder="Ecire votre commentaire" required value=""></textarea>
+            <input type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
+            <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>

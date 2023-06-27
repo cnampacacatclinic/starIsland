@@ -42,7 +42,7 @@
             page3.style.border='solid 3px #f1dfe3';
         });
         page2.addEventListener("click", function(){
-            home.innerHTML=`<?php include "inc/sections/gallerie.inc.php"; ?>`;
+            home.innerHTML=`<?php include "inc/sections/gallerieHome.inc.php"; ?>`;
             page2.style.border='solid 3px #EA4C6F';
             page1.style.border='solid 3px #f1dfe3';
             page3.style.border='solid 3px #f1dfe3';

@@ -313,7 +313,21 @@ a:hover{
     height: 700px;
 }
 #carouselExampleIndicators, #carousel1, .active{
-    height: 500px;
+    height: 460px;
+}
+.linkGallerie{
+    border: solid 1px #EA4C6F;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 30px;
+    width: 150px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.linkGallerie:hover{
+    border: solid 1px white;
+    text-decoration: none;
 }
 #accueil{
     padding-top: 60px;

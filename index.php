@@ -29,6 +29,7 @@ if($page==''){
 
 </div>
 <?php
+include 'inc/sections/avis.inc.php';
 }//fin du si $_GET est vide
 
 //Selon la demande en get on affiche le contenu choisi
@@ -43,7 +44,7 @@ switch ($page) {
         include 'inc/sections/team.inc.php';
         break;
     case 'comment':
-        include 'inc/sections/avis.inc.php';
+        include 'inc/sections/comment.inc.php';
         break;
     case 'gallerie':
         include 'inc/sections/gallerie.inc.php';
@@ -54,17 +55,6 @@ switch ($page) {
     default:
     $_GET['page'] ='';
 }
-
-
-
-/* les sections */
-//include 'inc/sections/accueil.inc.php';
-//include 'inc/sections/gallerie.inc.php';
-//include 'inc/sections/devenirVip.inc.php';
-//include 'inc/sections/event.inc.php';
-//include 'inc/sections/topserveurVote.inc.php';
-//include 'inc/sections/team.inc.php';
-include 'inc/sections/avis.inc.php';
 
 /* le footer */
 require_once 'inc/footer.inc.php';

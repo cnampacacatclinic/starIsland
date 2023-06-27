@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 27 juin 2023 à 14:46
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 7.4.33
+-- Généré le : mar. 27 juin 2023 à 20:54
+-- Version du serveur : 10.4.25-MariaDB
+-- Version de PHP : 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `comment` (
   `publish_date_comment` date DEFAULT NULL,
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `comment`
@@ -58,7 +58,7 @@ CREATE TABLE `content` (
   `title_content` varchar(20) DEFAULT NULL,
   `description_content` text DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `content`
@@ -91,14 +91,14 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
   `end_date_event` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `event`
 --
 
 INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`) VALUES
-(1, '2023-06-27 12:37:27', '2023-06-30 12:37:46');
+(1, '2023-06-26 19:47:35', '2024-06-26 19:47:35');
 
 -- --------------------------------------------------------
 
@@ -107,10 +107,10 @@ INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`) VALUES
 --
 
 CREATE TABLE `event_content` (
-  `id_event_content` int(20) NOT NULL,
+  `id_event_content` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
   `id_content` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `event_content`
@@ -129,7 +129,7 @@ CREATE TABLE `event_media` (
   `id_event_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `event_media`
@@ -149,54 +149,27 @@ CREATE TABLE `media` (
   `id_media` bigint(20) NOT NULL,
   `title_media` varchar(20) DEFAULT NULL,
   `name_media` varchar(255) DEFAULT NULL,
-  `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_page` int(20) DEFAULT NULL,
+  `id_media_type` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `media`
 --
 
-INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`) VALUES
-(1, 'youtube', 'https://youtube.com', 2),
-(2, 'facebook', 'https://facebook.com', 2),
-(3, 'twitch', 'https://twitch.fr', 2),
-(4, 'instagram', 'https://instragram.com', 2),
-(5, 'twitter', 'https://twitter.com', 2),
-(6, 'discord', 'https://discord.com', 2),
-(7, 'avatar', 'avatar-4.png', 3),
-(8, 'avatar', 'avatar-3.png', 3),
-(9, 'avatar', 'avatar-2.png', 3),
-(10, 'avatar', 'avatar-1.png', 3),
-(11, 'imgEvent1', 'Perso1-removebg-preview.png', 4),
-(12, 'imgEvent2', 'Perso2-removebg-preview.png', 4);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `media_media_type`
---
-
-CREATE TABLE `media_media_type` (
-  `id_media_media_type` int(20) NOT NULL,
-  `id_media` bigint(20) NOT NULL,
-  `id_media_type` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `media_media_type`
---
-
-INSERT INTO `media_media_type` (`id_media_media_type`, `id_media`, `id_media_type`) VALUES
-(3, 10, 2),
-(4, 9, 2),
-(5, 8, 2),
-(6, 7, 2),
-(7, 1, 1),
-(8, 2, 1),
-(9, 3, 1),
-(10, 4, 1),
-(11, 5, 1),
-(12, 6, 1);
+INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_media_type`) VALUES
+(1, 'youtube', 'https://youtube.com', 2, 1),
+(2, 'facebook', 'https://facebook.com', 2, 1),
+(3, 'twitch', 'https://twitch.fr', 2, 1),
+(4, 'instagram', 'https://instragram.com', 2, 1),
+(5, 'twitter', 'https://twitter.com', 2, 1),
+(6, 'discord', 'https://discord.com', 2, 1),
+(7, 'avatar', 'avatar-4.png', 3, 2),
+(8, 'avatar', 'avatar-3.png', 3, 2),
+(9, 'avatar', 'avatar-2.png', 3, 2),
+(10, 'avatar', 'avatar-1.png', 3, 2),
+(11, 'imgEvent1', 'Perso1-removebg-preview.png', 4, 3),
+(12, 'imgEvent2', 'Perso2-removebg-preview.png', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -205,9 +178,9 @@ INSERT INTO `media_media_type` (`id_media_media_type`, `id_media`, `id_media_typ
 --
 
 CREATE TABLE `media_type` (
-  `id_media_type` int(20) NOT NULL,
+  `id_media_type` bigint(20) NOT NULL,
   `title_media_type` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `media_type`
@@ -216,8 +189,8 @@ CREATE TABLE `media_type` (
 INSERT INTO `media_type` (`id_media_type`, `title_media_type`) VALUES
 (1, 'reseauSocial'),
 (2, 'avatar'),
-(3, 'autre1'),
-(4, 'autre2');
+(3, 'img'),
+(4, 'lien');
 
 -- --------------------------------------------------------
 
@@ -229,7 +202,7 @@ CREATE TABLE `page` (
   `id_page` int(20) NOT NULL,
   `title_page` varchar(20) DEFAULT NULL,
   `id_content` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `page`
@@ -262,7 +235,7 @@ CREATE TABLE `team` (
   `id_team` int(20) NOT NULL,
   `role_team` varchar(20) DEFAULT NULL,
   `nickname_team` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `team`
@@ -294,7 +267,7 @@ CREATE TABLE `team_media` (
   `id_team_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_team` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `team_media`
@@ -347,10 +320,10 @@ INSERT INTO `team_media` (`id_team_media`, `id_media`, `id_team`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id_user` int(20) NOT NULL,
+  `id_user` bigint(20) NOT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
@@ -403,15 +376,8 @@ ALTER TABLE `event_media`
 -- Index pour la table `media`
 --
 ALTER TABLE `media`
-  ADD PRIMARY KEY (`id_media`);
-
---
--- Index pour la table `media_media_type`
---
-ALTER TABLE `media_media_type`
-  ADD PRIMARY KEY (`id_media_media_type`),
-  ADD KEY `fk_media_type_01` (`id_media_type`),
-  ADD KEY `id_media` (`id_media`);
+  ADD PRIMARY KEY (`id_media`),
+  ADD KEY `id_media_type` (`id_media_type`);
 
 --
 -- Index pour la table `media_type`
@@ -472,7 +438,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  MODIFY `id_event_content` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `event_media`
@@ -487,16 +453,10 @@ ALTER TABLE `media`
   MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT pour la table `media_media_type`
---
-ALTER TABLE `media_media_type`
-  MODIFY `id_media_media_type` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT pour la table `media_type`
 --
 ALTER TABLE `media_type`
-  MODIFY `id_media_type` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_media_type` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `page`
@@ -520,7 +480,7 @@ ALTER TABLE `team_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Contraintes pour les tables déchargées
@@ -530,47 +490,40 @@ ALTER TABLE `user`
 -- Contraintes pour la table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `fk_media_02` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_media_02` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`);
 
 --
 -- Contraintes pour la table `content`
 --
 ALTER TABLE `content`
-  ADD CONSTRAINT `fk_page_01` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_page_01` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`);
 
 --
 -- Contraintes pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  ADD CONSTRAINT `fk_content_01` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_enent_01` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_content_01` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`),
+  ADD CONSTRAINT `fk_event_01` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`);
 
 --
 -- Contraintes pour la table `event_media`
 --
 ALTER TABLE `event_media`
-  ADD CONSTRAINT `fk_event_02` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_event_02` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`),
   ADD CONSTRAINT `fk_media_01` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `media_media_type`
+-- Contraintes pour la table `media`
 --
-ALTER TABLE `media_media_type`
-  ADD CONSTRAINT `fk_media_03` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`),
-  ADD CONSTRAINT `fk_media_type_01` FOREIGN KEY (`id_media_type`) REFERENCES `media_type` (`id_media_type`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `page`
---
-ALTER TABLE `page`
-  ADD CONSTRAINT `fk_content_04` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `media`
+  ADD CONSTRAINT `fk_media_media_type` FOREIGN KEY (`id_media_type`) REFERENCES `media_type` (`id_media_type`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  ADD CONSTRAINT `fk_media_05` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`),
-  ADD CONSTRAINT `fk_team_01` FOREIGN KEY (`id_team`) REFERENCES `team` (`id_team`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_media_04` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`),
+  ADD CONSTRAINT `fk_team_02` FOREIGN KEY (`id_team`) REFERENCES `team` (`id_team`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

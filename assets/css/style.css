@@ -20,6 +20,7 @@
     /*bottom: 0;*/
     justify-content:space-around;
     width: 150px;
+    cursor: pointer;
 }
 
 body{
@@ -45,6 +46,7 @@ main{
 }
 a{
     color:#EA4C6F !important;
+    cursor: pointer;
 }
 a:hover{
     color:white !important;

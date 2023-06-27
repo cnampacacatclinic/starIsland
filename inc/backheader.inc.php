@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Les moissons admin</title>
+    <title>Star Island Admin</title>
 
 
     <!-- Custom fonts for this template-->
@@ -41,7 +41,7 @@
                 <img id="logo2" alt="logo" src="../assets/img/petit_logo.png">
                 <!--<i class="fas fa-laugh-wink"></i>-->
             </div>
-            <div class="sidebar-brand-text mx-3">Les Moiss' Admin </sup></div>
+            <div class="sidebar-brand-text mx-3">Admin</sup></div>
         </a>
 
         <!-- Divider -->
@@ -199,8 +199,6 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link " href="<?=  BASE_PATH; ?>" role="button">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Voir le site</span>
-                            <img class="img-profile rounded-circle"
-                                 src="">
                         </a>
 
                     </li>

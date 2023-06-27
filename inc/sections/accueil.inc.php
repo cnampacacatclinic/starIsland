@@ -6,7 +6,5 @@
                 Sur notre serveur nous proposons également des événements réguliers, vous pourrez travailler dans la police ou participer à des braquages. Ici les joueurs peuvent coopérer pour réaliser des missions complexes et lucratives. Les joueurs vont plonger dans un monde virtuel riche et interactif.<br>
                 <a target="_blank" title="Top serveur" href="https://top-serveurs.net/gta/starsisland">N'hésitez pas à voter pour nous sur Top Serveur !</a>
     </p>
-    <!--<div><span class="rond" id="s1"></span> . <span id="s2" class="rond"></span> . <span class="rond" id="s3"></span></div>
--->
 </div>
 </section>

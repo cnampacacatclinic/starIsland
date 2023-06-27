@@ -49,10 +49,13 @@
 	<a id="favHome" href="<?=  BASE_PATH; ?>"><img alt="Acceuil" src="assets/img/symbole_home_1.png"></a>
     <ul class="navbar-nav">
       <li class="nav-item">
-                    <a class="nav-link" href="#">Gallerie</a>
+                    <a class="nav-link" href="?page=gallerie">Gallerie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Devenir VIP</a>
+                    <a class="nav-link" href="?page=vip">Devenir VIP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?page=team">Equipe</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Serveur</a>
@@ -61,7 +64,7 @@
                     <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1ca-sSQERai88NWyIMIXPckhgQ3li5AeXv7zzT1ux_I4/edit#gid=582164751">Réglement</a>
                 </li>
                 <li class="nav-item liSmall">
-                    <a class="nav-link" href="#">Event</a>
+                    <a class="nav-link" href="?page=event">Event</a>
                 </li>
                 <li class="nav-item liSmall">
                     <a class="nav-link" href="#">Tuto</a>
@@ -85,7 +88,7 @@
             <div id="divEventTuto">
                 <ul id="buttonsNav">
                         <li class="nav-item liBig">
-                            <a class="nav-link" href="#"><img class="buttonNav" alt="lien tuto" src="assets/img/bouton-event.png"></a>
+                            <a class="nav-link" href="?page=event"><img class="buttonNav" alt="lien tuto" src="assets/img/bouton-event.png"></a>
                         </li>
                         <li class="nav-item liBig">
                             <a class="nav-link" href="#"><img class="buttonNav" alt="lien event" src="assets/img/bouton_tuto.png"></a>

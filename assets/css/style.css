@@ -461,8 +461,11 @@ header, nav {
     width: 6.5em;
 }
 .buttonNav{
-    width: 6em;
+    width: 7.5em;
     margin: 0;
+}
+.buttonNav:hover{
+    filter: drop-shadow(16px 16px 20px red) invert(95%)
 }
 #buttonsNav{
     margin: 0;

@@ -22,12 +22,12 @@ $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_
         $idTeam=$membre['id_team'];
 
         //on demande les avatars des membres de l'equipe
-        $img=execute("SELECT name_media FROM media_media_type
-        INNER JOIN media
-        ON media.id_media=media_media_type.id_media
+        $img=execute("SELECT name_media FROM media
+        INNER JOIN media_type
+        ON media.id_media_type=media_type.id_media_type
         INNER JOIN team_media
-        ON team_media.id_media=media_media_type.id_media
-        WHERE id_media_type=2 AND team_media.id_team=$idTeam")->fetchAll(PDO::FETCH_ASSOC);
+        ON team_media.id_media=media.id_media
+        WHERE media.id_media_type=2 AND team_media.id_team=$idTeam")->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($img as $avatar):
     ?>
@@ -39,13 +39,11 @@ $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_
                 <?php echo $membre['nickname_team'];
                 //on demande les media des membres de l'equipe
                 $medias=execute("SELECT title_media,name_media FROM media
-                INNER JOIN media_media_type
-                ON media_media_type.id_media=media.id_media
                 INNER JOIN team_media
                 ON media.id_media=team_media.id_media
                 INNER JOIN team
                 ON team_media.id_team=team.id_team
-                WHERE nickname_team='$mom' AND id_media_type=1")->fetchAll(PDO::FETCH_ASSOC);
+                WHERE nickname_team='$mom' AND media.id_media_type=1")->fetchAll(PDO::FETCH_ASSOC);
                 
                 //si il y a un reseau social
                 if($medias!==NULL):?>

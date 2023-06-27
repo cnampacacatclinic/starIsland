@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 26 juin 2023 à 16:56
--- Version du serveur : 10.4.25-MariaDB
--- Version de PHP : 7.4.30
+-- Généré le : mar. 27 juin 2023 à 14:46
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `comment` (
   `publish_date_comment` date DEFAULT NULL,
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `comment`
@@ -58,17 +58,17 @@ CREATE TABLE `content` (
   `title_content` varchar(20) DEFAULT NULL,
   `description_content` text DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `content`
 --
 
 INSERT INTO `content` (`id_content`, `title_content`, `description_content`, `id_page`) VALUES
-(4, 'accueil', 'fdsfsd', 1),
-(5, 'team', '', 2),
-(6, 'avis', 'f', 3),
-(7, 'event', NULL, 4),
+(4, 'BIENVENUE SUR STAR\' ', 'Notre serveur permet de jouer à GTA 5, développé par Rockstar. C\'est un jeu vidéo de simulation de crime en monde ouvert. Disponible en mode freetoplay, il offre une expérience de jeu gratuite à une vaste communauté de joueurs. Les joueurs ont la possibilité d\'incarner des personnages impliqués dans des activités de gang, de jouer le rôle de policiers ou de participer à des scénarios qui leur permettront une fantastique évasion.<br>\r\n                Le jeu est distrayant grâce à sa liberté d\'action et sa capacité à créer des histoires uniques grâce à son mode de jeu de rôle (RP) très populaire.<br>\r\n                Sur notre serveur nous proposons également des événements réguliers, vous pourrez travailler dans la police ou participer à des braquages. Ici les joueurs peuvent coopérer pour réaliser des missions complexes et lucratives. Les joueurs vont plonger dans un monde virtuel riche et interactif.<br>\r\n                <a target=\"_blank\" title=\"Top serveur\" href=\"https://top-serveurs.net/gta/starsisland\">N\'hésitez pas à voter pour nous sur Top Serveur !</a>', 1),
+(5, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.\r\n            ', 5),
+(6, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.', 5),
+(7, 'Titre de l\'event', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Error quisquam neque, provident expedita excepturi reprehenderit nihil doloremque illo assumenda vitae.<br>\r\n      Est totam delectus natus exercitationem possimus, inventore dolorum? Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Illo assumenda vitae est totam delectus natus exercitationem possimus?', 4),
 (8, 'rezr', 'fsdf', 5),
 (9, 'bb', 'b', 6),
 (10, 'cc', 'c', 7),
@@ -91,7 +91,14 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
   `end_date_event` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `event`
+--
+
+INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`) VALUES
+(1, '2023-06-27 12:37:27', '2023-06-30 12:37:46');
 
 -- --------------------------------------------------------
 
@@ -103,7 +110,14 @@ CREATE TABLE `event_content` (
   `id_event_content` int(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
   `id_content` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `event_content`
+--
+
+INSERT INTO `event_content` (`id_event_content`, `id_event`, `id_content`) VALUES
+(1, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -115,7 +129,15 @@ CREATE TABLE `event_media` (
   `id_event_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `event_media`
+--
+
+INSERT INTO `event_media` (`id_event_media`, `id_media`, `id_event`) VALUES
+(1, 11, 1),
+(2, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +150,7 @@ CREATE TABLE `media` (
   `title_media` varchar(20) DEFAULT NULL,
   `name_media` varchar(255) DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media`
@@ -144,7 +166,9 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`) VALUES
 (7, 'avatar', 'avatar-4.png', 3),
 (8, 'avatar', 'avatar-3.png', 3),
 (9, 'avatar', 'avatar-2.png', 3),
-(10, 'avatar', 'avatar-1.png', 3);
+(10, 'avatar', 'avatar-1.png', 3),
+(11, 'imgEvent1', 'Perso1-removebg-preview.png', 4),
+(12, 'imgEvent2', 'Perso2-removebg-preview.png', 4);
 
 -- --------------------------------------------------------
 
@@ -156,7 +180,7 @@ CREATE TABLE `media_media_type` (
   `id_media_media_type` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_media_type` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media_media_type`
@@ -183,7 +207,7 @@ INSERT INTO `media_media_type` (`id_media_media_type`, `id_media`, `id_media_typ
 CREATE TABLE `media_type` (
   `id_media_type` int(20) NOT NULL,
   `title_media_type` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media_type`
@@ -205,7 +229,7 @@ CREATE TABLE `page` (
   `id_page` int(20) NOT NULL,
   `title_page` varchar(20) DEFAULT NULL,
   `id_content` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `page`
@@ -216,7 +240,7 @@ INSERT INTO `page` (`id_page`, `title_page`, `id_content`) VALUES
 (2, 'team', 5),
 (3, 'avis', 6),
 (4, 'event', 7),
-(5, 'page5', 8),
+(5, 'vip', 8),
 (6, 'page6', 9),
 (7, 'page7', 10),
 (8, 'page8', 11),
@@ -238,7 +262,7 @@ CREATE TABLE `team` (
   `id_team` int(20) NOT NULL,
   `role_team` varchar(20) DEFAULT NULL,
   `nickname_team` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team`
@@ -270,7 +294,7 @@ CREATE TABLE `team_media` (
   `id_team_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_team` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team_media`
@@ -326,7 +350,7 @@ CREATE TABLE `user` (
   `id_user` int(20) NOT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -442,25 +466,25 @@ ALTER TABLE `content`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  MODIFY `id_event_content` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event_content` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `event_media`
 --
 ALTER TABLE `event_media`
-  MODIFY `id_event_media` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `media_media_type`

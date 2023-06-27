@@ -1,4 +1,4 @@
-<section id="event" class="fontImage1">
+<section id="event" class="fontImgEvent">
   <h2>L'event</h2>
   <article>
     <figure><img alt="event" src="assets/img/predation.png"></figure>

@@ -1,4 +1,4 @@
-<section id="devenirVIP" class="fontImage2">
+<section id="devenirVIP" class="fontImgVIP">
     <h2>Devenir V.I.P.</h2>
     
     <article class="divFlexRow">

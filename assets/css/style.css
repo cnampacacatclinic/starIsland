@@ -114,7 +114,9 @@ section{
     background-image: linear-gradient(
         rgba(139, 113, 113, 0.6), 
         rgba(49, 50, 53, 0.6)
-      ),url('../img/Wallpaper4_1.png');
+      ),url('../img/gta_decors.jpg');
+    background-position: center center;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+    background-attachment: fixed;/*pour l'image reste en place ça evite le probleme de la version mobile*/
 }
 
 .fontImage2{
@@ -125,7 +127,45 @@ section{
     background-image: linear-gradient(
         rgba(139, 113, 113, 0.6), 
         rgba(49, 50, 53, 0.6)
-      ),url('../img/Wallpaper1.png');
+      ),url('../img/gta_decors2.jpg');
+    background-position: center center;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+    background-attachment: fixed;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+}
+.fontImgTeam{
+    flex-direction: column;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+        rgba(139, 113, 113, 0.6), 
+        rgba(49, 50, 53, 0.6)
+      ),url('../img/paysage.jpeg');
+    background-position: center center;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+    background-attachment: fixed;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+}
+.fontImgEvent{
+    flex-direction: column;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+        rgba(139, 113, 113, 0.6), 
+        rgba(49, 50, 53, 0.6)
+      ),url('../img/Garage.jpg');
+    background-position: center center;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+    background-attachment: fixed;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+}
+.fontImgVIP{
+    flex-direction: column;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+        rgba(139, 113, 113, 0.6), 
+        rgba(49, 50, 53, 0.6)
+      ),url('../img/gta_decors4.jpg');
+    background-position: center center;/*pour l'image reste en place ça evite le probleme de la version mobile*/
+    background-attachment: fixed;/*pour l'image reste en place ça evite le probleme de la version mobile*/
 }
 
 #description{
@@ -357,6 +397,7 @@ width: 300px !important;
     width: 540px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 #topServeur label{
     font-size: 2em;
@@ -533,6 +574,7 @@ header, nav {
     display: flex;
     align-items: center;
 }
+
 .teamUl{
     flex-direction: row;
     justify-content: space-around;

@@ -6,7 +6,7 @@ $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_
 
 ?>
 
-<section id="team" class="fontImage1">
+<section id="team" class="fontImgTeam">
     <h2>L'équipe</h2>
     <ul class="teamUl">
         <li>Tout</li>

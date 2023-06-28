@@ -27,5 +27,5 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<a class="linkGallerie" href="?page=gallerie">Voir plus d'image</a>
+<a class="linkButton" href="?page=gallerie">Voir plus d'image</a>
 </section>

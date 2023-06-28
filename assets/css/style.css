@@ -317,7 +317,7 @@ a:hover{
 #carouselExampleIndicators, #carousel1, .active{
     height: 460px;
 }
-.linkGallerie{
+.linkButton{
     border: solid 1px #EA4C6F;
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -327,7 +327,7 @@ a:hover{
     margin: 0;
     margin-bottom: 20px;
 }
-.linkGallerie:hover{
+.linkButton:hover{
     border: solid 1px white;
     text-decoration: none;
 }
@@ -681,12 +681,38 @@ header, nav {
     filter: invert(100%) brightness(40%) sepia(100%) hue-rotate(280deg) saturate(1000%) contrast(0.8);
 }
 /*////////// Section Gallerie ///////////*/
+#album{
+    padding: 0;
+    margin: 0;
+    padding-bottom: 80px;
+}
 #gallerie img{
     width: 100%;
 }
 #gallerie {
     padding: 0;
 }
+.figAlbum{
+    width: 200px;
+
+}
+#album img{
+    width: 189px;
+}
+#album div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+    flex-wrap: wrap;
+}
+#album figure{
+    margin: 10px;
+}
+#album figure a:hover{
+    cursor: zoom-in;
+}
+
 /*////////// Section topserver ///////////*/
 #topServeur2 {
     display: flex;

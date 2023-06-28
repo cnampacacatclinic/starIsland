@@ -29,6 +29,7 @@
     </figure>
     <?php endforeach;
     endforeach;?>
+    <a class="linkButton" href="?page=comment">Voir tous les avis</a>
     </div> 
     <form id="topServeur" class="form-group">
         <fieldset class="form-group">
@@ -41,7 +42,7 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
             <input type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
-            <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecire votre commentaire" required value=""></textarea>
+            <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 27 juin 2023 à 20:54
--- Version du serveur : 10.4.25-MariaDB
--- Version de PHP : 7.4.30
+-- Généré le : mer. 28 juin 2023 à 10:18
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `comment` (
   `publish_date_comment` date DEFAULT NULL,
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `comment`
@@ -58,7 +58,7 @@ CREATE TABLE `content` (
   `title_content` varchar(20) DEFAULT NULL,
   `description_content` text DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `content`
@@ -91,7 +91,7 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
   `end_date_event` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event`
@@ -110,7 +110,7 @@ CREATE TABLE `event_content` (
   `id_event_content` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
   `id_content` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event_content`
@@ -129,7 +129,7 @@ CREATE TABLE `event_media` (
   `id_event_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event_media`
@@ -151,7 +151,7 @@ CREATE TABLE `media` (
   `name_media` varchar(255) DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL,
   `id_media_type` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media`
@@ -180,7 +180,7 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 CREATE TABLE `media_type` (
   `id_media_type` bigint(20) NOT NULL,
   `title_media_type` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media_type`
@@ -190,7 +190,8 @@ INSERT INTO `media_type` (`id_media_type`, `title_media_type`) VALUES
 (1, 'reseauSocial'),
 (2, 'avatar'),
 (3, 'img'),
-(4, 'lien');
+(4, 'lien'),
+(11, 'yyy');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ CREATE TABLE `page` (
   `id_page` int(20) NOT NULL,
   `title_page` varchar(20) DEFAULT NULL,
   `id_content` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `page`
@@ -235,7 +236,7 @@ CREATE TABLE `team` (
   `id_team` int(20) NOT NULL,
   `role_team` varchar(20) DEFAULT NULL,
   `nickname_team` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team`
@@ -267,7 +268,7 @@ CREATE TABLE `team_media` (
   `id_team_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_team` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team_media`
@@ -323,7 +324,7 @@ CREATE TABLE `user` (
   `id_user` bigint(20) NOT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -456,7 +457,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT pour la table `media_type`
 --
 ALTER TABLE `media_type`
-  MODIFY `id_media_type` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_media_type` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `page`

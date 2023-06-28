@@ -28,3 +28,68 @@
   </a>
 </div>
 </section>
+<section id="album" class="fontImage1">
+<h2>Album</h2>
+<div>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper1.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper1.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper2.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper2.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper3.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper3.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper1.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper1.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper2.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper2.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper3.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper3.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper1.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper1.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper2.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper2.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper3.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper3.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper1.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper1.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper2.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper2.png" alt="image de l'album">
+  </a>
+  </figure>
+  <figure class="figAlbum">
+  <a href="assets/img/Wallpaper3.png" title="agrandir l'image">
+    <img src="assets/img/Wallpaper3.png" alt="image de l'album">
+  </a>
+  </figure>
+</div>
+</section>

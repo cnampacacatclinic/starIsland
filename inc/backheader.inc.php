@@ -74,7 +74,7 @@
         <hr class="sidebar-divider d-none d-md-block">
         
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?=BASE_PATH.'back/mediatype.php';?>" >
+            <a class="nav-link collapsed" href="<?=BASE_PATH.'back/media_type.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion type de média</span>
             </a>

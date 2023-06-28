@@ -610,6 +610,7 @@ header, nav {
 #team li:hover{
     color:#EA4C6F;
     transition-duration: 2s;
+    cursor: pointer;
 }
 .teamReseauxSociaux{
     flex-direction: column;

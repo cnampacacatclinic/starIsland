@@ -18,7 +18,7 @@ $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_
     
     <?php //on va afficher les nom et les roles des membres
     foreach($data as $membre):
-        $mom=$membre['nickname_team'];
+        $nameTeam=$membre['nickname_team'];
         $idTeam=$membre['id_team'];
 
         //on demande les avatars des membres de l'equipe
@@ -43,7 +43,7 @@ $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_
                 ON media.id_media=team_media.id_media
                 INNER JOIN team
                 ON team_media.id_team=team.id_team
-                WHERE nickname_team='$mom' AND media.id_media_type=1")->fetchAll(PDO::FETCH_ASSOC);
+                WHERE nickname_team='$nameTeam' AND media.id_media_type=1")->fetchAll(PDO::FETCH_ASSOC);
                 
                 //si il y a un reseau social
                 if($medias!==NULL):?>

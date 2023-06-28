@@ -340,7 +340,7 @@ a:hover{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /*width: 60%;*/
+    /* la width: 60% cad avec pourcentage, n'a pas donné le résultat proche de la maquette ...*/
     width: 950px;
     align-items: center;
     justify-content: space-around;

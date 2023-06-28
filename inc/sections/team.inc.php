@@ -2,7 +2,7 @@
 //on demande la liste des roles
 $roles=execute("SELECT DISTINCT role_team FROM team ORDER BY role_team")->fetchAll(PDO::FETCH_ASSOC);
 //on demande les renseignements sur les membres de l'equipe
-if(isset($_GET['r'])){
+if(isset($_GET['r']) && $_GET['r']!=='tout'){
 
     //on demande les membres en fonction de leur role
     
@@ -13,15 +13,15 @@ if(isset($_GET['r'])){
     }//on demande tous les membres
     else{
     
-    $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_ASSOC);
-    global $data;
+        $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_ASSOC);
+        global $data;
     }
 ?>
 
 <section id="team" class="fontImgTeam">
     <h2>L'équipe</h2>
     <ul class="teamUl">
-        <li>Tout</li>
+        <li><a href="?page=team&r=tout">Tout</a></li>
         <?php foreach($roles as $role): ?>
         <li><a href="?page=team&r=<?php echo $role['role_team']; ?>"><?php echo $role['role_team']; ?></a></li>
         <?php endforeach; ?>

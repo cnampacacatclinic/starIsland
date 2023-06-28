@@ -17,7 +17,7 @@ if (isset($_GET['a']) && $_GET['a']=='dis'){
 $page= !empty($_GET['page']) ? $_GET['page'] :'';
 
 /* NOTE : obliger de faire comme ça plutot que de le 
-mettre par defaul dans le switch car sinon 
+mettre par defaut dans le switch car sinon 
 le javascript ne fonctionne pas ! */
 if($page==''){
 ?>

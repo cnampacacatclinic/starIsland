@@ -607,10 +607,14 @@ header, nav {
     background-color: rgba(255, 255, 255, 0.3);
     border: solid 1px #EA4C6F;
 }
-#team li:hover{
-    color:#EA4C6F;
+#team a{
+    color:white !important;
+}
+#team a:hover{
+    color:#EA4C6F !important;
     transition-duration: 2s;
     cursor: pointer;
+    text-decoration: none;
 }
 .teamReseauxSociaux{
     flex-direction: column;

@@ -1,27 +1,25 @@
+<?php
+//on affiche dans la page le texte
+$contentVIP=execute("SELECT title_content,description_content,content.id_page,name_media FROM content
+INNER JOIN page
+ON page.id_page=content.id_page
+INNER JOIN media
+ON media.id_page=page.id_page
+WHERE url='vip' GROUP BY name_media")->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <section id="devenirVIP" class="fontImgVIP">
     <h2>Devenir V.I.P.</h2>
-    
-    <article class="divFlexRow">
-        <figure><img alt="portrait d'un membre VIP" src="assets/img/Perso1-removebg-preview.png"></figure>
+    <?php
+    //on va afficher le texte et obtenir l'id de la page pour le media
+    foreach($contentVIP as $textVip):
+    ?>
+        <article class="divFlexRow">
+        <figure><img alt="portrait d'un membre VIP" src="assets/img/<?= $textVip['name_media'];?>"></figure>
         <div>
-            <h3>V.I.P.</h3>
-            <p>
-                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>
-                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>
-                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.
-            </p>
+            <h3><?=$textVip['title_content'];?></h3>
+            <p><?=$textVip['description_content'];?></p>
         </div>
     </article>
-
-    <article class="divFlexRow">
-        <figure><img alt="portrait d'un membre VIP" src="assets/img/Perso2-removebg-preview.png"></figure>
-        <div>
-            <h3>V.I.P.</h3>
-            <p>
-                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>
-                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>
-                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.
-            </p>
-        </div>
-    </article>
+    <?php endforeach;?>
 </section>

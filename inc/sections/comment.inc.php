@@ -5,10 +5,11 @@
   //On interroge la BDD pour avoir les avis rangé par ordre de date
   $comments=execute("SELECT * FROM comment ORDER BY publish_date_comment DESC")->fetchAll(PDO::FETCH_ASSOC);
   foreach($comments as $comment):
-    $idComment=$comment['id_comment'];
-    $idMediaComment=$comment['id_media'];
+    //$idComment=$comment['id_comment'];
     //On demande les photos
-    $imgComment=execute("SELECT name_media FROM media WHERE id_media=$idMediaComment")->fetchAll(PDO::FETCH_ASSOC);
+    $imgComment=execute("SELECT name_media FROM media WHERE id_media=:idMediaComment",array(
+      ':idMediaComment'=>$comment['id_media']
+    ))->fetchAll(PDO::FETCH_ASSOC);
     foreach($imgComment as $avatarComment):
   ?> 
     <figure>

@@ -5,11 +5,11 @@
   //On interroge la BDD pour avoir les 4 dernier avis
   $comments=execute("SELECT * FROM comment ORDER BY publish_date_comment DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
   foreach($comments as $comment):
-    $idComment=$comment['id_comment'];
-    $idMediaComment=$comment['id_media'];
     //On demande les photos
-    $imgComment=execute("SELECT name_media FROM media WHERE id_media=$idMediaComment")->fetchAll(PDO::FETCH_ASSOC);
-    foreach($imgComment as $avatarComment):
+    $imgComment=execute("SELECT name_media FROM media WHERE id_media=:idMediaComment",array(
+      ':idMediaComment'=>$comment['id_media']
+    ))->fetchAll(PDO::FETCH_ASSOC);
+  foreach($imgComment as $avatarComment):
   ?> 
     <figure>
         <img class="avisAvatar" src="assets/img/<?= $avatarComment['name_media']; ?>">

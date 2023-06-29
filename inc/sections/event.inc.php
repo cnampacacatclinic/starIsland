@@ -1,15 +1,31 @@
+<?php
+$dataEvent=execute("SELECT * FROM event
+INNER JOIN event_content
+ON event_content.id_event=event.id_event
+INNER JOIN content
+ON content.id_content=event_content.id_content
+INNER JOIN page
+ON page.id_page=content.id_page
+INNER JOIN media
+ON page.id_page=media.id_page
+ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
+?>
 <section id="event" class="fontImgEvent">
   <h2>L'event</h2>
   <article>
-    <figure><img alt="event" src="assets/img/predation.png"></figure>
+  <?php
+      foreach ($dataEvent as $event):
+  ?>
+    <figure><img alt="event" src="assets/img/<?= $event['name_media'];?>"></figure>
     <div>
       <h3>Time reaming<h3>
       <div id="timerJs"></div>
-      <h3>Titre de l'event</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-      Error quisquam neque, provident expedita excepturi reprehenderit nihil doloremque illo assumenda vitae.<br>
-      Est totam delectus natus exercitationem possimus, inventore dolorum? Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-      Illo assumenda vitae est totam delectus natus exercitationem possimus?</p>
+
+      <h3><?= $event['title_content']; ?></h3>
+      <p><?= $event['description_content']; ?></p>
     </div>
+  <?php
+      endforeach;
+  ?>
   </article>
 </section>

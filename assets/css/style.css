@@ -586,6 +586,10 @@ header, nav {
 }
 
 /* //////////// section team //////////// */
+#team {
+    padding-top: 20px;
+}
+
 #team ul{
     margin: 0;
     padding: 0;

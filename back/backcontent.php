@@ -1,6 +1,6 @@
-<?php require_once '../config/function.php';
-
-//version du 28/06/2023
+<?php require_once '../config/function.php';?>
+    <h2>CONTENT</h2>
+<?php
 if (!empty($_POST)) {
 
 
@@ -79,7 +79,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 require_once '../inc/backheader.inc.php';
 ?>
 
-
+<h2>CONTENT</h2>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

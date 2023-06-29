@@ -57,7 +57,7 @@
         <div class="sidebar-heading">
             gestion
         </div>
-        <li class="nav-item">
+       <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
@@ -70,68 +70,67 @@
                 </div>
             </div>
         </li>
-
+        -->
         <hr class="sidebar-divider d-none d-md-block">
         
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?=BASE_PATH.'back/media_type.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion type de média</span>
+                <span>Gestion du type de média</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backmedia.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion carte resto</span>
+                <span>Gestion des médias</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backevent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion formule</span>
+                <span>Gestion des event</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backcomment.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion bar / cave</span>
+                <span>Gestion des commentaires</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backpage.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion navigation</span>
+                <span>Gestion des pages</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed"   href=""   >
-
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backcontent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion evènements</span>
+                <span>Gestion du contenu des pages</span>
             </a>
         </li>
 
 
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href=""  >
+        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backteam.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion newsletter</span>
+                <span>Gestion de l'equipe</span>
             </a>
         </li>
 
@@ -141,11 +140,11 @@
 
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item ">
+        <!--<li class="nav-item ">
             <a class="nav-link collapsed" href="" >
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Gestion abonnés</span>
-            </a>
+            </a>-->
 <!--            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"-->
 <!--                 data-parent="#accordionSidebar">-->
 <!--                <div class="bg-white py-2 collapse-inner rounded">-->
@@ -159,7 +158,7 @@
 <!--                    <a class="collapse-item active" href="{{path('admin_crud_slider_new')}}">Gestion slider</a>-->
 <!--                </div>-->
 <!--            </div>-->
-        </li>
+      <!--  </li>-->
 
 
 

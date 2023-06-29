@@ -1,31 +1,32 @@
+        //On prend la donnée grace à la value d'un input hidden
+        let dateFin = document.getElementById('idDateFin').value;
 
-
-        // Set the date we're counting down to
-        var countDownDate = new Date("Jun 1, 2025 00:00:00").getTime();
+        let countDownDate = new Date(dateFin).getTime();
         
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+        // On mets à jour le compte à rebours toutes les 1 secondes
+        let x = setInterval(function() {
         
-        // Get today's date and time
-        var now = new Date().getTime();
+        // On demande l'heure et la date actuelles
+        let now = new Date().getTime();
         
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
+        /*On cherche à connaitre la valeur du temps qui s'ecoule entre le temps du
+        timer et la date actuelle*/
+        let distance = countDownDate - now;
         
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        //var daysh= (days*24)+hours;
-        // Display the result in the element with id="timerJs"
+        // on calcule le temps pour les jours, les heures et les secondes
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        //let daysh= (days*24)+hours;
+        // On affiche le résultat dans l'élément avec id="timerJs »
         document.getElementById("timerJs").innerHTML = days + " Jours, heures : <span class='spanTimer'>" + hours + "</span> : <span class='spanTimer'>" 
           + minutes + "</span> : <span class='spanTimer'>" + seconds + "</span>";
         
-        // If the count down is finished, write some text
+        //Si le timer est fini on affiche un texte
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("timerJs").innerHTML = "EXPIRED";
+            document.getElementById("timerJs").innerHTML = "L'événement est en cour !";
           }
         }, 1000);
 

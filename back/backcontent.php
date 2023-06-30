@@ -43,7 +43,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 
 if (!empty($_POST)) {
 
-    if (empty($_POST['title_content']) || empty($_POST['description_content']) || empty($_POST['id_page'])) {
+    if (empty($_POST['title_content']) || empty($_POST['description_content'])) {
 
         $error = 'Ce champs est obligatoire';
 
@@ -57,7 +57,7 @@ if (!empty($_POST)) {
             execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
                 ':title_content' => $_POST['title_content'],
                 ':description_content' => $_POST['description_content'],
-                ':id_page' => $_POST['id_page']
+                ':id_page' => $_POST['id_page1']
             ));
 
             $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
@@ -65,22 +65,19 @@ if (!empty($_POST)) {
             exit();
         }// fin soumission en insert
         else {
-            //TODO 14
-            if(isset($_POST['id_page1'])){
-                $idPage = $_POST['id_page2'];
-
+            //TODO 
+                $idPage = $_POST['id_page1'] ? '' : $_POST['id_page2'];
             
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
                     ':id' => $_POST['id_content'],
                     ':title' => $_POST['title_content'],
                     ':description_content' => $_POST['description_content'],
-                    ':id_page' => $_POST['id_page']
+                    ':id_page' => $idPage
                 ));
 
                 $_SESSION['messages']['success'][] = 'Le contenu a été modifié';
                 header('location:./backcontent.php');
                 exit();
-            }
 
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -94,15 +91,15 @@ require_once '../inc/backheader.inc.php';
 
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
-            <select class="form-select" name="id_page1" required>
-                <option selected>
+            <select class="form-select" name="id_page1">
+                <option selected value="">
                     Choisir une page *
                 </option>
                 <?php foreach ($pages as $page): ?>
                     <option value="<?=$page['id_page'] ?? '';?>"><?=$page['title_page'];?></option>
                 <?php endforeach; ?>
             </select>
-            <input type="hidden" name="id_page2" value="<?$content2['idPage'] ?? ''; ?>">
+            <input type="hidden" name="id_page2" value="<?=$content2['idPage'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Titre</label>

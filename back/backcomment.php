@@ -1,73 +1,47 @@
-<?php require_once '../config/function.php';?>
-    <h2>Comment</h2>
-<?php
-if (!empty($_POST)) {
+<?php require_once '../config/function.php';
+if (!empty($_GET)) {
 
 
-    if (empty($_POST['title_media_type'])) {
-
-        $error = 'Ce champs est obligatoire';
-
-    }
-
-    if (!isset($error)) {
-
-        if (empty($_POST['id_media_type'])) {
-
-
-            execute("INSERT INTO media_type (title_media_type) VALUES (:title_media_type)", array(
-                ':title_media_type' => $_POST['title_media_type']
+    if (isset(($_GET['e']))) {
+    /* Pour un peu plus de securite, on prevoit que si
+    l'utilisateur met une autre valeur en get (par exemple le chiffre 4)
+    de toute façon ce $_GET vaudra 0 */
+       $activated=$_GET['e']==0 ? 1 : 0;
+            execute("UPDATE comment SET activated=:activated WHERE id_comment=:id", array(
+                ':id' => $_GET['id'],
+                ':activated' => $activated
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type ajouté';
-            header('location:./media_type.php');
+            $_SESSION['messages']['success'][] = 'Activation modifiée'.$activated;
+            header('location:./backcomment.php');
             exit();
-        }// fin soumission en insert
-        else {
+ 
+    }//fin de isset($activated)
+}// fin !empty $_GET
 
-            execute("UPDATE media_type SET title_media_type=:title WHERE id_media_type=:id", array(
-                ':id' => $_POST['id_media_type'],
-                ':title' => $_POST['title_media_type']
-            ));
-
-            $_SESSION['messages']['success'][] = 'Média type modifié';
-            header('location:./media_type.php');
-            exit();
-
-
-        }// fin soumission modification
-    }// fin si pas d'erreur
-
-}// fin !empty $_POST
-
-$medias_type = execute("SELECT * FROM media_type")->fetchAll(PDO::FETCH_ASSOC);
-
-//debug($medias_type);
+$comments = execute("SELECT * FROM comment")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
-    $media_type = execute("SELECT * FROM media_type WHERE id_media_type=:id", array(
+    $comment = execute("SELECT * FROM comment WHERE id_comment=:id", array(
         ':id' => $_GET['id']
     ))->fetch(PDO::FETCH_ASSOC);
-    //debug($media_type);
-
-
 }
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
 
-    $success = execute("DELETE FROM media_type WHERE id_media_type=:id", array(
+    $success = execute("DELETE FROM comment WHERE id_comment=:id", array(
         ':id' => $_GET['id']
     ));
 
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Type supprimé';
-        header('location:./media_type.php');
+        $_SESSION['messages']['success'][] = 'Commentaire supprimé';
+        header('location:./backcomment.php');
         exit;
 
     } else {
         $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
-        header('location:./media_type.php');
+        header('location:./backcomment.php');
         exit;
 
 
@@ -79,32 +53,32 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 require_once '../inc/backheader.inc.php';
 ?>
 <h2>Comment</h2>
-    <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
-        <div class="form-group">
-            <small class="text-danger">*</small>
-            <label for="media_type" class="form-label">Nom du type de média</label>
-            <input name="title_media_type" id="media_type" placeholder="Nom du type de média" type="text"
-                   value="<?= $media_type['title_media_type'] ?? ''; ?>" class="form-control">
-            <small class="text-danger"><?= $error ?? ''; ?></small>
-        </div>
-        <input type="hidden" name="id_media_type" value="<?= $media_type['id_media_type'] ?? ''; ?>">
-        <button type="submit" class="btn btn-primary mt-2">Valider</button>
-    </form>
-
     <table class="table table-dark table-striped w-75 mx-auto">
         <thead>
         <tr>
-            <th>Titre</th>
+            <th>Nickname</th>
+            <th>Date</th>
+            <th>Comment</th>
             <th class="text-center">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($medias_type as $media_type): ?>
+        <?php foreach ($comments as $comment): ?>
             <tr>
-                <td><?= $media_type['title_media_type']; ?></td>
+                <td><?= $comment['nickname_comment']; ?></td>
+                <td><?= $comment['publish_date_comment']; ?></td>
+                <td><?= $comment['comment_text']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $comment['id_comment']; ?>&a=edit&e=<?=$comment['activated'];?>" class="btn btn-outline-info">
+                    <?php
+                    if($comment['activated']==1){
+                        echo 'Désactiver';
+                    }else{
+                        echo 'Activer';
+                    }
+                    ?>
+                    </a>
+                    <a href="?id=<?= $comment['id_comment']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

@@ -42,17 +42,26 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 }
 
 if (!empty($_POST)) {
+    //TODO
+    if (empty($_POST['title_content']) && empty($_POST['description_content'])){
 
-    if (empty($_POST['title_content']) || empty($_POST['description_content'])) {
-
-        $error = 'Ce champs est obligatoire';
+            $error = 'Ce champs est obligatoire';
 
     }
 
     if (!isset($error)) {
 
-        if (empty($_POST['id_content'])) {
+        if (empty($_POST['id_content']) && empty($_POST['id_page2'])) {
 
+            /*NB: On ne peut pas demander cette condition plus haut
+            en effet il est autorisé de ne pas obtenir l'id de la page via
+            le select car dans ce cas, on prend celui de l'input hidden.
+            Ici on ne peut pas empecher une tentative d'insertion sans l'id_page avant. */
+            if (empty($_POST['id_page1'])){
+
+                $error = 'Ce champs est obligatoire';
+    
+            }else{
 
             execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
                 ':title_content' => $_POST['title_content'],
@@ -63,9 +72,9 @@ if (!empty($_POST)) {
             $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
             header('location:./backcontent.php');
             exit();
+        }
         }// fin soumission en insert
         else {
-            //TODO 
                 $idPage = $_POST['id_page1'] ? '' : $_POST['id_page2'];
             
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(

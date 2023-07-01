@@ -1,4 +1,5 @@
 <?php require_once '../config/function.php';
+$result='';
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
         $error = 'Ce champs est obligatoire';
@@ -37,13 +38,42 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
+if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
+    /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
+    try{
+        $success = execute("DELETE FROM page WHERE id_page=:id", array(
+            ':id' => $_GET['id']
+        ));
+
+        if ($success) {
+            $_SESSION['messages']['success'][] = 'Page supprimée';
+            header('location:./backpage.php');
+            exit;
+
+        } else {
+            $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+            header('location:./backpage.php');
+            exit;
+        }
+    }catch(Exception $e) { 
+        $result=$e;
+        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        global $result;
+    } catch(Error $e) {
+        $result=$e;
+        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        global $result;
+    }
+
+}
 //Obligé de mettre la nav ici à cause de l'header location
 require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>PAGE</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-    <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
+<?= '<p class="text-danger">'.$result.'</p>' ?? ''; ?>
+<form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
             <label for="page" class="form-label">Nom de la page</label>
@@ -73,6 +103,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $page['url']; ?></td>
                 <td class="text-center">
                     <a href="?id=<?= $page['id_page']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $page['id_page']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                       class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

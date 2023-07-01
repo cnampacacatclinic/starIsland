@@ -22,7 +22,9 @@
     width: 150px;
     cursor: pointer;
 }
-
+#logo2{
+    width: 120em !important;
+}
 body{
     display: flex;
     flex-direction: column;

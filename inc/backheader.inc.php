@@ -31,14 +31,12 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav  text-white sidebar sidebar-dark accordion" id="accordionSidebar" style="
-    background-color: #000000;"
-    >
+    <ul class="navbar-nav  text-white sidebar sidebar-light accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=  BASE_PATH.'back/'; ?>">
             <div class="sidebar-brand-icon rotate-n-15">
-                <img id="logo2" alt="logo" src="../assets/img/petit_logo.png">
+                <img id="logo2" alt="logo" src="../assets/img/starisland.png" width="120em">
                 <!--<i class="fas fa-laugh-wink"></i>-->
             </div>
             <div class="sidebar-brand-text mx-3">Admin</sup></div>
@@ -180,9 +178,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="
-    background-color: #000000;"
-            >
+            <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

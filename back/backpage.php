@@ -1,6 +1,4 @@
-<?php require_once '../config/function.php';?>
-    <h2>PAGE</h2>
-<?php
+<?php require_once '../config/function.php';
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
         $error = 'Ce champs est obligatoire';
@@ -44,6 +42,7 @@ require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>PAGE</h2>
+<p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
@@ -60,7 +59,7 @@ require_once '../inc/backheader.inc.php';
         <button  type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
-    <table class="table table-dark table-striped w-75 mx-auto">
+    <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
             <th>Titre</th>

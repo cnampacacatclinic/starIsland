@@ -43,8 +43,6 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
         $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
         header('location:./backcomment.php');
         exit;
-
-
     }
 
 }
@@ -53,7 +51,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 require_once '../inc/backheader.inc.php';
 ?>
 <h2>Comment</h2>
-    <table class="table table-dark table-striped w-75 mx-auto">
+    <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
             <th>Nickname</th>

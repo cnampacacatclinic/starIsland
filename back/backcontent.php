@@ -9,7 +9,6 @@ $pages = execute("SELECT * FROM page GROUP BY id_page")->fetchAll(PDO::FETCH_ASS
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
-    //$content2 = execute("SELECT * FROM content WHERE id_content=:id", array(
     $content2 = execute("SELECT id_content, title_content, description_content, content.id_page AS idPage,title_page
     FROM content
     LEFT JOIN page
@@ -46,7 +45,6 @@ if (!empty($_POST)) {
     if (empty($_POST['title_content']) && empty($_POST['description_content'])){
 
             $error = 'Ce champs est obligatoire';
-
     }
 
     if (!isset($error)) {
@@ -63,16 +61,16 @@ if (!empty($_POST)) {
     
             }else{
 
-            execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
-                ':title_content' => $_POST['title_content'],
-                ':description_content' => $_POST['description_content'],
-                ':id_page' => $_POST['id_page1']
-            ));
+                execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
+                    ':title_content' => $_POST['title_content'],
+                    ':description_content' => $_POST['description_content'],
+                    ':id_page' => $_POST['id_page1']
+                ));
 
-            $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
-            header('location:./backcontent.php');
-            exit();
-        }
+                $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
+                header('location:./backcontent.php');
+                exit();
+            }
         }// fin soumission en insert
         else {
                 $idPage = $_POST['id_page1'] ? '' : $_POST['id_page2'];
@@ -100,7 +98,7 @@ require_once '../inc/backheader.inc.php';
 
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
-            <select class="form-select" name="id_page1">
+            <select class="custom-select" name="id_page1">
                 <option selected value="">
                     Choisir une page *
                 </option>
@@ -125,7 +123,7 @@ require_once '../inc/backheader.inc.php';
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
-    <table class="table table-dark table-striped w-75 mx-auto">
+    <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
             <th>Nom de la Page</th>

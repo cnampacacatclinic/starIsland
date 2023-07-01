@@ -78,8 +78,8 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 
 require_once '../inc/backheader.inc.php';
 ?>
-
-
+<h2>LES TYPES DE MEDIA</h2>
+<p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
@@ -92,7 +92,7 @@ require_once '../inc/backheader.inc.php';
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
-    <table class="table table-dark table-striped w-75 mx-auto">
+    <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
             <th>Titre</th>

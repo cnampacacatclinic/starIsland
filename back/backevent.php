@@ -25,7 +25,7 @@ if (!empty($_POST)) {
 
             execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
                 ':id' => $_POST['id_event'],
-                ':start_date' => $_POST['start_date'],
+                ':dateStart' => $_POST['start_date'],
                 ':dateEnd' => $_POST['end_date']
             ));
 

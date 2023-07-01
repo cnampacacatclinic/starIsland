@@ -69,12 +69,12 @@ if (!empty($_POST)) {
             $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
             $idMedia = $_POST['id_type1'] ? $_POST['id_type1'] : $_POST['id_type2'];
 
-            execute("UPDATE media SET title_media=:title,name_media=:name_media,id_page=:id_page,id_media_type=:id_media WHERE id_media=:id", array(
+            execute("UPDATE media SET title_media=:title,name_media=:name_media,id_page=:id_page,id_media_type=:id_media_type WHERE id_media=:id", array(
                 ':id' => $_POST['id_media'],
                 ':title' => $_POST['title_media'],
                 ':name_media' => $_POST['lien_media'],
                 ':id_page' => $idPage,
-                ':id_media' => $idMedia
+                ':id_media_type' => $idMedia
             ));
 
             $_SESSION['messages']['success'][] = 'Média type modifié';
@@ -120,7 +120,7 @@ require_once '../inc/backheader.inc.php';
                     <option value="<?=$media2['id_media_type'] ?? '';?>"><?=$media2['title_media_type'];?></option>
                 <?php endforeach; ?>
             </select>
-            <input type="hidden" name="id_media2" value="<?=$media2['idMedia'] ?? ''; ?>">
+            <input type="hidden" name="id_type2" value="<?=$media2['idMedia'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
                 
             <!-- Input pour obtenir le nom du media -->
@@ -137,7 +137,8 @@ require_once '../inc/backheader.inc.php';
                    value="<?= $media['name_media'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
         </div>
-        <input type="hidden" name="id_media" value="<?= $media2['id_media'] ?? ''; ?>">
+        <!-- id -->
+        <input type="hidden" name="id_media" value="<?= $_GET['id'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 

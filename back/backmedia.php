@@ -117,10 +117,10 @@ require_once '../inc/backheader.inc.php';
                     Choisir un type *
                 </option>
                 <?php foreach ($mediasType as $media2): ?>
-                    <option value="<?=$media['id_media_type'] ?? '';?>"><?=$media['title_media_type'];?></option>
+                    <option value="<?=$media2['id_media_type'] ?? '';?>"><?=$media2['title_media_type'];?></option>
                 <?php endforeach; ?>
             </select>
-            <input type="hidden" name="id_media2" value="<?=$media['idMedia'] ?? ''; ?>">
+            <input type="hidden" name="id_media2" value="<?=$media2['idMedia'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
                 
             <!-- Input pour obtenir le nom du media -->

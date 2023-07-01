@@ -98,6 +98,14 @@ require_once '../inc/backheader.inc.php';
 
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
+            <label for="page" class="form-label">
+                <?php 
+                    if(isset($_GET['id'])){
+                        echo 'Page: '.$content2['title_page'];
+                    }else{
+                        echo 'Page:';}
+                ?>
+            </label>
             <select class="custom-select" name="id_page1">
                 <option selected value="">
                     Choisir une page *
@@ -109,12 +117,12 @@ require_once '../inc/backheader.inc.php';
             <input type="hidden" name="id_page2" value="<?=$content2['idPage'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
-            <label for="content" class="form-label">Titre</label>
+            <label for="content" class="form-label">Titre:</label>
             <input name="title_content" id="content" placeholder="Titre" type="text"
                    value="<?= $content2['title_content'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
-            <label for="content" class="form-label">Texte</label>
+            <label for="content" class="form-label">Texte:</label>
             <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte"
                    value="<?= $content2['description_content'] ?? ''; ?>" class="form-control"><?= $content2['description_content'] ?? ''; ?></textarea>
             <small class="text-danger"><?= $error ?? ''; ?></small>

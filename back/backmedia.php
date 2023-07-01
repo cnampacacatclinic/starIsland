@@ -1,50 +1,12 @@
 <?php require_once '../config/function.php';
-if (!empty($_POST)) {
-
-
-    if (empty($_POST['title_media'])) {
-
-        $error = 'Ce champs est obligatoire';
-
-    }
-
-    if (!isset($error)) {
-
-        if (empty($_POST['id_media'])) {
-
-
-            execute("INSERT INTO media (title_media) VALUES (:title_media)", array(
-                ':title_media' => $_POST['title_media']
-            ));
-
-            $_SESSION['messages']['success'][] = 'Média type ajouté';
-            header('location:./backmedia.php');
-            exit();
-        }// fin soumission en insert
-        else {
-
-            execute("UPDATE media SET title_media=:title WHERE id_media=:id", array(
-                ':id' => $_POST['id_media'],
-                ':title' => $_POST['title_media']
-            ));
-
-            $_SESSION['messages']['success'][] = 'Média type modifié';
-            header('location:./backmedia.php');
-            exit();
-
-
-        }// fin soumission modification
-    }// fin si pas d'erreur
-
-}// fin !empty $_POST
-
 $medias = execute("SELECT id_media, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
 INNER JOIN page
 ON page.id_page=media.id_page
 INNER JOIN media_type
 ON media_type.id_media_type=media.id_media_type")->fetchAll(PDO::FETCH_ASSOC);
 
-//debug($medias);
+$pages = execute("SELECT * FROM page GROUP BY id_page")->fetchAll(PDO::FETCH_ASSOC);
+$mediasType = execute("SELECT * FROM media_type GROUP BY id_media_type")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
@@ -56,9 +18,6 @@ ON media_type.id_media_type=media.id_media_type
 WHERE id_media=:id", array(
         ':id' => $_GET['id']
     ))->fetch(PDO::FETCH_ASSOC);
-    //debug($media);
-
-
 }
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
@@ -82,6 +41,51 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 
 }
 
+if (!empty($_POST)) {
+
+//TODO
+    if (empty($_POST['title_media']) && empty($_POST['lien_media']) && empty($_POST['id_media'])) {
+
+        $error = 'Ce champs est obligatoire';
+
+    }
+
+    if (!isset($error)) {
+
+        if (empty($_POST['id_media'])) {
+            //insertion dans la table media
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,:id_page,:id_media_type)", array(
+                ':title_media' => $_POST['title_media'],
+                ':name_media' => $_POST['lien_media'],
+                ':id_page' => $_POST['id_page1'],
+                ':id_media_type' => $_POST['id_type1']
+            ));
+
+            $_SESSION['messages']['success'][] = 'Média ajouté';
+            header('location:./backmedia.php');
+            exit();
+        }// fin soumission en insert
+        else {
+            $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
+            $idMedia = $_POST['id_type1'] ? $_POST['id_type1'] : $_POST['id_type2'];
+
+            execute("UPDATE media SET title_media=:title WHERE id_media=:id", array(
+                ':id' => $_POST['id_media'],
+                ':title' => $_POST['title_media'],
+                ':id_page' => $idPage,
+                ':id_media' => $idMedia
+            ));
+
+            $_SESSION['messages']['success'][] = 'Média type modifié';
+            header('location:./backmedia.php');
+            exit();
+
+
+        }// fin soumission modification
+    }// fin si pas d'erreur
+
+}// fin !empty $_POST
+
 
 require_once '../inc/backheader.inc.php';
 ?>
@@ -90,13 +94,49 @@ require_once '../inc/backheader.inc.php';
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
+            <!-- Select pour obtenir les pages -->
             <small class="text-danger">*</small>
-            <label for="media" class="form-label">Nom du type de média</label>
-            <input name="title_media" id="media" placeholder="Nom du type de média" type="text"
-                   value="<?= $media['title_media'] ?? ''; ?>" class="form-control">
-            <small class="text-danger"><?= $error ?? ''; ?></small>
+            <label for="media" class="form-label">Page:</label>
+            <select class="custom-select" name="id_page1">
+                <option selected value="">
+                    Choisir une page *
+                </option>
+                <?php foreach ($pages as $page): ?>
+                    <option value="<?=$page['id_page'] ?? '';?>"><?=$page['title_page'];?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="hidden" name="id_page2" value="<?=$media['idPage'] ?? ''; ?>">
+            <small class="text-danger"><?= $error ?? ''; ?></small><br>
+            
+            <!-- Select pour obtenir les types -->
+            <small class="text-danger">*</small>
+            <label for="media" class="form-label">Type:</label>
+            <select class="custom-select" name="id_type1">
+                <option selected value="">
+                    Choisir un type *
+                </option>
+                <?php foreach ($mediasType as $media2): ?>
+                    <option value="<?=$media2['id_media_type'] ?? '';?>"><?=$media2['title_media_type'];?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="hidden" name="id_page2" value="<?=$media2['idPage'] ?? ''; ?>">
+            <small class="text-danger"><?= $error ?? ''; ?></small><br>
+                
+            <!-- Input pour obtenir le nom du media -->
+            <small class="text-danger">*</small>
+            <label for="media" class="form-label">Nom du média:</label>
+            <input name="title_media" id="media" placeholder="Nom du média" type="text"
+                   value="<?= $media2['title_media'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small><br>
+
+            <!-- Input pour obtenir le lien vers le média -->
+            <small class="text-danger">*</small>
+            <label for="media" class="form-label">Lien vers le média:</label>
+            <input name="lien_media" id="media" placeholder="Lien vers le média" type="text"
+                   value="<?= $media2['name_media'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small><br>
         </div>
-        <input type="hidden" name="id_media" value="<?= $media['id_media'] ?? ''; ?>">
+        <input type="hidden" name="id_media" value="<?= $media2['id_media'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
@@ -104,7 +144,7 @@ require_once '../inc/backheader.inc.php';
         <thead>
         <tr>
             <th>Nom du média</th>
-            <th>Déscription du média</th>
+            <th>Lien vers le média</th>
             <th>Nom du type du média</th>
             <th>Nom de la page</th>
             <th class="text-center">Actions</th>

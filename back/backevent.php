@@ -75,10 +75,10 @@ require_once '../inc/backheader.inc.php';
         <div class="form-group">
             <small class="text-danger">*</small>
             <label for="start date" class="form-label">Date de début</label>
-            <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" placeholder="Date" type="datetime-local"
+            <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" type="datetime-local"
                    value="<? //echo $event['start_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="start_date" id="start_date" placeholder="Date" type="date"
-                   value="<?php $event['start_date_event'] ?? ''; ?>" class="form-control">
+            <input min="<?=date('Y-m-d');?>" name="start_date" id="start_date" type="date"
+                   value="<?= $event['start_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
             <small class="text-danger">*</small>
             <label for="end date" class="form-label">Date de fin</label>

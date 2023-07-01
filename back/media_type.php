@@ -1,5 +1,5 @@
 <?php require_once '../config/function.php';
-
+$result='';
 //version du 28/06/2023
 if (!empty($_POST)) {
 
@@ -13,7 +13,6 @@ if (!empty($_POST)) {
     if (!isset($error)) {
 
         if (empty($_POST['id_media_type'])) {
-
 
             execute("INSERT INTO media_type (title_media_type) VALUES (:title_media_type)", array(
                 ':title_media_type' => $_POST['title_media_type']
@@ -55,22 +54,30 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 }
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
+    /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
+    try{
+        $success = execute("DELETE FROM media_type WHERE id_media_type=:id", array(
+            ':id' => $_GET['id']
+        ));
 
-    $success = execute("DELETE FROM media_type WHERE id_media_type=:id", array(
-        ':id' => $_GET['id']
-    ));
+        if ($success) {
+            $_SESSION['messages']['success'][] = 'Type supprimé';
+            header('location:./media_type.php');
+            exit;
 
-    if ($success) {
-        $_SESSION['messages']['success'][] = 'Type supprimé';
-        header('location:./media_type.php');
-        exit;
-
-    } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
-        header('location:./media_type.php');
-        exit;
-
-
+        } else {
+            $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+            header('location:./media_type.php');
+            exit;
+        }
+    }catch(Exception $e) { 
+        $result=$e;
+        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        global $result;
+    } catch(Error $e) {
+        $result=$e;
+        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        global $result;
     }
 
 }
@@ -80,6 +87,7 @@ require_once '../inc/backheader.inc.php';
 ?>
 <h2>LES TYPES DE MEDIA</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
+<?= '<p class="text-danger">'.$result.'</p>' ?? ''; ?>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

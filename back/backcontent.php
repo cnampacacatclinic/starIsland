@@ -73,7 +73,7 @@ if (!empty($_POST)) {
             }
         }// fin soumission en insert
         else {
-                $idPage = $_POST['id_page1'] ? '' : $_POST['id_page2'];
+                $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
             
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
                     ':id' => $_POST['id_content'],

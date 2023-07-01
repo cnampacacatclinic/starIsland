@@ -71,17 +71,18 @@ require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>EVENT</h2>
-<form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
+<form action="" method="get" class="w-75 mx-auto mt-5 mb-5">
+<p> value="<?= $event['id_event'] ?? ''; ?>"</p>
         <div class="form-group">
             <small class="text-danger">*</small>
-            <label for="start date" class="form-label">Date de début</label>
+            <label for="start date" class="form-label"><?= $event['start_date_event'] ?? 'Date de début'; ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" type="datetime-local"
                    value="<? //echo $event['start_date_event'] ?? ''; ?>" class="form-control">-->
             <input min="<?=date('Y-m-d');?>" name="start_date" id="start_date" type="date"
                    value="<?= $event['start_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
             <small class="text-danger">*</small>
-            <label for="end date" class="form-label">Date de fin</label>
+            <label for="end date" class="form-label"><?= $event['end_date_event'] ?? 'Date de fin'; ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="end_date" id="en_date" placeholder="Date de fin" type="datetime-local" value="<? //echo $event['end_date_event'] ?? ''; ?>" class="form-control">-->
             <input min="<?=date('Y-m-d');?>" name="end_date" id="en_date" placeholder="Date de fin" type="date" value="<?= $event['end_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>

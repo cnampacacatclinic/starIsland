@@ -10,15 +10,12 @@
     <meta name="author" content="">
     <title>Star Island Admin</title>
 
-
-    <!-- Custom fonts for this template-->
     <link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -26,37 +23,19 @@
 </head>
 
 <body id="page-top">
-
-<!-- Page Wrapper -->
 <div id="wrapper">
-
-    <!-- Sidebar -->
     <ul class="navbar-nav  text-white sidebar sidebar-light accordion" id="accordionSidebar">
-
-        <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=  BASE_PATH.'back/'; ?>">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img id="logo2" alt="logo" src="../assets/img/starisland.png" width="120em">
-                <!--<i class="fas fa-laugh-wink"></i>-->
             </div>
-            <div class="sidebar-brand-text mx-3">Admin</sup></div>
+            <div class="sidebar-brand-text mx-3 text-gray-800">Admin</sup></div>
         </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
         <!-- Heading -->
         <div class="sidebar-heading">
-            gestion
         </div>
        <!-- <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <a class="nav-link collapsed text-gray-800" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion pastille</span>
@@ -69,77 +48,51 @@
             </div>
         </li>
         -->
-        <hr class="sidebar-divider d-none d-md-block">
-        
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?=BASE_PATH.'back/media_type.php';?>" >
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion du type de média</span>
-            </a>
-        </li>
-
-
-        <hr class="sidebar-divider">
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backmedia.php';?>" >
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion des médias</span>
-            </a>
-        </li>
-
-
-        <hr class="sidebar-divider">
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backevent.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backevent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion des event</span>
             </a>
         </li>
-
-
-        <hr class="sidebar-divider">
         <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backcomment.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backcomment.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion des commentaires</span>
             </a>
         </li>
-
-
-        <hr class="sidebar-divider">
         <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backpage.php';?>" >
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion des pages</span>
-            </a>
-        </li>
-
-
-        <hr class="sidebar-divider">
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backcontent.php';?>" >
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion du contenu des pages</span>
-            </a>
-        </li>
-
-
-        <hr class="sidebar-divider">
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=BASE_PATH.'back/backteam.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backteam.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion de l'equipe</span>
             </a>
         </li>
-
-
-        <hr class="sidebar-divider">
-
-
-
+        <li class="nav-item">
+            <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/media_type.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Gestion du type de média</span>
+            </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backmedia.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Gestion des médias</span>
+            </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backpage.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Gestion des pages</span>
+            </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backcontent.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Gestion du contenu des pages</span>
+            </a>
+        </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <!--<li class="nav-item ">
-            <a class="nav-link collapsed" href="" >
+            <a class="nav-link collapsed text-gray-800" href="" >
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Gestion abonnés</span>
             </a>-->
@@ -157,20 +110,11 @@
 <!--                </div>-->
 <!--            </div>-->
       <!--  </li>-->
-
-
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
     </ul>
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -187,13 +131,12 @@
 
                 <!-- Topbar Search -->
 
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link " href="<?=  BASE_PATH; ?>" role="button">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Voir le site</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-800">Voir le site</span>
                         </a>
 
                     </li>
@@ -213,7 +156,6 @@
             <div class="container-fluid">
 
                 <?php if (isset($_SESSION['messages'])) :  ?>
-
                     <?php foreach ($_SESSION['messages'] as $type => $messages) : ?>
                         <?php foreach ($messages as $message) : ?>
                             <div class=" w-25 rounded  text-center ml-5  alert alert-<?= $type ?>"><h3><?= $message ?></h3></div>
@@ -221,7 +163,6 @@
                     <?php endforeach; ?>
                     <?php unset($_SESSION['messages']); ?>
                 <?php endif; ?>
-                <!-- Page Heading -->
 
 
 

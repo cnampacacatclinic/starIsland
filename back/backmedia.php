@@ -10,7 +10,7 @@ $mediasType = execute("SELECT * FROM media_type GROUP BY id_media_type")->fetchA
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
-    $media = execute("SELECT id_media, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
+    $media = execute("SELECT id_media, title_media, name_media, page.id_page AS idPage, media_type.id_media_type AS idMedia, title_media_type,title_page FROM media
 INNER JOIN page
 ON page.id_page=media.id_page
 INNER JOIN media_type
@@ -69,9 +69,10 @@ if (!empty($_POST)) {
             $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
             $idMedia = $_POST['id_type1'] ? $_POST['id_type1'] : $_POST['id_type2'];
 
-            execute("UPDATE media SET title_media=:title WHERE id_media=:id", array(
+            execute("UPDATE media SET title_media=:title,name_media=:name_media,id_page=:id_page,id_media_type=:id_media WHERE id_media=:id", array(
                 ':id' => $_POST['id_media'],
                 ':title' => $_POST['title_media'],
+                ':name_media' => $_POST['lien_media'],
                 ':id_page' => $idPage,
                 ':id_media' => $idMedia
             ));
@@ -116,24 +117,24 @@ require_once '../inc/backheader.inc.php';
                     Choisir un type *
                 </option>
                 <?php foreach ($mediasType as $media2): ?>
-                    <option value="<?=$media2['id_media_type'] ?? '';?>"><?=$media2['title_media_type'];?></option>
+                    <option value="<?=$media['id_media_type'] ?? '';?>"><?=$media['title_media_type'];?></option>
                 <?php endforeach; ?>
             </select>
-            <input type="hidden" name="id_page2" value="<?=$media2['idPage'] ?? ''; ?>">
+            <input type="hidden" name="id_media2" value="<?=$media['idMedia'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
                 
             <!-- Input pour obtenir le nom du media -->
             <small class="text-danger">*</small>
             <label for="media" class="form-label">Nom du média:</label>
             <input name="title_media" id="media" placeholder="Nom du média" type="text"
-                   value="<?= $media2['title_media'] ?? ''; ?>" class="form-control">
+                   value="<?= $media['title_media'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
 
             <!-- Input pour obtenir le lien vers le média -->
             <small class="text-danger">*</small>
             <label for="media" class="form-label">Lien vers le média:</label>
             <input name="lien_media" id="media" placeholder="Lien vers le média" type="text"
-                   value="<?= $media2['name_media'] ?? ''; ?>" class="form-control">
+                   value="<?= $media['name_media'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
         </div>
         <input type="hidden" name="id_media" value="<?= $media2['id_media'] ?? ''; ?>">
@@ -151,15 +152,15 @@ require_once '../inc/backheader.inc.php';
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($medias as $media): ?>
+        <?php foreach ($medias as $media2): ?>
             <tr>
-                <td><?= $media['title_media']; ?></td>
-                <td><?= $media['name_media']; ?></td>
-                <td><?= $media['title_media_type']; ?></td>
-                <td><?= $media['title_page']; ?></td>
+                <td><?= $media2['title_media']; ?></td>
+                <td><?= $media2['name_media']; ?></td>
+                <td><?= $media2['title_media_type']; ?></td>
+                <td><?= $media2['title_page']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $media['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $media['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $media2['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $media2['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

@@ -97,7 +97,14 @@ require_once '../inc/backheader.inc.php';
         <div class="form-group">
             <!-- Select pour obtenir les pages -->
             <small class="text-danger">*</small>
-            <label for="media" class="form-label">Page:</label>
+            <label for="media" class="form-label">
+                <?php 
+                    if(isset($_GET['id'])){
+                        echo 'Page: '.$media['title_page'];
+                    }else{
+                        echo 'Page:';}
+                ?>
+            </label>
             <select class="custom-select" name="id_page1">
                 <option selected value="">
                     Choisir une page *
@@ -111,11 +118,15 @@ require_once '../inc/backheader.inc.php';
             
             <!-- Select pour obtenir les types -->
             <small class="text-danger">*</small>
-            <label for="media" class="form-label">Type:</label>
+            <label for="media" class="form-label"><?php 
+                    if(isset($_GET['id'])){
+                        echo 'Type: '.$media['title_media_type'];
+                    }else{
+                        echo 'Type:';}
+                    ?>
+            </label>
             <select class="custom-select" name="id_type1">
-                <option selected value="">
-                    Choisir un type *
-                </option>
+                <option selected value="">Choisir un type *</option>
                 <?php foreach ($mediasType as $media2): ?>
                     <option value="<?=$media2['id_media_type'] ?? '';?>"><?=$media2['title_media_type'];?></option>
                 <?php endforeach; ?>

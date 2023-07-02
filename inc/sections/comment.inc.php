@@ -17,11 +17,13 @@
         <figcaption>
           <p><?= $comment['nickname_comment']; ?>
               <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+              <?php 
+                for ($i=1; $i <= $comment['rating_comment']*2; $i++) { ?>
+                  <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                <?php
+                $i++;
+                }
+              ?>
               </span>
           </p>
           <p><?= $comment['comment_text']; ?></p>

@@ -16,12 +16,14 @@
         <figcaption>
           <p><?= $comment['nickname_comment']; ?>
               <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-              </span>
+                <?php 
+                for ($i=1; $i <= $comment['rating_comment']*2; $i++) { ?>
+                  <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                <?php
+                $i++;
+                }
+                ?>
+                </span>
           </p>
           <p><?= $comment['comment_text']; ?></p>
           <p><?= $comment['publish_date_comment']; ?></p>
@@ -48,7 +50,7 @@
               execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
                   ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
                   ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
-                  ':rating_comment' => 5,
+                  ':rating_comment' => trim(htmlspecialchars($_POST['note'])),
                   ':id_media' => $avatarC
               ));
           }// fin soumission en insert
@@ -66,6 +68,7 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
+            <input name="note" id="note" type="hidden" value="4">
             <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
             <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>

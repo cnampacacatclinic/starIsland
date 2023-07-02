@@ -3,7 +3,7 @@
 <div>    
   <?php
   //On interroge la BDD pour avoir les avis rangé par ordre de date
-  $comments=execute("SELECT * FROM comment ORDER BY publish_date_comment DESC")->fetchAll(PDO::FETCH_ASSOC);
+  $comments=execute("SELECT * FROM comment WHERE activated=1 ORDER BY publish_date_comment DESC")->fetchAll(PDO::FETCH_ASSOC);
   foreach($comments as $comment):
     //$idComment=$comment['id_comment'];
     //On demande les photos

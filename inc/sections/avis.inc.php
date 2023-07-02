@@ -3,7 +3,7 @@
 <div>    
   <?php
   //On interroge la BDD pour avoir les 4 dernier avis
-  $comments=execute("SELECT * FROM comment ORDER BY publish_date_comment DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
+  $comments=execute("SELECT * FROM comment WHERE activated=1 ORDER BY publish_date_comment DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
   foreach($comments as $comment):
     //On demande les photos
     $imgComment=execute("SELECT name_media FROM media WHERE id_media=:idMediaComment",array(
@@ -42,21 +42,20 @@
   
       if (!isset($error)) {
   
-          if (empty($_POST['nickname_comment'])) {
-  
-              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,5)", array(
+          if (isset($_POST['nickname_comment'])) {
+            //on genere un media random pour l'avatar
+            $avatarC=random_int(7,9);
+              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
                   ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
                   ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
-                  ':rating_comment' => 5
+                  ':rating_comment' => 5,
+                  ':id_media' => $avatarC
               ));
-  
-              $_SESSION['messages']['success'][] = 'Média type ajouté';
-              header('location:./media_type.php');
-              exit();
           }// fin soumission en insert
       }//fin de si il n'y a pas d'erreur
     }// fin de si on obtient un $_POST
     ?>
+    <!-- Formulaire -->
     <form id="topServeur" class="form-group" method="post">
         <fieldset class="form-group">
             <label>Votre avis nous interesse</label>

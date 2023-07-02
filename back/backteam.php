@@ -1,4 +1,8 @@
 <?php require_once '../config/function.php';
+
+$nameMedia='fs';
+$idMediaType='lk1';
+
 if (!empty($_POST)) {
 
     /* Les données obligatoires */
@@ -13,8 +17,8 @@ if (!empty($_POST)) {
         if (empty($_GET['id'])) {
             //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
-                ':nickname_team' => $_POST['nickname_team'],
-                ':role_team' => $_POST['role']
+                ':nickname_team' => trim(htmlspecialchars($_POST['nickname_team'])),
+                ':role_team' => trim(htmlspecialchars($_POST['role']))
             ));
 
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
@@ -29,6 +33,15 @@ if (!empty($_POST)) {
                 ':role_team' => $_POST['role']
             ));
 
+
+            //////////////////////
+
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                ':title_media' => $_POST['title_media'],
+                ':name_media' => htmlspecialchars($_POST['name_media']),
+                ':id_media_type' => 1
+            ));
+            //////////////
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';
             header('location:./backteam.php');
             exit();
@@ -42,7 +55,7 @@ if (!empty($_POST)) {
     * peut être renseigner par defaut si on n'a pas d'image sous la main*/
 
     //ajout de l'image
-    if(!empty($_FILES['avatar']['name'])){
+    /*if(!empty($_FILES['avatar']['name'])){
         // on renomme la photo
         $picture='upload/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
         // on la copie dans le dossier d'upload
@@ -52,10 +65,10 @@ if (!empty($_POST)) {
 
         header('location:./backteam.php');
         exit();
-    }
+    }*/
 
     //ajout du media
-    if(!empty($_POST['name_media']) || !empty($_FILES['avatar']['name'])){
+    if(isset($_POST['name_media'])){
 
         if(!empty($_FILES['avatar']['name'])){
             $nameMedia=$picture;
@@ -70,13 +83,21 @@ if (!empty($_POST)) {
 
         execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
             ':title_media' => $_POST['title_media'],
-            ':name_media' => $nameMedia,
-            ':id_media_type' => $idMediaType
+            ':name_media' => $_POST['name_media'],
+            ':id_media_type' => 1
         ));
 
+        /************** ********************************************************************* */
         //on cherche les dernières info trouvées dans les tables team et media
-        $last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
-        $last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
+
+        /************** ********************************************************************* */
+                                    //LAST INSERT ID NE MARCHE PAS
+        //$last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
+        //$last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
+
+        /************** ********************************************************************* */
+        $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+        $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
         execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media", array(
             ':id_team' => $last_id_team,
@@ -119,6 +140,9 @@ require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>TEAM</h2>
+<?php 
+echo $nameMedia.$idMediaType;
+?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

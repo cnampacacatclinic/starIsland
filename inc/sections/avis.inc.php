@@ -30,8 +30,34 @@
     <?php endforeach;
     endforeach;?>
     <a class="linkButton" href="?page=comment">Voir tous les avis</a>
-    </div> 
-    <form id="topServeur" class="form-group">
+    </div>
+
+    <?php
+    if (!empty($_POST)) {
+      if (empty($_POST['nickname_comment'])) {
+  
+          $error = 'Ce champs est obligatoire';
+  
+      }
+  
+      if (!isset($error)) {
+  
+          if (empty($_POST['nickname_comment'])) {
+  
+              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,5)", array(
+                  ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
+                  ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
+                  ':rating_comment' => 5
+              ));
+  
+              $_SESSION['messages']['success'][] = 'Média type ajouté';
+              header('location:./media_type.php');
+              exit();
+          }// fin soumission en insert
+      }//fin de si il n'y a pas d'erreur
+    }// fin de si on obtient un $_POST
+    ?>
+    <form id="topServeur" class="form-group" method="post">
         <fieldset class="form-group">
             <label>Votre avis nous interesse</label>
             <span>
@@ -41,7 +67,7 @@
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
-            <input type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
+            <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
             <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>

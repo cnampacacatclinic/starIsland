@@ -15,7 +15,7 @@ if (!empty($_POST)) {
         if (empty($_POST['id_media_type'])) {
 
             execute("INSERT INTO media_type (title_media_type) VALUES (:title_media_type)", array(
-                ':title_media_type' => $_POST['title_media_type']
+                ':title_media_type' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
             $_SESSION['messages']['success'][] = 'Média type ajouté';
@@ -25,8 +25,8 @@ if (!empty($_POST)) {
         else {
 
             execute("UPDATE media_type SET title_media_type=:title WHERE id_media_type=:id", array(
-                ':id' => $_POST['id_media_type'],
-                ':title' => $_POST['title_media_type']
+                ':id' => trim(htmlspecialchars($_POST['id_media_type'])),
+                ':title' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
             $_SESSION['messages']['success'][] = 'Média type modifié';

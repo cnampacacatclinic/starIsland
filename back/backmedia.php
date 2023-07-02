@@ -55,10 +55,10 @@ if (!empty($_POST)) {
         if (empty($_POST['id_media'])) {
             //insertion dans la table media
             execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,:id_page,:id_media_type)", array(
-                ':title_media' => $_POST['title_media'],
-                ':name_media' => $_POST['lien_media'],
-                ':id_page' => $_POST['id_page1'],
-                ':id_media_type' => $_POST['id_type1']
+                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
+                ':name_media' => trim(htmlspecialchars($_POST['lien_media'])),
+                ':id_page' => trim(htmlspecialchars($_POST['id_page1'])),
+                ':id_media_type' => trim(htmlspecialchars($_POST['id_type1']))
             ));
 
             $_SESSION['messages']['success'][] = 'Média ajouté';
@@ -70,11 +70,11 @@ if (!empty($_POST)) {
             $idMedia = $_POST['id_type1'] ? $_POST['id_type1'] : $_POST['id_type2'];
 
             execute("UPDATE media SET title_media=:title,name_media=:name_media,id_page=:id_page,id_media_type=:id_media_type WHERE id_media=:id", array(
-                ':id' => $_POST['id_media'],
-                ':title' => $_POST['title_media'],
-                ':name_media' => $_POST['lien_media'],
-                ':id_page' => $idPage,
-                ':id_media_type' => $idMedia
+                ':id' => trim(htmlspecialchars($_POST['id_media'])),
+                ':title' => trim(htmlspecialchars($_POST['title_media'])),
+                ':name_media' => trim(htmlspecialchars($_POST['lien_media'])),
+                ':id_page' => trim(htmlspecialchars($idPage)),
+                ':id_media_type' => trim(htmlspecialchars($idMedia))
             ));
 
             $_SESSION['messages']['success'][] = 'Média type modifié';
@@ -152,7 +152,10 @@ require_once '../inc/backheader.inc.php';
         <input type="hidden" name="id_media" value="<?= $_GET['id'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
-
+    <p>!!!!!! Les derniers médias parfois modifiés changent de place dans le tableau.
+        Ils faut donc les chercher. Même si vous modifiez le dernier média
+        de la ligne, il changera de place en fonction de la modification. :-p !!!!!!
+    </p>
     <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>

@@ -62,9 +62,9 @@ if (!empty($_POST)) {
             }else{
 
                 execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
-                    ':title_content' => $_POST['title_content'],
-                    ':description_content' => $_POST['description_content'],
-                    ':id_page' => $_POST['id_page1']
+                    ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
+                    ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
+                    ':id_page' => trim(htmlspecialchars($_POST['id_page1']))
                 ));
 
                 $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
@@ -76,10 +76,10 @@ if (!empty($_POST)) {
                 $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
             
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
-                    ':id' => $_POST['id_content'],
-                    ':title' => $_POST['title_content'],
-                    ':description_content' => $_POST['description_content'],
-                    ':id_page' => $idPage
+                    ':id' => trim(htmlspecialchars($_POST['id_content'])),
+                    ':title' => trim(htmlspecialchars($_POST['title_content'])),
+                    ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
+                    ':id_page' => trim(htmlspecialchars($idPage))
                 ));
 
                 $_SESSION['messages']['success'][] = 'Le contenu a été modifié';

@@ -8,8 +8,8 @@ if (!empty($_POST)) {
     if (!isset($error)) {
         if (empty($_POST['id_page'])) {
             execute("INSERT INTO page (title_page,url) VALUES (:title_page,:urlPage)", array(
-                ':title_page' => $_POST['title_page'],
-                ':urlPage' => $_POST['url']
+                ':title_page' => trim(htmlspecialchars($_POST['title_page'])),
+                ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
             $_SESSION['messages']['success'][] = 'page ajoutée';
@@ -19,8 +19,8 @@ if (!empty($_POST)) {
         else {
             execute("UPDATE page SET title_page=:title, url=:urlPage WHERE id_page=:id", array(
                 ':id' => $_POST['id_page'],
-                ':title' => $_POST['title_page'],
-                ':urlPage' => $_POST['url']
+                ':title' => trim(htmlspecialchars($_POST['title_page'])),
+                ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
             $_SESSION['messages']['success'][] = 'L URL est modifiée';
@@ -77,11 +77,14 @@ require_once '../inc/backheader.inc.php';
         <div class="form-group">
             <small class="text-danger">*</small>
             <label for="page" class="form-label">Nom de la page</label>
-            <input name="title_page" id="page" placeholder="Nom de la page"  ="text"
+            <input name="title_page" id="page" placeholder="Nom de la page"  type="text"
                    value="<?= $page['title_page'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
-            <label for="page" class="form-label">URL de la page</label>
-            <input name="url" id="page" placeholder="URL de la page"  ="text"
+            <label for="page" class="form-label">Chemin de la page</label>
+            <p>NB : Il ne s'agit pas d'une URL à proprement parler mais d'un nom 
+                qui servira pour nommer le chemin vers la page.
+            </p>
+            <input name="url" id="page" placeholder="Chemin de la page" type="text"
                    value="<?= $page['url'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
         </div>

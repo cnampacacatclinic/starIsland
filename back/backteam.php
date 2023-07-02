@@ -13,7 +13,7 @@ if (!empty($_POST)) {
         if (empty($_POST['id_team'])) {
 
 
-            execute("INSERT INTO team (nickname_team) VALUES (:nickname_team)", array(
+            execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
                 ':nickname_team' => $_POST['nickname_team']
             ));
 
@@ -87,15 +87,14 @@ require_once '../inc/backheader.inc.php';
 
             <label for="avatar" class="form-label">Avatar</label>
             <input name="avatar" type="file" class="form-control" id="avatar">
-            <small class="text-danger"><?= $avatar ?? ""; ?></small>
-            <input type="hidden" name="name_media" value="<?= $team['name_media'];?>">
+            <!-- TODO alias requete imgTeam -->
+            <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
 
-            <label for="team" class="form-label">Réseau / lien externe</label>
-            <input name="nickname_team" id="nicknameTeam" placeholder="https://etc.." type="text"
-                   value="<?= $team['nickname_team'] ?? ''; ?>" class="form-control">
-            <small class="text-danger"><?= $error ?? ''; ?></small>
+            <label for="lien" class="form-label">Réseau / lien externe</label>
+            <input name="name_media" id="name_media" placeholder="https://etc.." type="url"
+                   value="<?= $team['name_media'] ?? ''; ?>" class="form-control">
 
-            <label for="team" class="form-label">Type de réseau</label>
+            <label for="reseau" class="form-label">Type de réseau</label>
             <select class="custom-select" name="title_media">
                 <option selected value="">
                     Choisir

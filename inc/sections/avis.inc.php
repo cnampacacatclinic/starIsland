@@ -17,10 +17,10 @@
           <p><?= $comment['nickname_comment']; ?>
               <span>
                 <?php 
-                for ($i=1; $i <= $comment['rating_comment']*2; $i++) { ?>
-                  <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                for ($i=1; $i <= $comment['rating_comment']; $i++) { ?>
+                  <img alt="icone etoile" class="etoile starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
                 <?php
-                $i++;
+                $i;
                 }
                 ?>
                 </span>
@@ -62,11 +62,11 @@
         <fieldset class="form-group">
             <label>Votre avis nous interesse</label>
             <span>
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img alt="icone etoile" class="starChecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start1" alt="note 1 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                <img id="start2" alt="note 2 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start3" alt="note 3 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start4" alt="note 4 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start5" alt="note 5 icone etoile" class="etoile unchecked" src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
             <input name="note" id="note" type="hidden" value="4">
             <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
@@ -75,3 +75,31 @@
         </fieldset>
     </form>
 </section>
+<script>
+  
+  let num =0;
+  const collection = document.getElementsByClassName('unchecked');
+  //console.log(collection.length);
+  
+  collection['0'].addEventListener('mouseover', function handleMouseOver() {
+        collection['0'].style.width = '2em';
+        collection['0'].classList.add("starChecked");
+        collection['0'].classList.remove("unchecked");
+        num;
+    });
+
+
+ /* 
+  let num =0;
+  const collection = document.getElementsByClassName('unchecked');
+ 
+ for(num=0;num<=collection.length;num++){
+    console.log(num);
+    collection[num].addEventListener('mouseover', function handleMouseOver() {
+        collection[num].style.width = '2em';
+        collection[num].classList.add("starChecked");
+        collection[num].classList.remove("unchecked");
+        num;
+    });
+  }*/
+</script>

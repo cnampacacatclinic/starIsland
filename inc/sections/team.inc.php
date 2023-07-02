@@ -32,11 +32,13 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
     foreach($data as $membre):
 
         //on demande les avatars des membres de l'equipe
-        $img=execute("SELECT name_media FROM media
-        INNER JOIN media_type
-        ON media.id_media_type=media_type.id_media_type
-        INNER JOIN team_media
+        $img=execute("SELECT nickname_team,name_media FROM team
+        LEFT JOIN team_media
+        ON team_media.id_team=team.id_team
+        LEFT JOIN media
         ON team_media.id_media=media.id_media
+        LEFT JOIN media_type
+        ON media.id_media_type=media_type.id_media_type
         WHERE media.id_media_type=2 AND team_media.id_team=:idTeam", array(
             ':idTeam' => $membre['id_team']
         ))->fetchAll(PDO::FETCH_ASSOC);
@@ -44,12 +46,18 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
         foreach($img as $avatar):
     ?>
         <figure>
-            
-            <img alt="avatar" class="teamAvatar" src="assets/img/<?php echo $avatar['name_media'];?>">
+            tztzt
+            <img alt="avatar" class="teamAvatar" src="assets/img/<?php 
+            if($avatar!==NULL):
+                echo $avatar['name_media'];
+            else:
+                echo 'avatar-1.png';
+            endif;
+            ?>">
             <figcaption class="teamReseauxSociaux">
                 Role: <?php echo $membre['role_team'];?><br>
-                <?php echo $membre['nickname_team'];
-                //on demande les media des membres de l'equipe
+                <?php echo $avatar['nickname_team'];
+                //on demande les medias des membres de l'equipe
                 $medias=execute("SELECT title_media,name_media FROM media
                 INNER JOIN team_media
                 ON media.id_media=team_media.id_media

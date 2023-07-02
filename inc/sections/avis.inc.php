@@ -68,7 +68,7 @@
                 <img id="start4" alt="note 4 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img id="start5" alt="note 5 icone etoile" class="etoile unchecked" src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
-            <input name="note" id="note" type="hidden" value="4">
+            <input name="note" id="note" type="hidden" value="">
             <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
             <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
             <button type="submit" class="btn btn-light">Publier</button>
@@ -76,16 +76,19 @@
     </form>
 </section>
 <script>
-  
-  let num =0;
   const collection = document.getElementsByClassName('unchecked');
+  const plus = document.getElementsByClassName('plus');
+  let note = document.getElementById('note');
   //console.log(collection.length);
   
   collection['0'].addEventListener('mouseover', function handleMouseOver() {
         collection['0'].style.width = '2em';
         collection['0'].classList.add("starChecked");
+        collection['0'].classList.add("plus");
         collection['0'].classList.remove("unchecked");
-        num;
+        let resultNote = plus.length;
+        console.log(resultNote);
+        note.value = resultNote;
     });
 
 

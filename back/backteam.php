@@ -11,7 +11,7 @@ if (!empty($_POST)) {
     if (!isset($error)) {
 
         if (empty($_POST['id_team'])) {
-
+            //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
                 ':nickname_team' => $_POST['nickname_team']
             ));
@@ -21,7 +21,7 @@ if (!empty($_POST)) {
             exit();
         }// fin soumission en insert
         else {
-            //ajout du role et du pseudo
+            //modification du role et du pseudo
             execute("UPDATE team SET nickname_team=:nickname_team,role_team=:role_team WHERE id_team=:id", array(
                 ':id' => $_POST['id_team'],
                 ':nickname_team' => $_POST['nickname_team'],
@@ -39,7 +39,7 @@ if (!empty($_POST)) {
     /*Les données qui ne sont pas obligatoires
     * comme par exemple les reseaux sociaux et l'avatar qui 
     * peut être renseigner par defaut si on n'a pas d'image sous la main*/
-    
+
     //ajout du media
     if(!empty($_POST['name_media'])){
         execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,1)", array(
@@ -47,9 +47,13 @@ if (!empty($_POST)) {
             ':name_media' => $_POST[':name_media']
         ));
         //TODO last insert id
-        execute("INSERT INTO team_media(id_media,id_team) VALUES ('[value-1]','[value-2]')", array(
-            ':id_team' => $_POST['id_team'],
-            ':id_media' => $_POST['id_media']
+        //on cherche les dernières info trouvées dans les tables team et media
+        $last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
+        $last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
+
+        execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media", array(
+            ':id_team' => $last_id_team,
+            ':id_media' => $last_id_media
         ));
     }
 

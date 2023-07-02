@@ -2,7 +2,7 @@
 <h2>Les avis &#10084;</h2>
 <div>    
   <?php
-  //On interroge la BDD pour avoir les 4 dernier avis
+  //On interroge la BDD pour avoir les 4 derniers avis
   $comments=execute("SELECT * FROM comment WHERE activated=1 ORDER BY publish_date_comment DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
   foreach($comments as $comment):
     //On demande les photos
@@ -43,14 +43,17 @@
       }
   
       if (!isset($error)) {
-  
+        //si on n'a pas la note on la remplace par zero
+        $_POST['note']= !empty($_POST['note']) ? $_POST['note'] : 0;
+        //si la note n'est pas de valeur numerique on la remplace par zero
+        $ratingComment= is_numeric($_POST['note'])==true ? $_POST['note'] : 0;
           if (isset($_POST['nickname_comment'])) {
             //on genere un media random pour l'avatar
             $avatarC=random_int(7,9);
               execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
                   ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
                   ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
-                  ':rating_comment' => trim(htmlspecialchars($_POST['note'])),
+                  ':rating_comment' => trim(htmlspecialchars($ratingComment)),
                   ':id_media' => $avatarC
               ));
           }// fin soumission en insert

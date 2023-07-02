@@ -55,6 +55,7 @@ require_once '../inc/backheader.inc.php';
         <thead>
         <tr>
             <th>Nickname</th>
+            <th>Note</th>
             <th>Date</th>
             <th>Comment</th>
             <th class="text-center">Actions</th>
@@ -64,6 +65,7 @@ require_once '../inc/backheader.inc.php';
         <?php foreach ($comments as $comment): ?>
             <tr>
                 <td><?= $comment['nickname_comment']; ?></td>
+                <td><?= $comment['rating_comment']; ?>/5</td>
                 <td><?= $comment['publish_date_comment']; ?></td>
                 <td><?= $comment['comment_text']; ?></td>
                 <td class="text-center">

@@ -40,13 +40,39 @@ if (!empty($_POST)) {
     * comme par exemple les reseaux sociaux et l'avatar qui 
     * peut être renseigner par defaut si on n'a pas d'image sous la main*/
 
+    //ajout de l'image
+    if(!empty($_FILES['avatar']['name'])){
+        // on renomme la photo
+        $picture='upload/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
+        // on la copie dans le dossier d'upload
+        copy($_FILES['avatar']['tmp_name'],'../assets/img/'.$picture);
+        $picture=$_POST['avatar'];
+        global $picture;
+
+        header('location:./backteam.php');
+        exit();
+    }
+
     //ajout du media
-    if(!empty($_POST['name_media'])){
-        execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,1)", array(
+    if(!empty($_POST['name_media']) || !empty($_FILES['avatar']['name'])){
+
+        if(!empty($_FILES['avatar']['name'])){
+            $nameMedia=$picture;
+            $idMediaType= 2;
+            global $nameMedia,$idMediaType;
+        }
+        if(!empty($_POST['name_media'])){
+            $nameMedia=$_POST['name_media'];
+            $idMediaType= 1;
+            global $nameMedia,$idMediaType;
+        }
+
+        execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
             ':title_media' => $_POST['title_media'],
-            ':name_media' => $_POST[':name_media']
+            ':name_media' => $nameMedia,
+            ':id_media_type' => $idMediaType
         ));
-        //TODO last insert id
+
         //on cherche les dernières info trouvées dans les tables team et media
         $last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
         $last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
@@ -56,9 +82,6 @@ if (!empty($_POST)) {
             ':id_media' => $last_id_media
         ));
     }
-
-    //ajout de l'image
-
 
 }// fin !empty $_POST
 

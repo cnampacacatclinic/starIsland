@@ -1,10 +1,8 @@
-<?php require_once '../config/function.php';?>
-    <h2>TEAM</h2>
-<?php
+<?php require_once '../config/function.php';
 if (!empty($_POST)) {
 
 
-    if (empty($_POST['title_media_type'])) {
+    if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
         $error = 'Ce champs est obligatoire';
 
@@ -12,26 +10,26 @@ if (!empty($_POST)) {
 
     if (!isset($error)) {
 
-        if (empty($_POST['id_media_type'])) {
+        if (empty($_POST['id_team'])) {
 
 
-            execute("INSERT INTO media_type (title_media_type) VALUES (:title_media_type)", array(
-                ':title_media_type' => $_POST['title_media_type']
+            execute("INSERT INTO team (nickname_team) VALUES (:nickname_team)", array(
+                ':nickname_team' => $_POST['nickname_team']
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type ajouté';
-            header('location:./media_type.php');
+            $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
+            header('location:./backteam.php');
             exit();
         }// fin soumission en insert
         else {
 
-            execute("UPDATE media_type SET title_media_type=:title WHERE id_media_type=:id", array(
-                ':id' => $_POST['id_media_type'],
-                ':title' => $_POST['title_media_type']
+            execute("UPDATE team SET nickname_team=:nickname_team WHERE id_team=:id", array(
+                ':id' => $_POST['id_team'],
+                ':nickname_team' => $_POST['nickname_team']
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type modifié';
-            header('location:./media_type.php');
+            $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';
+            header('location:./backteam.php');
             exit();
 
 
@@ -40,39 +38,32 @@ if (!empty($_POST)) {
 
 }// fin !empty $_POST
 
-$medias_type = execute("SELECT * FROM media_type")->fetchAll(PDO::FETCH_ASSOC);
+$teams = execute("SELECT * FROM team")->fetchAll(PDO::FETCH_ASSOC);
 
-//debug($medias_type);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
-    $media_type = execute("SELECT * FROM media_type WHERE id_media_type=:id", array(
+    $team = execute("SELECT * FROM team WHERE id_team=:id", array(
         ':id' => $_GET['id']
     ))->fetch(PDO::FETCH_ASSOC);
-    //debug($media_type);
-
-
 }
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
 
-    $success = execute("DELETE FROM media_type WHERE id_media_type=:id", array(
+    $success = execute("DELETE FROM team WHERE id_team=:id", array(
         ':id' => $_GET['id']
     ));
 
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Type supprimé';
-        header('location:./media_type.php');
+        $_SESSION['messages']['success'][] = 'Membre supprimé';
+        header('location:./backteam.php');
         exit;
 
     } else {
         $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
-        header('location:./media_type.php');
+        header('location:./backteam.php');
         exit;
-
-
     }
-
 }
 
 
@@ -83,29 +74,62 @@ require_once '../inc/backheader.inc.php';
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
-            <label for="media_type" class="form-label">Nom du type de média</label>
-            <input name="title_media_type" id="media_type" placeholder="Nom du type de média" type="text"
-                   value="<?= $media_type['title_media_type'] ?? ''; ?>" class="form-control">
+            <label for="team" class="form-label">Nickname</label>
+            <input name="nickname_team" id="nicknameTeam" placeholder="Nickname" type="text"
+                   value="<?= $team['nickname_team'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
+
+            <small class="text-danger">*</small>
+            <label for="team" class="form-label">Role</label>
+            <input name="role" id="roleTeam" placeholder="Role" type="text"
+                   value="<?= $team['role_team'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small>
+
+            <label for="avatar" class="form-label">Avatar</label>
+            <input name="avatar" type="file" class="form-control" id="avatar">
+            <small class="text-danger"><?= $avatar ?? ""; ?></small>
+            <input type="hidden" name="name_media" value="<?= $team['name_media'];?>">
+
+            <label for="team" class="form-label">Réseau / lien externe</label>
+            <input name="nickname_team" id="nicknameTeam" placeholder="https://etc.." type="text"
+                   value="<?= $team['nickname_team'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small>
+
+            <label for="team" class="form-label">Type de réseau</label>
+            <select class="custom-select" name="title_media">
+                <option selected value="">
+                    Choisir
+                </option>
+                <option value="discord">Discord</option>
+                <option value="youtube">Youtube</option>
+                <option value="facebook">Facebook</option>
+                <option value="twitch">Twitch</option>
+                <option value="instragram">Instragram</option>
+                <option value="twitter">Twitter</option>
+                <option value="autre">Autre</option>
+            </select>
+
         </div>
-        <input type="hidden" name="id_media_type" value="<?= $media_type['id_media_type'] ?? ''; ?>">
+        <input type="hidden" name="id_team" value="<?= $team['id_team'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
     <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
-            <th>Titre</th>
-            <th class="text-center">Actions</th>
+            <th>Nickname</th>
+            <th>Role</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($medias_type as $media_type): ?>
+        <?php foreach ($teams as $team): ?>
             <tr>
-                <td><?= $media_type['title_media_type']; ?></td>
+                <td><?= $team['nickname_team']; ?></td>
+                <td><?= $team['role_team']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $team['id_team']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $team['id_team']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

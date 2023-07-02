@@ -116,7 +116,7 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $event['start_date_event']; ?></td>
                 <td><?= $event['end_date_event']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $event['id_event']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $event['id_event']; ?>&a=edit" class="btn btn-outline-info">Modifier le timer</a>
                     <a href="?id=<?= $event['id_event']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>

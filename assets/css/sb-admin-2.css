@@ -30,6 +30,11 @@
 .contact{
     margin: 0 auto;
 }
+
+label{
+    padding: 10px !important;
+}
+
 @media (max-width: 1180px){
     .events-table thead {
         display: none;

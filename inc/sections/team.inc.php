@@ -46,7 +46,6 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
         foreach($img as $avatar):
     ?>
         <figure>
-            tztzt
             <img alt="avatar" class="teamAvatar" src="assets/img/<?php 
             if($avatar!==NULL):
                 echo $avatar['name_media'];

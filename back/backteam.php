@@ -10,10 +10,11 @@ if (!empty($_POST)) {
 
     if (!isset($error)) {
 
-        if (empty($_POST['id_team'])) {
+        if (empty($_GET['id'])) {
             //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
-                ':nickname_team' => $_POST['nickname_team']
+                ':nickname_team' => $_POST['nickname_team'],
+                ':role_team' => $_POST['role']
             ));
 
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
@@ -25,7 +26,7 @@ if (!empty($_POST)) {
             execute("UPDATE team SET nickname_team=:nickname_team,role_team=:role_team WHERE id_team=:id", array(
                 ':id' => $_POST['id_team'],
                 ':nickname_team' => $_POST['nickname_team'],
-                ':role_team' => $_POST['role_team']
+                ':role_team' => $_POST['role']
             ));
 
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';

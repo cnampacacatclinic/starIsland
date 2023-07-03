@@ -1,6 +1,5 @@
 <?php require_once '../config/function.php';
-$last_id_team=0;
-$last_id_media=0;
+
 if (!empty($_POST)) {
  
     /*DONNEES QUI NE SONT PAS OBLIGATOIRES*/
@@ -52,18 +51,7 @@ if (!empty($_POST)) {
 
         }// fin soumission modification
 
-        //ajout de l'image
-        if(!empty($_FILES['avatar']['name'])){
-            // on renomme la photo
-            $picture='upload/'.uniqid().'avatar-'.$_FILES['avatar']['name'];
-            // on la copie dans le dossier d'upload
-            copy($_FILES['avatar']['tmp_name'],'../assets/img/'.$picture);
-            $picture=$_POST['avatar'];
-            global $picture;
-
-            header('location:./backteam.php');
-            exit();
-        }
+        
          //si on a l'image
         if(!empty($_FILES['avatar']['name'])){
             $nameMedia=$picture;
@@ -80,12 +68,13 @@ if (!empty($_POST)) {
         //on cherche les dernières info trouvées dans les tables team et media
 
     /************** ********************************************************************* */
-                        //LAST INSERT ID NE MARCHE PAS
+                        //LAST INSERT ID NE MARCHE PAS //
     //$last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
     //$last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
 
     /************** ********************************************************************* */
-
+    $last_id_team=0;
+    $last_id_media=0;
     $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
     $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
     /*debug($last_id_media);
@@ -97,7 +86,6 @@ if (!empty($_POST)) {
                 ':id_team' => $last_id_team['id_team'],
                 ':id_media' => $last_id_media['id_media']
             ));
-    //global $last_id_team,$last_id_media;
       
     }// fin si pas d'erreur
 }// fin !empty $_POST
@@ -135,8 +123,6 @@ require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>TEAM</h2>
-<?php //echo $last_id_team;
-//echo $last_id_media;?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

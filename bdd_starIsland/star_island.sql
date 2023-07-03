@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 03 juil. 2023 à 09:57
+-- Généré le : lun. 03 juil. 2023 à 20:01
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 7.4.30
 
@@ -154,7 +154,11 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (12, 'imgEvent2', 'Perso2-removebg-preview.png', 5, 3),
 (13, 'predation', 'predation.png', 4, 3),
 (14, 'instragram', 'http://127.0.0.1/', 2, 1),
-(15, 'twitter', 'http://127.0.0.1/', 2, 1);
+(15, 'twitter', 'http://127.0.0.1/', 2, 1),
+(32, 'Portrait de fsdffsf ', 'avatar/64a2dff1c7f9803_07_2023_16_49_21navbarre.txt', 2, 2),
+(33, 'facebook', 'http://henri.ok', 2, 1),
+(34, 'Portrait de vcxcv me', 'avatar/64a2e0a116b0203_07_2023_16_52_1720190812212216_1.jpg', 2, 2),
+(35, 'Portrait de fsd memb', 'avatar/64a2e0cc7062503_07_2023_16_53_0020190812212216_1.jpg', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -176,7 +180,7 @@ INSERT INTO `media_type` (`id_media_type`, `title_media_type`) VALUES
 (2, 'avatar'),
 (3, 'img'),
 (4, 'lien'),
-(17, 'yyyy');
+(17, 'album');
 
 -- --------------------------------------------------------
 
@@ -200,7 +204,7 @@ INSERT INTO `page` (`id_page`, `title_page`, `url`) VALUES
 (3, 'avis', 'comment'),
 (4, 'event', 'event'),
 (5, 'vip', 'vip'),
-(6, 'page6', ''),
+(6, 'album-gallerie', 'album-gallerie'),
 (7, 'page7', ''),
 (8, 'page8', ''),
 (9, 'page9', ''),
@@ -243,7 +247,8 @@ INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
 (13, 'Staff/Modos', 'Mathieu '),
 (14, 'Staff/Modos', 'Laurent'),
 (15, 'Mappers', 'Rose'),
-(16, 'Admin', 'Lune');
+(16, 'Admin', 'Lune'),
+(26, 'Staff/Modos', 'yvette');
 
 -- --------------------------------------------------------
 
@@ -299,7 +304,11 @@ INSERT INTO `team_media` (`id_team_media`, `id_media`, `id_team`) VALUES
 (35, 9, 11),
 (36, 8, 12),
 (37, 8, 13),
-(38, 9, 14);
+(38, 9, 14),
+(53, 29, 32),
+(54, 30, 33),
+(55, 30, 34),
+(56, 32, 35);
 
 -- --------------------------------------------------------
 
@@ -424,7 +433,7 @@ ALTER TABLE `event_content`
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -442,13 +451,13 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -485,13 +494,6 @@ ALTER TABLE `event_content`
 ALTER TABLE `media`
   ADD CONSTRAINT `fk_media_media_type` FOREIGN KEY (`id_media_type`) REFERENCES `media_type` (`id_media_type`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_page_2` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`);
-
---
--- Contraintes pour la table `team_media`
---
-ALTER TABLE `team_media`
-  ADD CONSTRAINT `fk_media_04` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_team_02` FOREIGN KEY (`id_team`) REFERENCES `team` (`id_team`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,53 +3,16 @@
 if (!empty($_POST)) {
  
     //debug($_FILES);
-          //  die();
+    //  die();
 
     /*DONNEES OBLIGATOIRES*/
     if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
         $error = 'Ce champs est obligatoire';
-
     }
 
+
     if (!isset($error)) {
-
-        /*DONNEES QUI NE SONT PAS OBLIGATOIRES*/
-        //si on  a le media
-        if(!empty($_POST['name_media'])){
-            $nameMedia=$_POST['name_media'];
-            $idMediaType= 1;
-            //global $nameMedia,$idMediaType;
-
-            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
-                ':name_media' => trim(htmlspecialchars($nameMedia)),
-                ':id_media_type' => $idMediaType
-            ));
-        }
-
-        //si on a l'image
-        //if(!empty($_FILES['avatar']['name']))
-        if(!empty($_FILES)){
-            
-            $avatar_title_media='Portrait de '.trim(htmlspecialchars($_POST['nickname_team'])).' membre de la team';
-
-
-            //TODO
-            if(!empty($_FILES['avatar']['name'])){
-                // on renomme la photo
-                $picture='upload/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
-                // on la copie dans le dossier d'upload
-                copy($_FILES['avatar']['tmp_name'],'../assets/'.$picture);
-
-                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                    ':title_media' => $avatar_title_media,
-                    ':name_media' => $picture,
-                    ':id_media_type' => 2
-                ));
-            }
-        }
-
         if (empty($_GET['id'])) {
             //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
@@ -58,8 +21,6 @@ if (!empty($_POST)) {
             ));
 
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
-            header('location:./backteam.php');
-            exit();
         }// fin soumission en insert
         else {
             //modification du role et du pseudo
@@ -70,35 +31,90 @@ if (!empty($_POST)) {
             ));
 
             $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';
-            header('location:./backteam.php');
-            exit();
 
         }// fin soumission modification
+        
+        /*DONNEES QUI NE SONT PAS OBLIGATOIRES*/
+        
+        //si on  a le media
+        if(!empty($_POST['name_media'])){
+            $nameMedia=$_POST['name_media'];
+            $idMediaType= 1;
 
-         
-
-        //on cherche les dernières info trouvées dans les tables team et media
-
-    /************** ********************************************************************* */
-                        //LAST INSERT ID NE MARCHE PAS //
-    //$last_id_team=execute("SELECT LAST_INSERT_ID() FROM team")->fetch(PDO::FETCH_ASSOC);
-    //$last_id_media=execute("SELECT LAST_INSERT_ID() FROM media")->fetch(PDO::FETCH_ASSOC);
-
-    /************** ********************************************************************* */
-    $last_id_team=0;
-    $last_id_media=0;
-    $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-    $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-    /*debug($last_id_media);
-    echo $last_id_team['id_team'];
-    debug($last_id_team);
-    echo $last_id_media['id_media'];
-    die();*/
-    execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media)", array(
-                ':id_team' => $last_id_team['id_team'],
-                ':id_media' => $last_id_media['id_media']
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
+                ':name_media' => trim(htmlspecialchars($nameMedia)),
+                ':id_media_type' => $idMediaType
             ));
-      
+
+            //On insert les derniers id dans la table relationnelle
+            $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+            $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+            
+            execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media)", array(
+                        ':id_team' => $last_id_team['id_team'],
+                        ':id_media' => $last_id_media['id_media']
+            ));
+        }
+
+        //si on a l'image
+        //if(!empty($_FILES['avatar']['name']))
+        if(!empty($_FILES)){
+            
+            $avatar_title_media='Portrait de '.trim(htmlspecialchars($_POST['nickname_team'])).' membre de la team';
+
+            //TODO
+            //(!isset($errorImg))
+
+
+            /*
+            //on verifie le format du fichier
+if (!empty($_FILES['avatar']['name'])){
+          
+        $errorImg="";
+        $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+        if (!in_array($_FILES['avatar']['type'],$formats )){
+            $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp'<br>";
+
+//On verifie la taille du fichier
+if ($_FILES['avatar']['size'] > 2000000){
+            $errorImg.="Taille maximale autorisée de 2M";
+}
+}
+            */
+
+            if(!empty($_FILES['avatar']['name'])){
+                // on renomme la photo
+                $picture='avatar/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
+                // on la copie dans le dossier d'avatar
+                copy($_FILES['avatar']['tmp_name'],'../assets/'.$picture);
+
+                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                    ':title_media' => $avatar_title_media,
+                    ':name_media' => $picture,
+                    ':id_media_type' => 2
+                ));
+
+                //On insert les derniers id dans la table relationnelle
+                //LAST INSERT ID ne fonctionne pas
+                $last_id_team=0;
+                $last_id_media=0;
+                $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                /*debug($last_id_media);
+                echo $last_id_team['id_team'];
+                debug($last_id_team);
+                echo $last_id_media['id_media'];
+                die();*/
+                execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media)", array(
+                            ':id_team' => $last_id_team['id_team'],
+                            ':id_media' => $last_id_media['id_media']
+                        ));
+            }
+        }
+
+        header('location:./backteam.php');
+        exit();
     }// fin si pas d'erreur
 }// fin !empty $_POST
 

@@ -51,7 +51,7 @@
         <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backevent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion des event</span>
+                <span>Timer event</span>
             </a>
         </li>
         <li class="nav-item">
@@ -63,7 +63,7 @@
         <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backteam.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion de l'equipe</span>
+                <span>Team</span>
             </a>
         </li>
         <li class="nav-item">
@@ -81,13 +81,13 @@
         <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backpage.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion des pages</span>
+                <span>Les pages</span>
             </a>
         </li>
         <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backcontent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Gestion du contenu des pages</span>
+                <span>Contenu des pages</span>
             </a>
         </li>
         <!-- Nav Item - Pages Collapse Menu -->

@@ -8,11 +8,27 @@ if (!empty($_POST)) {
     /*DONNEES OBLIGATOIRES*/
     if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
-        $error = 'Ce champs est obligatoire';
+        $error = '<p>Ce champs est obligatoire</p>';
     }
 
+    //Si on obtient un fichier
+    if (!empty($_FILES)){
+            //on verifie le format du fichier        
+            $errorImg="";
+            $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+            if (!in_array($_FILES['avatar']['type'],$formats )){
+            $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
 
-    if (!isset($error)) {
+            //On verifie la taille du fichier
+            if ($_FILES['avatar']['size'] > 2000000){
+                $errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
+            }//fin de si la taille est bonne
+         }//fin de si le format est bon   
+    }//fin de si on obtient le fichier
+    /**/
+
+
+    if (!isset($error) || !isset($errorImg)) {
         if (empty($_GET['id'])) {
             //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
@@ -67,21 +83,7 @@ if (!empty($_POST)) {
             //(!isset($errorImg))
 
 
-            /*
-            //on verifie le format du fichier
-if (!empty($_FILES['avatar']['name'])){
-          
-        $errorImg="";
-        $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
-        if (!in_array($_FILES['avatar']['type'],$formats )){
-            $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp'<br>";
-
-//On verifie la taille du fichier
-if ($_FILES['avatar']['size'] > 2000000){
-            $errorImg.="Taille maximale autorisée de 2M";
-}
-}
-            */
+            
 
             if(!empty($_FILES['avatar']['name'])){
                 // on renomme la photo
@@ -169,6 +171,7 @@ require_once '../inc/backheader.inc.php';
             <input name="avatar" type="file" class="form-control" id="avatar">
             <!-- TODO avatar requete imgTeam -->
             <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
+            <small class="text-danger"><?= $errorImg ?? ''; ?></small>
 
             <label for="lien" class="form-label">Réseau / lien externe</label>
             <input name="name_media" id="name_media" placeholder="https://etc.." type="url"

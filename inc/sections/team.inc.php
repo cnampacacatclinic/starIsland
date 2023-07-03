@@ -76,12 +76,12 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
                             <a title="resaux social" href="<?php echo $media['name_media'];?>">
                             <?php
                                 if($media['title_media']!=="autre"){
-                                    $alt='brands/'.$media['title_media'];
+                                    $src='brands/'.$media['title_media'];
                                 }else{
-                                    $alt='regular/grin-stars';
+                                    $src='regular/grin-stars';
                                 }
                             ?>
-                                <img class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/<?=$alt;?>.svg">
+                                <img class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/<?=$src;?>.svg">
                             </a>
                         </li>
                     <?php endforeach;

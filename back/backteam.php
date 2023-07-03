@@ -29,17 +29,25 @@ if (!empty($_POST)) {
         }
 
         //si on a l'image
-         //TODO
         //if(!empty($_FILES['avatar']['name']))
         if(!empty($_FILES)){
-            $picture='avatar-1.png';
+            
             $avatar_title_media='Portrait de '.trim(htmlspecialchars($_POST['nickname_team'])).' membre de la team';
 
-            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                ':title_media' => $avatar_title_media,
-                ':name_media' => $picture,
-                ':id_media_type' => 2
-            ));
+
+            //TODO
+            if(!empty($_FILES['avatar']['name'])){
+                // on renomme la photo
+                $picture='upload/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
+                // on la copie dans le dossier d'upload
+                copy($_FILES['avatar']['tmp_name'],'../assets/'.$picture);
+
+                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                    ':title_media' => $avatar_title_media,
+                    ':name_media' => $picture,
+                    ':id_media_type' => 2
+                ));
+            }
         }
 
         if (empty($_GET['id'])) {

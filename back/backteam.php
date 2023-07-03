@@ -2,21 +2,7 @@
 
 if (!empty($_POST)) {
  
-    /*DONNEES QUI NE SONT PAS OBLIGATOIRES*/
-    //si on  a le media
-    if(!empty($_POST['name_media'])){
-        $nameMedia=$_POST['name_media'];
-        $idMediaType= 1;
-        //global $nameMedia,$idMediaType;
-
-        execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-            ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
-            ':name_media' => trim(htmlspecialchars($nameMedia)),
-            ':id_media_type' => $idMediaType
-        ));
-    }
-
-
+    
     /*DONNEES OBLIGATOIRES*/
     if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
@@ -25,6 +11,20 @@ if (!empty($_POST)) {
     }
 
     if (!isset($error)) {
+
+        /*DONNEES QUI NE SONT PAS OBLIGATOIRES*/
+        //si on  a le media
+        if(!empty($_POST['name_media'])){
+            $nameMedia=$_POST['name_media'];
+            $idMediaType= 1;
+            //global $nameMedia,$idMediaType;
+
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
+                ':name_media' => trim(htmlspecialchars($nameMedia)),
+                ':id_media_type' => $idMediaType
+            ));
+        }
 
         if (empty($_GET['id'])) {
             //ajout du role et du pseudo
@@ -51,9 +51,10 @@ if (!empty($_POST)) {
 
         }// fin soumission modification
 
-        
          //si on a l'image
         if(!empty($_FILES['avatar']['name'])){
+            //TODO
+            $picture='avatar-1.png';
             $nameMedia=$picture;
             $idMediaType= 2;
             global $nameMedia,$idMediaType;

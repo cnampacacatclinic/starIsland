@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 29 juin 2023 à 12:22
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 7.4.33
+-- Généré le : lun. 03 juil. 2023 à 09:57
+-- Version du serveur : 10.4.25-MariaDB
+-- Version de PHP : 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,18 +35,19 @@ CREATE TABLE `comment` (
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL,
   `activated` tinyint(2) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `comment`
 --
 
 INSERT INTO `comment` (`id_comment`, `rating_comment`, `comment_text`, `publish_date_comment`, `nickname_comment`, `id_media`, `activated`) VALUES
-(1, 5, 'C\'est super ! Merci pour ces excellents moments. Je suis conquise !', '2023-06-08', 'Ninon', 7, 0),
-(2, 5, 'Très bien. Un bon moment, une bonne ambiance. Je reste fidèle et ce n\'est pas pour rien.', '2023-06-25', 'Pierre', 8, 0),
-(3, 5, 'Du bon boulot. Quelle joie de jouer avec vous après une rude semaine !', '2023-06-21', 'Maurice', 9, 0),
-(4, 5, 'Très satisfait. Toujours content. Vos êtes les meilleurs ! Vraiment, c\'est sincère.', '2023-06-19', 'Carlos', 10, 0),
-(5, 4, 'Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!', '2023-06-04', 'Pseudo', 8, 0);
+(1, 5, 'C\'est super ! Merci pour ces excellents moments. Je suis conquise !', '2023-06-08', 'Ninon', 7, 1),
+(2, 5, 'Très bien. Un bon moment, une bonne ambiance. Je reste fidèle et ce n\'est pas pour rien.', '2023-06-25', 'Pierre', 8, 1),
+(3, 5, 'Du bon boulot. Quelle joie de jouer avec vous après une rude semaine !', '2023-06-21', 'Maurice', 9, 1),
+(4, 5, 'Très satisfait. Toujours content. Vos êtes les meilleurs ! Vraiment, c\'est sincère.', '2023-06-19', 'Carlos', 10, 1),
+(5, 4, 'Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!', '2023-06-04', 'Pseudo', 8, 1),
+(6, 1, 'J\'ai pas du tout aimé ! X(', '2023-07-03', 'Ambre', 9, 0);
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `content` (
   `title_content` varchar(100) DEFAULT NULL,
   `description_content` text DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `content`
@@ -91,7 +92,7 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
   `end_date_event` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `event`
@@ -111,7 +112,7 @@ CREATE TABLE `event_content` (
   `id_event_content` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
   `id_content` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `event_content`
@@ -132,7 +133,7 @@ CREATE TABLE `media` (
   `name_media` varchar(255) DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL,
   `id_media_type` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `media`
@@ -151,7 +152,9 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (10, 'avatar', 'avatar-1.png', 3, 2),
 (11, 'imgEvent1', 'Perso1-removebg-preview.png', 5, 3),
 (12, 'imgEvent2', 'Perso2-removebg-preview.png', 5, 3),
-(13, 'predation', 'predation.png', 4, 3);
+(13, 'predation', 'predation.png', 4, 3),
+(14, 'instragram', 'http://127.0.0.1/', 2, 1),
+(15, 'twitter', 'http://127.0.0.1/', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +165,7 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 CREATE TABLE `media_type` (
   `id_media_type` bigint(20) NOT NULL,
   `title_media_type` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `media_type`
@@ -185,7 +188,7 @@ CREATE TABLE `page` (
   `id_page` int(20) NOT NULL,
   `title_page` varchar(20) DEFAULT NULL,
   `url` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `page`
@@ -218,7 +221,7 @@ CREATE TABLE `team` (
   `id_team` int(20) NOT NULL,
   `role_team` varchar(20) DEFAULT NULL,
   `nickname_team` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `team`
@@ -238,7 +241,9 @@ INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
 (11, 'Mappers', 'Corine '),
 (12, 'Staff/Modos', 'Carlos '),
 (13, 'Staff/Modos', 'Mathieu '),
-(14, 'Staff/Modos', 'Laurent');
+(14, 'Staff/Modos', 'Laurent'),
+(15, 'Mappers', 'Rose'),
+(16, 'Admin', 'Lune');
 
 -- --------------------------------------------------------
 
@@ -250,7 +255,7 @@ CREATE TABLE `team_media` (
   `id_team_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_team` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `team_media`
@@ -306,7 +311,7 @@ CREATE TABLE `user` (
   `id_user` bigint(20) NOT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
@@ -395,7 +400,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `content`
@@ -419,7 +424,7 @@ ALTER TABLE `event_content`
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -437,13 +442,13 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -485,8 +490,8 @@ ALTER TABLE `media`
 -- Contraintes pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  ADD CONSTRAINT `fk_media_04` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`),
-  ADD CONSTRAINT `fk_team_02` FOREIGN KEY (`id_team`) REFERENCES `team` (`id_team`);
+  ADD CONSTRAINT `fk_media_04` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_team_02` FOREIGN KEY (`id_team`) REFERENCES `team` (`id_team`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

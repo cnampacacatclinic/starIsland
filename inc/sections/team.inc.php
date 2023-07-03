@@ -46,7 +46,7 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
         foreach($img as $avatar):
     ?>
         <figure>
-            <img alt="avatar" class="teamAvatar" src="assets/img/<?php 
+            <img alt="<?=$avatar['title_media'] ?? 'Avatar';?>" class="teamAvatar" src="assets/img/<?php 
             if($avatar!==NULL):
                 echo $avatar['name_media'];
             else:
@@ -74,7 +74,14 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
                     ?>
                         <li>
                             <a title="resaux social" href="<?php echo $media['name_media'];?>">
-                                <img class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/brands/<?php echo $media['title_media'];?>.svg">
+                            <?php
+                                if($media['title_media']!=="autre"){
+                                    $alt='brands/'.$media['title_media'];
+                                }else{
+                                    $alt='regular/grin-stars';
+                                }
+                            ?>
+                                <img class="couleurSVG" alt="icone reseau social" src="assets/fontawesome-free/svgs/<?=$alt;?>.svg">
                             </a>
                         </li>
                     <?php endforeach;

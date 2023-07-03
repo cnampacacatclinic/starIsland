@@ -33,11 +33,11 @@ if (!empty($_POST)) {
         //if(!empty($_FILES['avatar']['name']))
         if(!empty($_FILES)){
             $picture='avatar-1.png';
-            $avatar_title_media='Portrait de '.$_POST['nickname_team'].' membre de la team';
+            $avatar_title_media='Portrait de '.trim(htmlspecialchars($_POST['nickname_team'])).' membre de la team';
 
             execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                ':title_media' => trim(htmlspecialchars($avatar_title_media)),
-                ':name_media' => trim(htmlspecialchars($picture)),
+                ':title_media' => $avatar_title_media,
+                ':name_media' => $picture,
                 ':id_media_type' => 2
             ));
         }

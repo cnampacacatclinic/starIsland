@@ -13,15 +13,15 @@
     foreach($imgComment as $avatarComment):
   ?> 
     <figure>
-        <img class="avisAvatar" src="assets/img/<?= $avatarComment['name_media']; ?>">
+        <img class="avisAvatar" src="assets/avatar/<?= $avatarComment['name_media']; ?>">
         <figcaption>
           <p><?= $comment['nickname_comment']; ?>
               <span>
               <?php 
-                for ($i=1; $i <= $comment['rating_comment']*2; $i++) { ?>
+                for ($i=1; $i <= $comment['rating_comment']; $i++) { ?>
                   <img alt="icone etoile" class="starChecked etoile"  src="assets/fontawesome-free/svgs/solid/star.svg">   
                 <?php
-                $i++;
+                $i;
                 }
               ?>
               </span>

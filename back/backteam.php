@@ -2,7 +2,9 @@
 
 if (!empty($_POST)) {
  
-    
+    //debug($_FILES);
+          //  die();
+
     /*DONNEES OBLIGATOIRES*/
     if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
@@ -23,6 +25,20 @@ if (!empty($_POST)) {
                 ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
                 ':name_media' => trim(htmlspecialchars($nameMedia)),
                 ':id_media_type' => $idMediaType
+            ));
+        }
+
+        //si on a l'image
+         //TODO
+        //if(!empty($_FILES['avatar']['name']))
+        if(!empty($_FILES)){
+            $picture='avatar-1.png';
+            $avatar_title_media='Portrait de '.$_POST['nickname_team'].' membre de la team';
+
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                ':title_media' => trim(htmlspecialchars($avatar_title_media)),
+                ':name_media' => trim(htmlspecialchars($picture)),
+                ':id_media_type' => 2
             ));
         }
 
@@ -51,20 +67,7 @@ if (!empty($_POST)) {
 
         }// fin soumission modification
 
-         //si on a l'image
-        if(!empty($_FILES['avatar']['name'])){
-            //TODO
-            $picture='avatar-1.png';
-            $nameMedia=$picture;
-            $idMediaType= 2;
-            global $nameMedia,$idMediaType;
-
-            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
-                ':name_media' => trim(htmlspecialchars($nameMedia)),
-                ':id_media_type' => $idMediaType
-            ));
-        }
+         
 
         //on cherche les dernières info trouvées dans les tables team et media
 

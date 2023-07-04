@@ -35,12 +35,12 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
     ));
 
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Commentaire supprimé';
+        $_SESSION['messages']['success'][] = '<p>Commentaire supprimé</p>';
         header('location:./backcomment.php');
         exit;
 
     } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
         header('location:./backcomment.php');
         exit;
     }

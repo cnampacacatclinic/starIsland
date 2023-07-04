@@ -2,7 +2,7 @@
 $result='';
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
-        $error = 'Ce champs est obligatoire';
+        $error = '<p>Ce champs est obligatoire</p>';
     }
 
     if (!isset($error)) {
@@ -12,7 +12,7 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            $_SESSION['messages']['success'][] = 'page ajoutée';
+            $_SESSION['messages']['success'][] = '<p>page ajoutée</p>';
             header('location:./backpage.php');
             exit();
         }// fin soumission en insert
@@ -23,7 +23,7 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            $_SESSION['messages']['success'][] = 'L URL est modifiée';
+            $_SESSION['messages']['success'][] = '<p>L\' URL est modifiée</p>';
             header('location:./backpage.php');
             exit();
         }// fin soumission modification
@@ -46,22 +46,22 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
         ));
 
         if ($success) {
-            $_SESSION['messages']['success'][] = 'Page supprimée';
+            $_SESSION['messages']['success'][] = '<p>Page supprimée</p>';
             header('location:./backpage.php');
             exit;
 
         } else {
-            $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+            $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
             header('location:./backpage.php');
             exit;
         }
     }catch(Exception $e) { 
         $result=$e;
-        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
         global $result;
     } catch(Error $e) {
         $result=$e;
-        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p<';
         global $result;
     }
 

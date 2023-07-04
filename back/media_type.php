@@ -6,7 +6,7 @@ if (!empty($_POST)) {
 
     if (empty($_POST['title_media_type'])) {
 
-        $error = 'Ce champs est obligatoire';
+        $error = '<p>Ce champs est obligatoire</p>';
 
     }
 
@@ -18,7 +18,7 @@ if (!empty($_POST)) {
                 ':title_media_type' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type ajouté';
+            $_SESSION['messages']['success'][] = '<p>Média type ajouté</p>';
             header('location:./media_type.php');
             exit();
         }// fin soumission en insert
@@ -29,7 +29,7 @@ if (!empty($_POST)) {
                 ':title' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type modifié';
+            $_SESSION['messages']['success'][] = '<p>Média type modifié</p>';
             header('location:./media_type.php');
             exit();
 
@@ -61,22 +61,22 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
         ));
 
         if ($success) {
-            $_SESSION['messages']['success'][] = 'Type supprimé';
+            $_SESSION['messages']['success'][] = '<p>Type supprimé</p>';
             header('location:./media_type.php');
             exit;
 
         } else {
-            $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+            $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer<p>';
             header('location:./media_type.php');
             exit;
         }
     }catch(Exception $e) { 
         $result=$e;
-        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
         global $result;
     } catch(Error $e) {
         $result=$e;
-        $_SESSION['messages']['danger'][] = 'Problème de traitement';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
         global $result;
     }
 

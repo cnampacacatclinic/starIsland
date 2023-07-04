@@ -4,7 +4,7 @@ if (!empty($_POST)) {
 
     if (empty($_POST['start_date']) && empty($_POST['end_date'])) {
 
-        $error = 'Ce champs est obligatoire';
+        $error = '<p>Ce champs est obligatoire</p>';
 
     }
 
@@ -17,7 +17,7 @@ if (!empty($_POST)) {
                 ':dateEnd' => $_POST['end_date']
             ));
 
-            $_SESSION['messages']['success'][] = 'Date de l\'event ajoutée';
+            $_SESSION['messages']['success'][] = '<p>Date de l\'event ajoutée</p>';
             header('location:./backevent.php');
             exit();
         }// fin soumission en insert
@@ -29,7 +29,7 @@ if (!empty($_POST)) {
                 ':dateEnd' => $_POST['end_date']
             ));
 
-            $_SESSION['messages']['success'][] = 'Date de l\'event modifiée';
+            $_SESSION['messages']['success'][] = '<p>Date de l\'event modifiée</p>';
             header('location:./backevent.php');
             exit();
 
@@ -54,12 +54,12 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
     ));
 
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Date de l\'event supprimée';
+        $_SESSION['messages']['success'][] = '<p>Date de l\'event supprimée</p>';
         header('location:./backevent.php');
         exit;
 
     } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
         header('location:./backevent.php');
         exit;
     }

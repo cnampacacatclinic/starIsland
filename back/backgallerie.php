@@ -146,7 +146,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
 require_once '../inc/backheader.inc.php';
 ?>
 
-<h2>TEAM</h2>
+<h2>Album pour la gallerie</h2>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
@@ -202,21 +202,7 @@ require_once '../inc/backheader.inc.php';
         <tbody>
         <?php foreach ($teams as $team): ?>
             <tr>
-            <?php
-                //on demande l'avatar
-                $imgAvatar = execute("SELECT media.name_media AS nam FROM team
-                LEFT JOIN team_media
-                ON team.id_team=team_media.id_team
-                LEFT JOIN media
-                ON media.id_media=team_media.id_media
-                INNER JOIN media_type
-                ON media_type.id_media_type=media.id_media_type
-                WHERE title_media_type='avatar' AND team.id_team=:idT ORDER BY media.id_media DESC LIMIT 1", array(
-                        ':idT' => $team['id_team']
-                ))->fetch(PDO::FETCH_ASSOC);
-            ?>
-            
-                <td><img alt="Avatar" class="teamAvatar" src="../assets/avatar/<?= $imgAvatar['nam']; ?>" width="100px"></td>
+                <td><?= $team['nickname_team']; ?></td>
                 <td><?= $team['nickname_team']; ?></td>
                 <td><?= $team['role_team']; ?></td>
                 <td class="text-center">

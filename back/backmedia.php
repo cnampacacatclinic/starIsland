@@ -27,12 +27,12 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
     ));
 
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Média supprimé';
+        $_SESSION['messages']['success'][] = '<p>Média supprimé</p>';
         header('location:./backmedia.php');
         exit;
 
     } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
         header('location:./backmedia.php');
         exit;
 
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
 //TODO
     if (empty($_POST['title_media']) && empty($_POST['lien_media']) && empty($_POST['id_media'])) {
 
-        $error = 'Ce champs est obligatoire';
+        $error = '<p>Ce champs est obligatoire</p>';
 
     }
 
@@ -61,7 +61,7 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($_POST['id_type1']))
             ));
 
-            $_SESSION['messages']['success'][] = 'Média ajouté';
+            $_SESSION['messages']['success'][] = '<p>Média ajouté</p>';
             header('location:./backmedia.php');
             exit();
         }// fin soumission en insert
@@ -77,7 +77,7 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($idMedia))
             ));
 
-            $_SESSION['messages']['success'][] = 'Média type modifié';
+            $_SESSION['messages']['success'][] = '<p>Média type modifié</p>';
             header('location:./backmedia.php');
             exit();
 

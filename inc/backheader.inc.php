@@ -67,6 +67,12 @@
             </a>
         </li>
         <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backgallerie.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Album</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/media_type.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion du type de média</span>

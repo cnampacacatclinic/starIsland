@@ -44,7 +44,7 @@ if (!empty($_POST)) {
     //TODO
     if (empty($_POST['title_content']) && empty($_POST['description_content'])){
 
-            $error = 'Ce champs est obligatoire';
+            $error = '<p>Ce champs est obligatoire</p>';
     }
 
     if (!isset($error)) {
@@ -57,7 +57,7 @@ if (!empty($_POST)) {
             Ici on ne peut pas empecher une tentative d'insertion sans l'id_page avant. */
             if (empty($_POST['id_page1'])){
 
-                $error = 'Ce champs est obligatoire';
+                $error = '<p>Ce champs est obligatoire</p>';
     
             }else{
 

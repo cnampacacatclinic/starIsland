@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 03 juil. 2023 à 20:01
--- Version du serveur : 10.4.25-MariaDB
--- Version de PHP : 7.4.30
+-- Généré le : mar. 04 juil. 2023 à 16:46
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `comment` (
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL,
   `activated` tinyint(2) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `comment`
@@ -47,7 +47,17 @@ INSERT INTO `comment` (`id_comment`, `rating_comment`, `comment_text`, `publish_
 (3, 5, 'Du bon boulot. Quelle joie de jouer avec vous après une rude semaine !', '2023-06-21', 'Maurice', 9, 1),
 (4, 5, 'Très satisfait. Toujours content. Vos êtes les meilleurs ! Vraiment, c\'est sincère.', '2023-06-19', 'Carlos', 10, 1),
 (5, 4, 'Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!', '2023-06-04', 'Pseudo', 8, 1),
-(6, 1, 'J\'ai pas du tout aimé ! X(', '2023-07-03', 'Ambre', 9, 0);
+(6, 1, 'J\'ai pas du tout aimé ! X(', '2023-07-03', 'Ambre', 9, 0),
+(7, 1, 'Bonjour entreprise.\r\nJe vous propose mon service afin prospe', '2023-07-04', 'Vous', 8, 1),
+(8, 5, 'C\'est super merci !', '2023-07-04', 'Klara', 7, 0),
+(9, 2, 'terterte', '2023-07-04', 'tert', 9, 0),
+(10, 1, 'jjhj', '2023-07-04', 'yhj', 9, 0),
+(11, 1, 'hfghgf', '2023-07-04', 'yhy', 8, 0),
+(12, 1, 'kjk', '2023-07-04', 'kuk', 8, 0),
+(13, 2, 'fdsfsd', '2023-07-04', 'dsf', 8, 0),
+(14, 1, 'kukuik', '2023-07-04', 'jkuk', 7, 0),
+(15, 1, 'jjyyu', '2023-07-04', 'ujtuj', 8, 0),
+(16, 1, 'gdfgfdg', '2023-07-04', 'fdgd', 9, 0);
 
 -- --------------------------------------------------------
 
@@ -60,7 +70,7 @@ CREATE TABLE `content` (
   `title_content` varchar(100) DEFAULT NULL,
   `description_content` text DEFAULT NULL,
   `id_page` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `content`
@@ -92,7 +102,7 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
   `end_date_event` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event`
@@ -112,7 +122,7 @@ CREATE TABLE `event_content` (
   `id_event_content` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
   `id_content` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event_content`
@@ -131,9 +141,9 @@ CREATE TABLE `media` (
   `id_media` bigint(20) NOT NULL,
   `title_media` varchar(20) DEFAULT NULL,
   `name_media` varchar(255) DEFAULT NULL,
-  `id_page` int(20) DEFAULT NULL,
+  `id_page` int(100) DEFAULT NULL,
   `id_media_type` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media`
@@ -155,10 +165,28 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (13, 'predation', 'predation.png', 4, 3),
 (14, 'instragram', 'http://127.0.0.1/', 2, 1),
 (15, 'twitter', 'http://127.0.0.1/', 2, 1),
-(32, 'Portrait de fsdffsf ', 'avatar/64a2dff1c7f9803_07_2023_16_49_21navbarre.txt', 2, 2),
 (33, 'facebook', 'http://henri.ok', 2, 1),
-(34, 'Portrait de vcxcv me', 'avatar/64a2e0a116b0203_07_2023_16_52_1720190812212216_1.jpg', 2, 2),
-(35, 'Portrait de fsd memb', 'avatar/64a2e0cc7062503_07_2023_16_53_0020190812212216_1.jpg', 2, 2);
+(36, 'twitter', 'https://autre.ion', 2, 1),
+(38, 'discord', 'https://fsd.fd', 2, 1),
+(46, 'Portrait de Lune mem', '64a3ec407c8b804_07_2023_11_54_08avatar-9.png', 2, 2),
+(47, 'Portrait de Creation', '64a3ed8d460b404_07_2023_11_59_41avatar-4.png', 2, 2),
+(48, 'Portrait de yvette m', '64a3ee9802dff04_07_2023_12_04_0864a3e40d296e504_07_2023_11_19_09avatar-9.png', 2, 2),
+(49, 'Portrait de Rose mem', '64a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
+(50, 'Portrait de test mem', '64a3eff6290d504_07_2023_12_09_58avatar-4.png', 2, 2),
+(51, 'Portrait de rzere me', '64a3f0c899da004_07_2023_12_13_2864a3ddb0a610804_07_2023_10_52_00avatar-7.png', 2, 2),
+(52, 'Portrait de Creation', '64a3f16a7dd7d04_07_2023_12_16_10avatar-2.png', 2, 2),
+(53, 'Portrait de Rose mem', '64a3f2d39eb2704_07_2023_12_22_1164a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
+(54, 'autre', 'https://klmkm.lm', 2, 1),
+(55, 'autre', 'https://fsfsdf.lm', 2, 1),
+(56, 'youtube', 'https://sfjldfjlsm.lm', 2, 1),
+(57, 'youtube', 'https://gdgdf.lm', 2, 1),
+(58, 'Portrait de Georgett', '64a3f6924a16e04_07_2023_12_38_1064a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
+(60, 'Portrait de Rose mem', '64a3f71842b2504_07_2023_12_40_2464a3f16a7dd7d04_07_2023_12_16_10avatar-2.png', 2, 2),
+(61, 'Portrait de insertio', '64a3f72b68b3404_07_2023_12_40_43avatar-5.png', 2, 2),
+(70, 'photo gallerie 1', 'Loading1.png', 6, 3),
+(71, 'photo gallerie 2', 'Loading2.png', 6, 3),
+(72, 'photo gallerie 3', 'Loading3.png', 6, 3),
+(73, 'photo gallerie 4', 'Loading4.png', 6, 3);
 
 -- --------------------------------------------------------
 
@@ -169,7 +197,7 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 CREATE TABLE `media_type` (
   `id_media_type` bigint(20) NOT NULL,
   `title_media_type` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `media_type`
@@ -179,8 +207,7 @@ INSERT INTO `media_type` (`id_media_type`, `title_media_type`) VALUES
 (1, 'reseauSocial'),
 (2, 'avatar'),
 (3, 'img'),
-(4, 'lien'),
-(17, 'album');
+(4, 'lien');
 
 -- --------------------------------------------------------
 
@@ -192,7 +219,7 @@ CREATE TABLE `page` (
   `id_page` int(20) NOT NULL,
   `title_page` varchar(20) DEFAULT NULL,
   `url` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `page`
@@ -225,14 +252,14 @@ CREATE TABLE `team` (
   `id_team` int(20) NOT NULL,
   `role_team` varchar(20) DEFAULT NULL,
   `nickname_team` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team`
 --
 
 INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
-(1, 'Admin', 'Gregory'),
+(1, 'Admin', 'George'),
 (2, 'Admin', 'Camille'),
 (3, 'Helpers', 'Paul'),
 (4, 'Helpers', 'Pierre'),
@@ -247,8 +274,11 @@ INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
 (13, 'Staff/Modos', 'Mathieu '),
 (14, 'Staff/Modos', 'Laurent'),
 (15, 'Mappers', 'Rose'),
-(16, 'Admin', 'Lune'),
-(26, 'Staff/Modos', 'yvette');
+(34, 'Staff/Modos', 'test'),
+(35, 'Admin', 'rzere'),
+(36, 'Admin', 'insertioun nouveu ga'),
+(37, 'Staff/Modos', 'Georgettte'),
+(44, 'i', 'i');
 
 -- --------------------------------------------------------
 
@@ -260,7 +290,7 @@ CREATE TABLE `team_media` (
   `id_team_media` int(20) NOT NULL,
   `id_media` bigint(20) NOT NULL,
   `id_team` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `team_media`
@@ -306,9 +336,23 @@ INSERT INTO `team_media` (`id_team_media`, `id_media`, `id_team`) VALUES
 (37, 8, 13),
 (38, 9, 14),
 (53, 29, 32),
-(54, 30, 33),
 (55, 30, 34),
-(56, 32, 35);
+(56, 32, 35),
+(57, 26, 36),
+(58, 26, 37),
+(59, 33, 38),
+(60, 33, 39),
+(61, 33, 40),
+(62, 33, 41),
+(70, 50, 34),
+(71, 51, 35),
+(74, 55, 35),
+(75, 55, 10),
+(76, 56, 36),
+(77, 57, 37),
+(78, 58, 37),
+(80, 60, 15),
+(81, 61, 36);
 
 -- --------------------------------------------------------
 
@@ -320,7 +364,7 @@ CREATE TABLE `user` (
   `id_user` bigint(20) NOT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `password_user` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -409,7 +453,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `content`
@@ -433,7 +477,7 @@ ALTER TABLE `event_content`
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -451,13 +495,13 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT pour la table `user`

@@ -36,7 +36,7 @@ if (!empty($_POST)) {
                 ':role_team' => trim(htmlspecialchars($_POST['role']))
             ));
 
-            $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
+            $_SESSION['messages']['success'][] = '<p>Membre de l\'équipe ajouté</p>';
         }// fin soumission en insert
         else {
             //modification du role et du pseudo
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
                 ':role_team' => $_POST['role']
             ));
 
-            $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';
+            $_SESSION['messages']['success'][] = '<p>Membre de l\'équipe modifié</p>';
 
         }// fin soumission modification
         
@@ -63,14 +63,25 @@ if (!empty($_POST)) {
                     ':id_media_type' => $idMediaType
                 ));
 
-                //On insert les derniers id dans la table relationnelle
-                $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-                $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                if (empty($_GET['id'])) {   
+                    //On insert les derniers id dans la table relationnelle
+                    //LAST INSERT ID ne fonctionne pas
+                    $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
                 
-                execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
-                            ':id_team' => $last_id_team['id_team'],
-                            ':id_media' => $last_id_media['id_media']+1
-                ));
+                    execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
+                                ':id_team' => $last_id_team['id_team'],
+                                ':id_media' => $last_id_media['id_media']
+                            ));
+                }
+                else{
+                    $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    
+                    execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
+                        ':id_team' => $_GET['id'],
+                        ':id_media' => $last_id_media['id_media']
+                    ));
+                }
             
         }
 
@@ -116,13 +127,14 @@ if (!empty($_POST)) {
                         debug($last_id_team);
                         echo $last_id_media['id_media'];
                         die();*/
-                        global $last_id_media;
                         execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
                                     ':id_team' => $last_id_team['id_team'],
                                     ':id_media' => $last_id_media['id_media']
                                 ));
                     }
                 else{
+                        $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                        
                         execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
                             ':id_team' => $_GET['id'],
                             ':id_media' => $last_id_media['id_media']
@@ -153,13 +165,23 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
         ':id' => $_GET['id']
     ));
 
+    //on supprime l'ancien avatar dans la BDD
+    execute("DELETE FROM media WHERE id_media=:idM",array(
+        ':idM'=>$_GET['im']
+    ));
+    //on supprime l'ancienne relation dans la BDD
+    execute("DELETE FROM team_media WHERE id_media=:idM AND id_team=:id",array(
+        ':idM'=>$_GET['im'],
+        ':id'=>$_GET['id']
+    ));
+
     if ($success) {
-        $_SESSION['messages']['success'][] = 'Membre supprimé';
+        $_SESSION['messages']['success'][] = '<p>Membre supprimé</p>';
         header('location:./backteam.php');
         exit;
 
     } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
+        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
         header('location:./backteam.php');
         exit;
     }

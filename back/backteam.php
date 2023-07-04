@@ -56,21 +56,22 @@ if (!empty($_POST)) {
         if(!empty($_POST['name_media'])){
             $nameMedia=$_POST['name_media'];
             $idMediaType= 1;
-
-            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
-                ':name_media' => trim(htmlspecialchars($nameMedia)),
-                ':id_media_type' => $idMediaType
-            ));
-
-            //On insert les derniers id dans la table relationnelle
-            $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-            $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             
-            execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media)", array(
-                        ':id_team' => $last_id_team['id_team'],
-                        ':id_media' => $last_id_media['id_media']
-            ));
+                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                    ':title_media' => trim(htmlspecialchars($_POST['title_media'])),
+                    ':name_media' => trim(htmlspecialchars($nameMedia)),
+                    ':id_media_type' => $idMediaType
+                ));
+
+                //On insert les derniers id dans la table relationnelle
+                $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                
+                execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
+                            ':id_team' => $last_id_team['id_team'],
+                            ':id_media' => $last_id_media['id_media']+1
+                ));
+            
         }
 
         //si on a l'image
@@ -78,35 +79,57 @@ if (!empty($_POST)) {
         if(!empty($_FILES)){
             
             $avatar_title_media='Portrait de '.trim(htmlspecialchars($_POST['nickname_team'])).' membre de la team';
-
-            if(!empty($_FILES['avatar']['name'])){
-                // on renomme la photo
-                $picture='avatar/'.uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
-                // on la copie dans le dossier d'avatar
-                copy($_FILES['avatar']['tmp_name'],'../assets/'.$picture);
-
-                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
-                    ':title_media' => $avatar_title_media,
-                    ':name_media' => $picture,
-                    ':id_media_type' => 2
+            //TODO
+            //si on l'image et l'id de la personne
+            if (!empty($_GET['id']) && !empty($_FILES['avatar']['name'])) {
+                //on supprime l'ancien avatar dans la BDD
+                execute("DELETE FROM media WHERE id_media=:idM",array(
+                    ':idM'=>$_GET['im']
                 ));
+                //on supprime l'ancienne relation dans la BDD
+                execute("DELETE FROM team_media WHERE id_media=:idM AND id_team=:id",array(
+                    ':idM'=>$_GET['im'],
+                    ':id'=>$_GET['id']
+                ));
+            }
 
-                //On insert les derniers id dans la table relationnelle
-                //LAST INSERT ID ne fonctionne pas
-                $last_id_team=0;
-                $last_id_media=0;
-                $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-                $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-                /*debug($last_id_media);
-                echo $last_id_team['id_team'];
-                debug($last_id_team);
-                echo $last_id_media['id_media'];
-                die();*/
-                execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_team,:id_media)", array(
-                            ':id_team' => $last_id_team['id_team'],
+            //Si on a la photo
+            if(!empty($_FILES['avatar']['name'])){
+                    // on renomme la photo
+                    $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['avatar']['name'];
+                    // on la copie dans le dossier d'avatar
+                    copy($_FILES['avatar']['tmp_name'],'../assets/avatar/'.$picture);
+                    //On insert dans la table media
+                    execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,2,:id_media_type)", array(
+                        ':title_media' => $avatar_title_media,
+                        ':name_media' => $picture,
+                        ':id_media_type' => 2
+                    ));
+                    //dans le cas ou c'est une première insertion et pas une modif
+                    if (empty($_GET['id'])) {   
+                        //On insert les derniers id dans la table relationnelle
+                        //LAST INSERT ID ne fonctionne pas
+                        $last_id_team=execute("SELECT id_team FROM team ORDER BY id_team DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                        $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                        /*debug($last_id_media);
+                        echo $last_id_team['id_team'];
+                        debug($last_id_team);
+                        echo $last_id_media['id_media'];
+                        die();*/
+                        global $last_id_media;
+                        execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
+                                    ':id_team' => $last_id_team['id_team'],
+                                    ':id_media' => $last_id_media['id_media']
+                                ));
+                    }
+                else{
+                        execute("INSERT INTO team_media(id_media,id_team) VALUES (:id_media,:id_team)", array(
+                            ':id_team' => $_GET['id'],
                             ':id_media' => $last_id_media['id_media']
                         ));
-            }
+                    }
+            }//fin de si on a la photo
+        
         }
 
         header('location:./backteam.php');
@@ -204,10 +227,10 @@ require_once '../inc/backheader.inc.php';
             <tr>
             <?php
                 //on demande l'avatar
-                $imgAvatar = execute("SELECT media.name_media AS nam FROM team
-                LEFT JOIN team_media
+                $imgAvatar = execute("SELECT media.id_media AS idMed,media.name_media AS nam FROM team
+                INNER JOIN team_media
                 ON team.id_team=team_media.id_team
-                LEFT JOIN media
+                INNER JOIN media
                 ON media.id_media=team_media.id_media
                 INNER JOIN media_type
                 ON media_type.id_media_type=media.id_media_type
@@ -220,8 +243,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $team['nickname_team']; ?></td>
                 <td><?= $team['role_team']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $team['id_team']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $team['id_team']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

@@ -210,7 +210,12 @@ require_once '../inc/backheader.inc.php';
             <input name="avatar" type="file" class="form-control" id="avatar">
             <!-- TODO avatar requete imgTeam -->
             <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
-            <small class="text-danger"><?= $errorImg ?? ''; ?></small>
+            <small class="text-danger"><?php
+            echo $errorImg ?? '';
+            if(empty($_GET['id'])){
+                echo '<p>* Image obligatoire</p>';
+            }
+            ?></small>
 
             <label for="lien" class="form-label">Réseau / lien externe</label>
             <input name="name_media" id="name_media" placeholder="https://etc.." type="url"

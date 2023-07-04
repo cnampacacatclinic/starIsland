@@ -65,11 +65,11 @@
         <fieldset class="form-group">
             <label>Votre avis nous interesse</label>
             <span>
-                <img id="start1" alt="note 1 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">   
-                <img id="start2" alt="note 2 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img id="start3" alt="note 3 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img id="start4" alt="note 4 icone etoile" class="etoile unchecked"  src="assets/fontawesome-free/svgs/solid/star.svg">
-                <img id="start5" alt="note 5 icone etoile" class="etoile unchecked" src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start1" alt="note 1 icone etoile" class="etoile unchecked st"  src="assets/fontawesome-free/svgs/solid/star.svg">   
+                <img id="start2" alt="note 2 icone etoile" class="etoile unchecked st "  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start3" alt="note 3 icone etoile" class="etoile unchecked st"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start4" alt="note 4 icone etoile" class="etoile unchecked st"  src="assets/fontawesome-free/svgs/solid/star.svg">
+                <img id="start5" alt="note 5 icone etoile" class="etoile unchecked st" src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
             <input name="note" id="note" type="hidden" value="">
             <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
@@ -79,33 +79,20 @@
     </form>
 </section>
 <script>
-  const collection = document.getElementsByClassName('unchecked');
+  const collection = document.getElementsByClassName('st');
   const plus = document.getElementsByClassName('plus');
   let note = document.getElementById('note');
   //console.log(collection.length);
-  
-  collection['0'].addEventListener('mouseover', function handleMouseOver() {
-        collection['0'].style.width = '2em';
-        collection['0'].classList.add("starChecked");
-        collection['0'].classList.add("plus");
-        collection['0'].classList.remove("unchecked");
-        let resultNote = plus.length;
-        console.log(resultNote);
-        note.value = resultNote;
+ console.log(collection);
+ for(let num=0;num<collection.length;num++){
+  //console.log(num);
+    collection[num].addEventListener('click', function() {
+      for(let i=0;i<=num;i++){
+        collection[i].style.width = '2em';
+        collection[i].classList.remove("unchecked");
+        collection[i].classList.add("starChecked");
+        note.value = num+1;
+      }
     });
-
-
- /* 
-  let num =0;
-  const collection = document.getElementsByClassName('unchecked');
- 
- for(num=0;num<=collection.length;num++){
-    console.log(num);
-    collection[num].addEventListener('mouseover', function handleMouseOver() {
-        collection[num].style.width = '2em';
-        collection[num].classList.add("starChecked");
-        collection[num].classList.remove("unchecked");
-        num;
-    });
-  }*/
+  }
 </script>

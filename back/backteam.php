@@ -5,12 +5,6 @@ if (!empty($_POST)) {
     //debug($_FILES);
     //  die();
 
-    /*DONNEES OBLIGATOIRES*/
-    if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
-
-        $error = '<p>Ce champs est obligatoire</p>';
-    }
-
     //Si on obtient un fichier
     if (!empty($_FILES)){
             //on verifie le format du fichier        
@@ -25,10 +19,21 @@ if (!empty($_POST)) {
             }//fin de si la taille est bonne
          }//fin de si le format est bon   
     }//fin de si on obtient le fichier
-    /**/
 
 
-    if (!isset($error) || !isset($errorImg)) {
+    /*DONNEES OBLIGATOIRES*/
+    if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
+
+        $error = '<p>Ce champs est obligatoire</p>';
+    }
+    //lors de la première insertion la photo est obligatoire
+    //Si on n'a pas la photo et qu'ii ne s'agit pas d'un modification
+    if(empty($_FILES['avatar']['name']) && empty($_GET['id'])){
+        $errorImg2='<p>Vous avez oublié l\'image.</p>';
+    }
+
+    if (!isset($error) || !isset($errorImg) || !isset($errorImg2) ) {
+
         if (empty($_GET['id'])) {
             //ajout du role et du pseudo
             execute("INSERT INTO team (nickname_team,role_team) VALUES (:nickname_team,:role_team)", array(
@@ -212,6 +217,7 @@ require_once '../inc/backheader.inc.php';
             <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
             <small class="text-danger"><?php
             echo $errorImg ?? '';
+            echo $errorImg2 ?? '';
             if(empty($_GET['id'])){
                 echo '<p>* Image obligatoire</p>';
             }

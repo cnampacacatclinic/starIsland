@@ -60,11 +60,11 @@ if (!empty($_POST)) {
             ));
             messageSession($page);
         }// fin soumission en insert
-        /*else {
+        else {
             
             execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:id", array(
                 ':id' => $_POST['id_media'],
-                ':name_media' => $picture,
+                ':name_media' => $_POST['name_media'],
                 ':title_media' => trim(htmlspecialchars($_POST['title_media']))
             ));
 
@@ -94,6 +94,7 @@ require_once '../inc/backheader.inc.php';
             <small class="text-danger"><?= $errorImg ?? ''; ?></small>
         </div>
         <input type="hidden" name="id_media" value="<?= $media['id_media'] ?? ''; ?>">
+        <input type="hidden" name="name_media" value="<?= $media['name_media'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
@@ -109,7 +110,7 @@ require_once '../inc/backheader.inc.php';
         <?php foreach ($imgs as $img): ?>
             <tr>
                 <td><img alt="Vignette" src="../assets/album/<?= $img['name_media']; ?>" width="100px"></td>
-                <td><?= $img['name_media']; ?></td>
+                <td><?= $img['title_media']; ?></td>
                 <td class="text-center">
                     <a href="?id=<?= $img['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                     <a href="?id=<?= $img['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"

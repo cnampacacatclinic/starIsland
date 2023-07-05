@@ -49,7 +49,7 @@ require_once '../inc/backheader.inc.php';
 
 <h2>PAGE</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-<?php $m=isset($exception) ? '<p class="text-danger">'.var_dump($exception).'</p>' : '';
+<?php $m=isset($e) ? '<p class="text-danger">'.var_dump($e).'</p>' : '';
 echo $m;?>
 <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">

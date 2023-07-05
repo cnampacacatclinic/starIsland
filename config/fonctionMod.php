@@ -23,11 +23,11 @@ function Delete($t,$c,$p){
             }
         }catch(Exception $e) { 
             $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-            $exception = var_dump($e);
+            var_dump($e);
 
         } catch(Error $e) {
             $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-            $exception = var_dump($e);
+            var_dump($e);
         }
     
     }

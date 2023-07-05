@@ -1,4 +1,9 @@
 <?php require_once '../config/function.php';
+require_once '../config/fonctionMod.php';
+
+$table="content";
+$idTable="id_content";
+$page='backcontent.php';
 
 $contents = execute("SELECT id_content, title_content, description_content, content.id_page,title_page
 FROM content
@@ -15,30 +20,9 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ON page.id_page=content.id_page WHERE id_content=:id", array(   
         ':id' => $_GET['id']
     ))->fetch(PDO::FETCH_ASSOC);
-
-
 }
 
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-
-    $success = execute("DELETE FROM content WHERE id_content=:id", array(
-        ':id' => $_GET['id']
-    ));
-
-    if ($success) {
-        $_SESSION['messages']['success'][] = 'page supprimée';
-        header('location:./backcontent.php');
-        exit;
-
-    } else {
-        $_SESSION['messages']['danger'][] = 'Problème de traitement, veuillez réitérer';
-        header('location:./backcontent.php');
-        exit;
-
-
-    }
-
-}
+Delete($table,$idTable,$page);
 
 if (!empty($_POST)) {
     //TODO
@@ -67,14 +51,12 @@ if (!empty($_POST)) {
                     ':id_page' => trim(htmlspecialchars($_POST['id_page1']))
                 ));
 
-                $_SESSION['messages']['success'][] = 'Le contenu a été ajouté';
-                header('location:./backcontent.php');
-                exit();
+                messageSession($page);
             }
         }// fin soumission en insert
         else {
                 $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
-            
+
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
                     ':id' => trim(htmlspecialchars($_POST['id_content'])),
                     ':title' => trim(htmlspecialchars($_POST['title_content'])),
@@ -82,9 +64,7 @@ if (!empty($_POST)) {
                     ':id_page' => trim(htmlspecialchars($idPage))
                 ));
 
-                $_SESSION['messages']['success'][] = 'Le contenu a été modifié';
-                header('location:./backcontent.php');
-                exit();
+                messageSession($page);
 
         }// fin soumission modification
     }// fin si pas d'erreur

@@ -1,4 +1,12 @@
 <?php require_once '../config/function.php';
+require_once '../config/fonctionMod.php';
+
+$table="media";
+$idTable="id_media";
+$page="backmedia.php";
+
+Delete($table,$idTable,$page);
+
 $medias = execute("SELECT id_media, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
 INNER JOIN page
 ON page.id_page=media.id_page
@@ -20,30 +28,8 @@ WHERE id_media=:id", array(
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-
-    $success = execute("DELETE FROM media WHERE id_media=:id", array(
-        ':id' => $_GET['id']
-    ));
-
-    if ($success) {
-        $_SESSION['messages']['success'][] = '<p>Média supprimé</p>';
-        header('location:./backmedia.php');
-        exit;
-
-    } else {
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-        header('location:./backmedia.php');
-        exit;
-
-
-    }
-
-}
-
 if (!empty($_POST)) {
 
-//TODO
     if (empty($_POST['title_media']) && empty($_POST['lien_media']) && empty($_POST['id_media'])) {
 
         $error = '<p>Ce champs est obligatoire</p>';
@@ -61,9 +47,8 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($_POST['id_type1']))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Média ajouté</p>';
-            header('location:./backmedia.php');
-            exit();
+            messageSession($page);
+
         }// fin soumission en insert
         else {
             $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
@@ -77,10 +62,7 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($idMedia))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Média type modifié</p>';
-            header('location:./backmedia.php');
-            exit();
-
+            messageSession($page);
 
         }// fin soumission modification
     }// fin si pas d'erreur

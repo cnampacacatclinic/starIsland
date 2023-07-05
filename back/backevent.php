@@ -1,4 +1,12 @@
 <?php require_once '../config/function.php';
+require_once '../config/fonctionMod.php';
+
+$table="event";
+$idTable="id_event";
+$page="backevent.php";
+
+Delete($table,$idTable,$page);
+
 if (!empty($_POST)) {
 
 
@@ -17,9 +25,8 @@ if (!empty($_POST)) {
                 ':dateEnd' => $_POST['end_date']
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Date de l\'event ajoutée</p>';
-            header('location:./backevent.php');
-            exit();
+            messageSession($page);
+
         }// fin soumission en insert
         else {
 
@@ -29,9 +36,7 @@ if (!empty($_POST)) {
                 ':dateEnd' => $_POST['end_date']
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Date de l\'event modifiée</p>';
-            header('location:./backevent.php');
-            exit();
+            messageSession($page);
 
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -46,26 +51,6 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
         ':id' => $_GET['id']
     ))->fetch(PDO::FETCH_ASSOC);
 }
-
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-
-    $success = execute("DELETE FROM event WHERE id_event=:id", array(
-        ':id' => $_GET['id']
-    ));
-
-    if ($success) {
-        $_SESSION['messages']['success'][] = '<p>Date de l\'event supprimée</p>';
-        header('location:./backevent.php');
-        exit;
-
-    } else {
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-        header('location:./backevent.php');
-        exit;
-    }
-
-}
-
 
 require_once '../inc/backheader.inc.php';
 ?>

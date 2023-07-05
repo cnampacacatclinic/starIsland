@@ -1,4 +1,9 @@
 <?php require_once '../config/function.php';
+require_once '../config/fonctionMod.php';
+$result='';
+$table="team";
+$idTable="id_team";
+$page="backteam.php";
 
 if (!empty($_POST)) {
  
@@ -164,12 +169,10 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
+Delete($table,$idTable,$page);
+
+//On est obligé de supprimer d'autres données avec d'autre identifiants
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-
-    $success = execute("DELETE FROM team WHERE id_team=:id", array(
-        ':id' => $_GET['id']
-    ));
-
     //on supprime l'ancien avatar dans la BDD
     execute("DELETE FROM media WHERE id_media=:idM",array(
         ':idM'=>$_GET['im']
@@ -179,17 +182,6 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'd
         ':idM'=>$_GET['im'],
         ':id'=>$_GET['id']
     ));
-
-    if ($success) {
-        $_SESSION['messages']['success'][] = '<p>Membre supprimé</p>';
-        header('location:./backteam.php');
-        exit;
-
-    } else {
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-        header('location:./backteam.php');
-        exit;
-    }
 }
 
 

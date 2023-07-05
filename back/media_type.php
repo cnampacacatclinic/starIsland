@@ -1,6 +1,10 @@
 <?php require_once '../config/function.php';
-$result='';
-//version du 28/06/2023
+require_once '../config/fonctionMod.php';
+
+$table="media_type";
+$page="media_type.php";
+$idTable="id_media_type";
+
 if (!empty($_POST)) {
 
 
@@ -18,9 +22,7 @@ if (!empty($_POST)) {
                 ':title_media_type' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Média type ajouté</p>';
-            header('location:./media_type.php');
-            exit();
+            messageSession($page);
         }// fin soumission en insert
         else {
 
@@ -29,10 +31,7 @@ if (!empty($_POST)) {
                 ':title' => trim(htmlspecialchars($_POST['title_media_type']))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>Média type modifié</p>';
-            header('location:./media_type.php');
-            exit();
-
+            messageSession($page);
 
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -53,41 +52,14 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 
 }
 
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-    /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
-    try{
-        $success = execute("DELETE FROM media_type WHERE id_media_type=:id", array(
-            ':id' => $_GET['id']
-        ));
-
-        if ($success) {
-            $_SESSION['messages']['success'][] = '<p>Type supprimé</p>';
-            header('location:./media_type.php');
-            exit;
-
-        } else {
-            $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer<p>';
-            header('location:./media_type.php');
-            exit;
-        }
-    }catch(Exception $e) { 
-        $result=$e;
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-        global $result;
-    } catch(Error $e) {
-        $result=$e;
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-        global $result;
-    }
-
-}
-
+Delete($table,$idTable,$page);
 
 require_once '../inc/backheader.inc.php';
 ?>
 <h2>LES TYPES DE MEDIA</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-<?= '<p class="text-danger">'.$result.'</p>' ?? ''; ?>
+<?php $m=isset($exception) ? '<p class="text-danger">'.var_dump($exception).'</p>' : '';
+echo $m;?>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

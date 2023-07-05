@@ -1,5 +1,12 @@
 <?php require_once '../config/function.php';
-$result='';
+require_once '../config/fonctionMod.php';
+
+$table="page";
+$idTable="id_page";
+$page="backpage.php";
+
+Delete($table,$idTable,$page);
+
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
         $error = '<p>Ce champs est obligatoire</p>';
@@ -12,9 +19,8 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>page ajoutée</p>';
-            header('location:./backpage.php');
-            exit();
+            messageSession($page);
+
         }// fin soumission en insert
         else {
             execute("UPDATE page SET title_page=:title, url=:urlPage WHERE id_page=:id", array(
@@ -23,9 +29,8 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            $_SESSION['messages']['success'][] = '<p>L\' URL est modifiée</p>';
-            header('location:./backpage.php');
-            exit();
+            messageSession($page);
+            
         }// fin soumission modification
     }// fin si pas d'erreur
 
@@ -38,41 +43,14 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
-    /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
-    try{
-        $success = execute("DELETE FROM page WHERE id_page=:id", array(
-            ':id' => $_GET['id']
-        ));
-
-        if ($success) {
-            $_SESSION['messages']['success'][] = '<p>Page supprimée</p>';
-            header('location:./backpage.php');
-            exit;
-
-        } else {
-            $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-            header('location:./backpage.php');
-            exit;
-        }
-    }catch(Exception $e) { 
-        $result=$e;
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-        global $result;
-    } catch(Error $e) {
-        $result=$e;
-        $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p<';
-        global $result;
-    }
-
-}
 //Obligé de mettre la nav ici à cause de l'header location
 require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>PAGE</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-<?= '<p class="text-danger">'.$result.'</p>' ?? ''; ?>
+<?php $m=isset($exception) ? '<p class="text-danger">'.var_dump($exception).'</p>' : '';
+echo $m;?>
 <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>

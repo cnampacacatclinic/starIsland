@@ -8,11 +8,7 @@ $condition="id_comment";
 if (!empty($_GET)) {
 
     if (isset(($_GET['e']))) {
-    /* Pour un peu plus de securite, on prevoit que si
-    l'utilisateur met une autre valeur en get (par exemple le chiffre 4)
-    de toute façon ce $_GET vaudra 0 */
-    $activated=$_GET['e']==0 ? 1 : 0;
-
+        
     $value='activated=:activated';
     $conditionUpdate='id_comment=:id';
     update($table,$value,$conditionUpdate,array(

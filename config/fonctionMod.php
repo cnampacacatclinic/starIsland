@@ -74,14 +74,21 @@ function errorImg($fileImg){
         //on verifie le format du fichier        
         $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
         if (!in_array($fileImg['type'],$formats )){
-        $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
-
+        //$errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
+        $error1=true;
         //On verifie la taille du fichier
         if ($fileImg['size'] > 2000000){
-            $errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
+            //$errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
+            $error1=true;
         }//fin de si la taille est bonne
      }//fin de si le format est bon  
 }//fin de si on obtient le fichier
-//global $errorImg;
+
+if($error1==true){
+    $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
+    $errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
+}else{
+    $errorImg=NULL;
+}
 return $errorImg;
 }

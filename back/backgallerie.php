@@ -4,6 +4,7 @@ require_once '../config/fonctionMod.php';
 $table="media";
 $page="backgallerie.php";
 $idTable="id_media";
+$errorI='';
 
 $imgs = execute("SELECT * FROM media WHERE id_page=6")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -25,28 +26,20 @@ if (!empty($_POST)) {
     if (empty($_POST['title_media']) && isset($_FILES)) {
 
         $error = '<p>Ce champs est obligatoire</p>';
+        //$erroImg = true;
     }
 
     //Si on obtient un fichier
     if (isset($_FILES)){
-            //on verifie le format du fichier        
-            $errorImg="";
-            $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
-            if (!in_array($_FILES['photoAlbum']['type'],$formats )){
-            $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
-
-            //On verifie la taille du fichier
-            if ($_FILES['photoAlbum']['size'] > 2000000){
-                $errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
-            }//fin de si la taille est bonne
-         }//fin de si le format est bon   
+        $fileImg=$_FILES['photoAlbum'];
+        errorImg($fileImg);
+        $errorI=errorImg($fileImg);
     }//fin de si on obtient le fichier
-    /**/
 
-
-    if (!isset($error) || !isset($errorImg)) {
-        //TODO
-
+    if (!isset($error) && !isset($errorImg)) {
+        if(errorImg($fileImg)==NULL){
+        //echo errorImg($fileImg);
+        //die();
         if(!empty($_FILES['photoAlbum']['name'])){
             // on renomme la photo
             $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoAlbum']['name'];
@@ -71,6 +64,7 @@ if (!empty($_POST)) {
             messageSession($page);
 
         }// fin soumission modification/**/
+    }// fin de si error n'est pas NULL/**/
     }// fin si pas d'erreur/**/
 }// fin !empty $_POST
 
@@ -91,7 +85,9 @@ require_once '../inc/backheader.inc.php';
             <label for="photoAlbum" class="form-label">Photo</label>
             <input name="photoAlbum" type="file" class="form-control" id="photoAlbum">
             <small class="text-danger"><?= $error ?? ''; ?></small>
-            <small class="text-danger"><?= $errorImg ?? ''; ?></small>
+            <small class="text-danger">
+            <?php $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
+echo $m;?>
         </div>
         <input type="hidden" name="id_media" value="<?= $media['id_media'] ?? ''; ?>">
         <input type="hidden" name="name_media" value="<?= $media['name_media'] ?? ''; ?>">

@@ -20,13 +20,8 @@ Delete($table,$idTable,$page);
 
 if (!empty($_POST)) {
 
-    //debug($_FILES);
-    //die();
- 
     if (empty($_POST['title_media']) && isset($_FILES)) {
-
         $error = '<p>Ce champs est obligatoire</p>';
-        //$erroImg = true;
     }
 
     //Si on obtient un fichier
@@ -38,8 +33,6 @@ if (!empty($_POST)) {
 
     if (!isset($error) && !isset($errorImg)) {
         if(errorImg($fileImg)==NULL){
-        //echo errorImg($fileImg);
-        //die();
         if(!empty($_FILES['photoAlbum']['name'])){
             // on renomme la photo
             $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoAlbum']['name'];

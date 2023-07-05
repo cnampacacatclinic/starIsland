@@ -56,16 +56,6 @@ function messageSession($p){
     exit();
 }
 
-//error
-function errorMessage($c){
-    if ($c) {
-
-        $error = '<p>Ce champs est obligatoire</p>';
-
-    }
-    return $error;
-}
-
 //error img
 function errorImg($fileImg){
     $errorImg="";

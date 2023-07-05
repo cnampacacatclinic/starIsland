@@ -49,6 +49,12 @@
         </li>
         -->
         <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backnewevent.php';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Nouvel event</span>
+            </a>
+        </li>
+        <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backevent.php';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Timer event</span>

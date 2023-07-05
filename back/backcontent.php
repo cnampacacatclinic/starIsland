@@ -103,7 +103,7 @@ require_once '../inc/backheader.inc.php';
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Texte:</label>
-            <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte"
+            <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
                    value="<?= $content2['description_content'] ?? ''; ?>" class="form-control"><?= $content2['description_content'] ?? ''; ?></textarea>
             <small class="text-danger"><?= $error ?? ''; ?></small>
         </div>

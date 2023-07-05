@@ -22,15 +22,17 @@ function Delete($t,$c,$p){
                 exit;
             }
         }catch(Exception $e) { 
-            $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-            var_dump($e);
+            $_SESSION['messages']['danger'][] = '<p>Exception !</p>';
+            //var_dump($e);
 
         } catch(Error $e) {
-            $_SESSION['messages']['danger'][] = '<p>Problème de traitement</p>';
-            var_dump($e);
+            $_SESSION['messages']['danger'][] = '<p>Error !</p>';
+            //var_dump($e);
         }
     
     }
+    $me=isset($e) ? $e : '';
+    return $me;
 }
 
 //select condition
@@ -62,4 +64,24 @@ function errorMessage($c){
 
     }
     return $error;
+}
+
+//error img
+function errorImg($fileImg){
+    $errorImg="";
+    //Si on obtient un fichier
+    if (isset($_FILES)){
+        //on verifie le format du fichier        
+        $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+        if (!in_array($fileImg['type'],$formats )){
+        $errorImg.="Les formats d'image autorisés sont: les png, les jpg et les webp<br>";
+
+        //On verifie la taille du fichier
+        if ($fileImg['size'] > 2000000){
+            $errorImg.="La taille maximale autorisée pour le fichier, est de 2M";
+        }//fin de si la taille est bonne
+     }//fin de si le format est bon  
+}//fin de si on obtient le fichier
+//global $errorImg;
+return $errorImg;
 }

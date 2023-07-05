@@ -1,0 +1,12 @@
+if(isset($_GET['r'])){
+
+//on demande les membres en fonction de leur role
+
+global $data=execute("SELECT * FROM team WHERE role_team=:role, array(
+            ':role' => $_GET['r']
+        ))->fetchAll(PDO::FETCH_ASSOC);
+}else{
+
+global $data=execute("SELECT * FROM team ORDER BY nickname_team")->fetchAll(PDO::FETCH_ASSOC);
+
+}

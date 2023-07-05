@@ -6,6 +6,7 @@ $idTable="id_page";
 $page="backpage.php";
 
 Delete($table,$idTable,$page);
+$errorD =Delete($table,$idTable,$page);
 
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
@@ -49,7 +50,7 @@ require_once '../inc/backheader.inc.php';
 
 <h2>PAGE</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-<?php $m=isset($e) ? '<p class="text-danger">'.var_dump($e).'</p>' : '';
+<?php $m=!empty($errorD) ? '<p class="text-danger">'.var_dump($errorD).'</p>' : '';
 echo $m;?>
 <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">

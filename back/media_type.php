@@ -53,12 +53,13 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 }
 
 Delete($table,$idTable,$page);
+$errorD=Delete($table,$idTable,$page);
 
 require_once '../inc/backheader.inc.php';
 ?>
 <h2>LES TYPES DE MEDIA</h2>
 <p class="text-danger">ATTENTION ! LES MODIFICATIONS ET LES SUPPRESSIONS PEUVENT CASSER VOTRE SITE !</p>
-<?php $m=isset($e) ? '<p class="text-danger">'.var_dump($e).'</p>' : '';
+<?php $m=!empty($errorD) ? '<p class="text-danger">'.var_dump($errorD).'</p>' : '';
 echo $m;?>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">

@@ -5,18 +5,30 @@ $table="media";
 $page="backgallerie.php";
 $idTable="id_media";
 
-//debug($_FILES);
-//die();
+$imgs = execute("SELECT * FROM media WHERE id_page=6")->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
+
+    $media = execute("SELECT * FROM media WHERE id_media=:id AND id_page=6", array(
+        ':id' => $_GET['id']
+    ))->fetch(PDO::FETCH_ASSOC);
+}
+
+Delete($table,$idTable,$page);
+
 
 if (!empty($_POST)) {
+
+    //debug($_FILES);
+    //die();
  
-    if (empty($_POST['name_media']) && empty($_FILES)) {
+    if (empty($_POST['title_media']) && isset($_FILES)) {
 
         $error = '<p>Ce champs est obligatoire</p>';
     }
 
     //Si on obtient un fichier
-    if (!empty($_FILES)){
+    if (isset($_FILES)){
             //on verifie le format du fichier        
             $errorImg="";
             $formats=['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
@@ -32,41 +44,37 @@ if (!empty($_POST)) {
     /**/
 
 
-    /*if (!isset($error) || !isset($errorImg)) {
-        if (empty($_GET['id'])) {
-            
-            execute("INSERT INTO media (name_media,title_media) VALUES (:name_media,:title_media)", array(
-                ':name_media' => trim(htmlspecialchars($_POST['name_media'])),
-                ':title_media' => trim(htmlspecialchars($_POST['title_media']))
-            ));
+    if (!isset($error) || !isset($errorImg)) {
+        //TODO
 
-            $_SESSION['messages']['success'][] = 'Membre de l\'équipe ajouté';
+        if(!empty($_FILES['photoAlbum']['name'])){
+            // on renomme la photo
+            $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoAlbum']['name'];
+            // on la copie dans le dossier d'album
+            copy($_FILES['photoAlbum']['tmp_name'],'../assets/album/'.$picture);
+            //On insert dans la table media
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,6,:id_media_type)", array(
+                ':title_media' => $_POST['title_media'],
+                ':name_media' => $picture,
+                ':id_media_type' => 4
+            ));
+            messageSession($page);
         }// fin soumission en insert
-        else {
+        /*else {
             
             execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:id", array(
                 ':id' => $_POST['id_media'],
-                ':name_media' => $_POST['name_media'],
-                ':title_media' => $_POST['title_media']
+                ':name_media' => $picture,
+                ':title_media' => trim(htmlspecialchars($_POST['title_media']))
             ));
 
-            $_SESSION['messages']['success'][] = 'Membre de l\'équipe modifié';
+            messageSession($page);
 
-        }// fin soumission modification
+        }// fin soumission modification/**/
     }// fin si pas d'erreur/**/
 }// fin !empty $_POST
 
-$imgs = execute("SELECT * FROM media WHERE id_page=6")->fetchAll(PDO::FETCH_ASSOC);
 
-
-if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
-
-    $media = execute("SELECT * FROM media WHERE id_media=:id AND id_page=6", array(
-        ':id' => $_GET['id']
-    ))->fetch(PDO::FETCH_ASSOC);
-}
-
-Delete($table,$idTable,$page);
 
 require_once '../inc/backheader.inc.php';
 ?>
@@ -76,13 +84,14 @@ require_once '../inc/backheader.inc.php';
         <div class="form-group">
             <small class="text-danger">*</small>
             <label for="media" class="form-label">Alt</label>
-            <input name="alt" id="alt" placeholder="Alt" type="text"
+            <input name="title_media" id="alt" placeholder="Alt" type="text"
                    value="<?= $media['title_media'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
             <label for="photoAlbum" class="form-label">Photo</label>
             <input name="photoAlbum" type="file" class="form-control" id="photoAlbum">
             <small class="text-danger"><?= $error ?? ''; ?></small>
+            <small class="text-danger"><?= $errorImg ?? ''; ?></small>
         </div>
         <input type="hidden" name="id_media" value="<?= $media['id_media'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>

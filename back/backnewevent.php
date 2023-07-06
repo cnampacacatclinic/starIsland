@@ -8,17 +8,12 @@ $idTable2="id_content";
 $page='backnewevent.php';
 $errorI='';
 
-$contents = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
+$contents = execute("SELECT event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
 FROM event
 INNER JOIN event_content
 ON event_content.id_event=event.id_event
 INNER JOIN content
-ON content.id_content=event_content.id_content
-INNER JOIN page
-ON page.id_page=content.id_page
-INNER JOIN media
-ON page.id_page=media.id_page
-GROUP BY idM DESC")->fetchAll(PDO::FETCH_ASSOC);
+ON content.id_content=event_content.id_content GROUP BY event.id_event")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
     $datas = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
@@ -44,7 +39,7 @@ Delete($table2,$idTable2,$page);
 
 if (!empty($_POST)) {
     //TODO
-    if (empty($_POST['title_content']) && empty($_POST['description_content'])){
+    if (empty($_POST['title_content']) && empty($_POST['description_content']) && empty($_FILES)){
 
             $error = '<p>Ce champs est obligatoire</p>';
     }
@@ -58,8 +53,10 @@ if (!empty($_POST)) {
     
     if (!isset($error) || !isset($errorImg)) {
 
-        if (empty($_POST['id_content'])) {
+        if (!isset($_GET['id']) && !empty($_FILES['photoEvent']['name'])) {
             if(!empty($_FILES['photoEvent']['name'])){
+                debug($_POST);
+                die();
                     // on renomme la photo
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img
@@ -165,18 +162,33 @@ endif; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($contents as $content): ?>
+        <?php foreach ($contents as $content):
+            
+            $imgs = execute("SELECT event_content.id_event,title_media,name_media, media.id_media AS idM
+            FROM event
+            INNER JOIN event_content
+            ON event_content.id_event=event.id_event
+            INNER JOIN media
+            ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE",array(
+                ':idE'=>$content['idE']
+            ))->fetchAll(PDO::FETCH_ASSOC);
+            ?>
             <tr>
-                <td><img alt="Vignette" src="../assets/img/<?= $content['name_media']; ?>" width="100px"></td>
+                <?php foreach ($imgs as $img):
+                $imgEvent=$img['idM'];
+                global $imgEvent;
+                ?>
+                <td><img alt="Vignette" src="../assets/img/<?= $img['name_media']; ?>" width="100px"></td>
+                <?php endforeach;?>
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $content['id_content']; ?>&idM=<?= $content['idM']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $content['id_content']; ?>&idM=<?= $content['idM']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $content['id']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $content['id']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;?>
         </tbody>
     </table>
 

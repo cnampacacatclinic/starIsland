@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 04 juil. 2023 à 16:46
+-- Généré le : jeu. 06 juil. 2023 à 15:39
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comment` (
   `id_comment` int(20) NOT NULL,
   `rating_comment` int(11) DEFAULT NULL,
-  `comment_text` text DEFAULT NULL,
+  `comment_text` varchar(120) DEFAULT NULL,
   `publish_date_comment` date DEFAULT NULL,
   `nickname_comment` varchar(20) DEFAULT NULL,
   `id_media` bigint(20) DEFAULT NULL,
@@ -49,15 +49,7 @@ INSERT INTO `comment` (`id_comment`, `rating_comment`, `comment_text`, `publish_
 (5, 4, 'Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!', '2023-06-04', 'Pseudo', 8, 1),
 (6, 1, 'J\'ai pas du tout aimé ! X(', '2023-07-03', 'Ambre', 9, 0),
 (7, 1, 'Bonjour entreprise.\r\nJe vous propose mon service afin prospe', '2023-07-04', 'Vous', 8, 1),
-(8, 5, 'C\'est super merci !', '2023-07-04', 'Klara', 7, 0),
-(9, 2, 'terterte', '2023-07-04', 'tert', 9, 0),
-(10, 1, 'jjhj', '2023-07-04', 'yhj', 9, 0),
-(11, 1, 'hfghgf', '2023-07-04', 'yhy', 8, 0),
-(12, 1, 'kjk', '2023-07-04', 'kuk', 8, 0),
-(13, 2, 'fdsfsd', '2023-07-04', 'dsf', 8, 0),
-(14, 1, 'kukuik', '2023-07-04', 'jkuk', 7, 0),
-(15, 1, 'jjyyu', '2023-07-04', 'ujtuj', 8, 0),
-(16, 1, 'gdfgfdg', '2023-07-04', 'fdgd', 9, 0);
+(17, 0, 'Très bien. Un bon moment, une bonne ambiance. Je reste fidèle et ce n\'est pas pour rien. Très satisfait. Toujours conten', '2023-07-06', 'gdgdfgdf', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -81,16 +73,10 @@ INSERT INTO `content` (`id_content`, `title_content`, `description_content`, `id
 (5, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.\r\n            ', 5),
 (6, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.', 5),
 (7, 'Titre de l\'event', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Error quisquam neque, provident expedita excepturi reprehenderit nihil doloremque illo assumenda vitae.<br>\r\n      Est totam delectus natus exercitationem possimus, inventore dolorum? Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Illo assumenda vitae est totam delectus natus exercitationem possimus?', 4),
-(9, 'event fini !', 'Article pour tester la requête SQL.', 4),
 (10, 'cc', 'c', 7),
 (11, 'CC', 'c', 8),
 (12, 'dd', 'd', 9),
-(13, 'gg', 'g', 10),
-(14, 'uu', 'tyt', 11),
-(15, 'yy', 'y', 12),
-(16, 'kk', 'k', 13),
-(17, 'ii', 'i', 14),
-(18, 'oo', 'o', 15);
+(19, 'dsfsdfsd', 'fsdfsfsf', 4);
 
 -- --------------------------------------------------------
 
@@ -101,16 +87,17 @@ INSERT INTO `content` (`id_content`, `title_content`, `description_content`, `id
 CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` datetime DEFAULT NULL,
-  `end_date_event` datetime DEFAULT NULL
+  `end_date_event` datetime DEFAULT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event`
 --
 
-INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`) VALUES
-(1, '2023-06-26 19:47:35', '2024-06-26 19:47:35'),
-(2, '2023-06-04 10:01:14', '2023-06-26 10:01:14');
+INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`, `activated`) VALUES
+(1, '2023-06-26 19:47:35', '2024-06-26 19:47:35', 1),
+(4, '2023-07-13 00:00:00', '2023-07-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -121,15 +108,17 @@ INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`) VALUES
 CREATE TABLE `event_content` (
   `id_event_content` bigint(20) NOT NULL,
   `id_event` bigint(20) NOT NULL,
-  `id_content` bigint(20) NOT NULL
+  `id_content` bigint(20) NOT NULL,
+  `id_media` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `event_content`
 --
 
-INSERT INTO `event_content` (`id_event_content`, `id_event`, `id_content`) VALUES
-(1, 1, 7);
+INSERT INTO `event_content` (`id_event_content`, `id_event`, `id_content`, `id_media`) VALUES
+(1, 1, 7, 13),
+(2, 4, 19, 89);
 
 -- --------------------------------------------------------
 
@@ -182,11 +171,14 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (57, 'youtube', 'https://gdgdf.lm', 2, 1),
 (58, 'Portrait de Georgett', '64a3f6924a16e04_07_2023_12_38_1064a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
 (60, 'Portrait de Rose mem', '64a3f71842b2504_07_2023_12_40_2464a3f16a7dd7d04_07_2023_12_16_10avatar-2.png', 2, 2),
-(61, 'Portrait de insertio', '64a3f72b68b3404_07_2023_12_40_43avatar-5.png', 2, 2),
-(70, 'photo gallerie 1', 'Loading1.png', 6, 3),
-(71, 'photo gallerie 2', 'Loading2.png', 6, 3),
-(72, 'photo gallerie 3', 'Loading3.png', 6, 3),
-(73, 'photo gallerie 4', 'Loading4.png', 6, 3);
+(70, 'photo gallerie 1', 'Loading1.png', 6, 4),
+(71, 'photo gallerie 2', 'Loading2.png', 6, 4),
+(72, 'plongeur', 'Loading3.png', 6, 4),
+(73, 'arbres', 'Loading4.png', 6, 4),
+(78, 'nous', '64a566c59ee9b05_07_2023_14_49_0920230425_153615.jpg', 6, 4),
+(79, 'nous', '64a566e17906105_07_2023_14_49_37Capture d’écran 2023-05-12 160534.png', 6, 4),
+(88, 'reeree', '64a57d1735b9a05_07_2023_16_24_2320230425_153615.jpg', 6, 4),
+(89, 'Photo de l\'event', 'teaser.jpg', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -207,7 +199,7 @@ INSERT INTO `media_type` (`id_media_type`, `title_media_type`) VALUES
 (1, 'reseauSocial'),
 (2, 'avatar'),
 (3, 'img'),
-(4, 'lien');
+(4, 'gallerie');
 
 -- --------------------------------------------------------
 
@@ -236,7 +228,6 @@ INSERT INTO `page` (`id_page`, `title_page`, `url`) VALUES
 (8, 'page8', ''),
 (9, 'page9', ''),
 (10, 'page10', ''),
-(11, 'page11', ''),
 (12, 'page12', ''),
 (13, 'page13', ''),
 (14, 'page14', ''),
@@ -276,9 +267,7 @@ INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
 (15, 'Mappers', 'Rose'),
 (34, 'Staff/Modos', 'test'),
 (35, 'Admin', 'rzere'),
-(36, 'Admin', 'insertioun nouveu ga'),
-(37, 'Staff/Modos', 'Georgettte'),
-(44, 'i', 'i');
+(37, 'Staff/Modos', 'Georgettte');
 
 -- --------------------------------------------------------
 
@@ -403,7 +392,8 @@ ALTER TABLE `event`
 ALTER TABLE `event_content`
   ADD PRIMARY KEY (`id_event_content`),
   ADD KEY `id_content` (`id_content`),
-  ADD KEY `id_event` (`id_event`);
+  ADD KEY `id_event` (`id_event`),
+  ADD KEY `id_media` (`id_media`);
 
 --
 -- Index pour la table `media`
@@ -453,31 +443,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -529,8 +519,9 @@ ALTER TABLE `content`
 -- Contraintes pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  ADD CONSTRAINT `fk_content_01` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`),
-  ADD CONSTRAINT `fk_event_01` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`);
+  ADD CONSTRAINT `fk_content_01` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_event_01` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_media_06` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `media`

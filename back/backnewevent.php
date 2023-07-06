@@ -18,10 +18,10 @@ INNER JOIN page
 ON page.id_page=content.id_page
 INNER JOIN media
 ON page.id_page=media.id_page
-ORDER BY end_date_event DESC")->fetchAll(PDO::FETCH_ASSOC);
+GROUP BY idM DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
-    $content = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
+    $datas = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
     FROM event
     INNER JOIN event_content
     ON event_content.id_event=event.id_event
@@ -31,9 +31,9 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ON page.id_page=content.id_page
     INNER JOIN media
     ON page.id_page=media.id_page
-    WHERE content.id_content=:id
-    ORDER BY end_date_event DESC",array(
-        ':id'=>$_GET['id']
+    WHERE content.id_content=:id AND id_media=:idM",array(
+        ':id'=>$_GET['id'],
+        ':idM'=>$_GET['idM']
     ))->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -113,10 +113,10 @@ require_once '../inc/backheader.inc.php';
 echo $m;?>
 <?php 
 if(isset($_GET['a']) && $_GET['a'] == 'edit'):
-    foreach ($content as $content):
+    foreach ($datas as $data):
 ?>
 <figure>
-    <img alt="Vignette" src="../assets/img/<?= $content['name_media']; ?>" width="300px"></td>
+    <img alt="Vignette" src="../assets/img/<?= $data['name_media']; ?>" width="300px"></td>
 </figure>
 <?php endforeach;
 endif; ?>
@@ -125,7 +125,7 @@ endif; ?>
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Titre:</label>
             <input name="title_content" id="content" placeholder="Titre" type="text"
-                   value="<?php $a=isset($_GET['a']) && $_GET['a'] == 'edit'? $content['title_content'] : '';
+                   value="<?php $a=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['title_content'] : '';
                    echo $a;?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 
@@ -134,7 +134,7 @@ endif; ?>
             <?php if(!isset($_GET['a'])):?>
             <input name="photoEvent" type="file" class="form-control">
             <?php else: ?>
-            <input type="file" name="photoEvent2" value="<?php echo $content['media_name'];?>">
+            <input type="file" name="photoEvent2" value="<?php echo $data['media_name'];?>">
             <?php endif; ?>
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">
@@ -142,14 +142,16 @@ endif; ?>
             echo $m;?></small>
             
             <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
-                   value="<?php $d=isset($_GET['a']) && $_GET['a'] == 'edit'? $content['description_content'] : '';
-                   echo $d;?>" class="form-control"><?php $k=isset($_GET['a']) && $_GET['a'] == 'edit'? $content['description_content'] : '';
+                   value="<?php $d=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['description_content'] : '';
+                   echo $d;?>" class="form-control"><?php $k=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['description_content'] : '';
                    echo $k;?></textarea>
             <small class="text-danger"><?= $error ?? ''; ?></small>
             
         </div>
-        <input type="hidden" name="id_content" value="<?= $content['id_content'] ?? ''; ?>">
-        <input type="hidden" name="id_media" value="<?= $content['idM'] ?? ''; ?>">
+        <input type="hidden" name="id_content" value="<?php $d=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['id_content'] : '';
+                   echo $d;?>">
+        <input type="hidden" name="id_media" value="<?php $d=isset($_GET['idM']) ? $_GET['idM'] : '';
+                   echo $d;?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 

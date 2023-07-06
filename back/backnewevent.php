@@ -38,8 +38,9 @@ $errorD = Delete($table,$idTable,$page);
 Delete($table2,$idTable2,$page);
 
 if (!empty($_POST)) {
+
     //TODO
-    if (empty($_POST['title_content']) && empty($_POST['description_content']) && empty($_FILES)){
+    if (empty($_POST['title_content']) && empty($_POST['description_content']) && empty($_FILES['photoEvent'])){
 
             $error = '<p>Ce champs est obligatoire</p>';
     }

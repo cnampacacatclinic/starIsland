@@ -70,6 +70,20 @@ if (!empty($_POST)) {
                         ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
                         ':id_page' => 4
                     ));
+                    //TODO insert l'event
+
+                    //on demande les derniers ids
+                    $last_id_content=execute("SELECT id_content FROM content ORDER BY id_content DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    $last_id_event=execute("SELECT id_event FROM even ORDER BY id_even DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+
+                    //On insert dans la table intermediaire
+                    execute("INSERT INTO event_content (id_event,id_content,id_media) VALUES (:id_event,:id_content,:id_media)", array(
+                        ':id_media' => $last_id_media+1,
+                        ':id_content' => $last_id_content+1,
+                        ':id_media' => $last_id_event+1
+                    ));
+
                     messageSession($page);
             }
         }// fin soumission en insert
@@ -82,10 +96,10 @@ if (!empty($_POST)) {
                 //On insert dans la table media
             }
                     
-            $picture = isset($picture) ? $picture : $_POST['photoEvent2'];
+            $pic = isset($picture) ? $picture : $_POST['photoEvent2'];
             execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:idM", array(
             ':idM' => $_GET['idM'],
-            ':name_media' => $_POST['photoEvent2'],
+            ':name_media' => $pic,
             ':title_media' => 'Photo de l\'event'
             ));
 

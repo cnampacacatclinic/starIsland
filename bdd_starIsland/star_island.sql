@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 06 juil. 2023 à 15:39
+-- Généré le : jeu. 06 juil. 2023 à 16:02
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -360,7 +360,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email_user`, `password_user`) VALUES
-(1, 'cathy@icloud.com', '$2y$10$q/cSdA2w7XCBOZ8.ahaxR.scgfjrq7RRLHfppPR8abRkrHfjoNa0i');
+(1, 'B@rbieD0ll.com', '$2y$10$5g//IyCFOFUZ3YCQm3IJlul4a57q.f1KPfPjwq2.yhnybI8Nu0aAa');
 
 --
 -- Index pour les tables déchargées

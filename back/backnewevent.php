@@ -26,7 +26,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ON page.id_page=content.id_page
     INNER JOIN media
     ON page.id_page=media.id_page
-    WHERE content.id_content=:id AND id_media=:idM",array(
+    WHERE content.id_content=:id AND media.id_media=:idM",array(
         ':id'=>$_GET['id'],
         ':idM'=>$_GET['idM']
     ))->fetchAll(PDO::FETCH_ASSOC);
@@ -55,8 +55,6 @@ if (!empty($_POST)) {
 
         if (!isset($_GET['id']) && !empty($_FILES['photoEvent']['name'])) {
             if(!empty($_FILES['photoEvent']['name'])){
-                debug($_POST);
-                die();
                     // on renomme la photo
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img

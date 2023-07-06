@@ -59,6 +59,7 @@ function messageSession($p){
 //error img
 function errorImg($fileImg){
     $errorImg="";
+    $error1=false;
     //Si on obtient un fichier
     if (isset($_FILES)){
         //on verifie le format du fichier        

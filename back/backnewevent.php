@@ -8,7 +8,7 @@ $idTable2="id_content";
 $page='backnewevent.php';
 $errorI='';
 
-$contents = execute("SELECT content.id_content, title_content, description_content, content.id_page,title_media,name_media
+$contents = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
 FROM event
 INNER JOIN event_content
 ON event_content.id_event=event.id_event
@@ -18,7 +18,24 @@ INNER JOIN page
 ON page.id_page=content.id_page
 INNER JOIN media
 ON page.id_page=media.id_page
-ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
+ORDER BY end_date_event DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
+    $content = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
+    FROM event
+    INNER JOIN event_content
+    ON event_content.id_event=event.id_event
+    INNER JOIN content
+    ON content.id_content=event_content.id_content
+    INNER JOIN page
+    ON page.id_page=content.id_page
+    INNER JOIN media
+    ON page.id_page=media.id_page
+    WHERE content.id_content=:id
+    ORDER BY end_date_event DESC",array(
+        ':id'=>$_GET['id']
+    ))->fetchAll(PDO::FETCH_ASSOC);
+}
 
 /*On ne peut pas supprimer mais commme c'est demandé pour l'exercice,je l'ai fait quand même...*/
 Delete($table,$idTable,$page);
@@ -38,66 +55,71 @@ if (!empty($_POST)) {
         errorImg($fileImg);
         $errorI=errorImg($fileImg);
     }//fin de si on obtient le fichier
-
-    if (!isset($error)) {
+    
+    if (!isset($error) || !isset($errorImg)) {
 
         if (empty($_POST['id_content'])) {
-    
-        
-            if (!isset($error) && !isset($errorImg)) {
-                if(errorImg($fileImg)==NULL){
-                if(!empty($_FILES['photoEvent']['name'])){
+            if(!empty($_FILES['photoEvent']['name'])){
                     // on renomme la photo
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img
                     copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
                     //On insert dans la table media
-                    execute("INSERT INTO media(title_media,name_media,id_page,id_content_type) VALUES (:title_media,:name_media,6,:id_content_type)", array(
-                        ':title_media' => $_POST['title_media'],
+                    execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
+                        ':title_media' => 'Photo de l\'event',
                         ':name_media' => $picture,
-                        ':id_content_type' => 4
+                        ':id_media_type' => 3
                     ));
                     execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
                         ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
                         ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
-                        ':id_page' => trim(htmlspecialchars($_POST['id_page1']))
+                        ':id_page' => 4
                     ));
                     messageSession($page);
-                }// fin soumission en insert
-                else {
+            }
+        }// fin soumission en insert
+         else {
+            if(!empty($_FILES['photoEvent']['name'])){
+                 // on renomme la photo
+                 $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
+                // on la copie dans le dossier d'img
+                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
+                //On insert dans la table media
+            }
                     
-                    execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_content=:id", array(
-                        ':id' => $_POST['id_content'],
-                        ':name_media' => $_POST['name_media'],
-                        ':title_media' => trim(htmlspecialchars($_POST['title_media']))
-                    ));
+            $picture = isset($picture) ? $picture : $_POST['photoEvent2'];
+            execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:idM", array(
+            ':idM' => $_GET['idM'],
+            ':name_media' => $_POST['photoEvent2'],
+            ':title_media' => 'Photo de l\'event'
+            ));
 
-                    execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
-                        ':id' => $_POST['id_content'],
-                        ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
-                        ':description_content' => trim(htmlspecialchars($_POST['description_content']))
-                    ));
+            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
+            ':id' => $_GET['id_content'],
+            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
+            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
+            ));
+
+            messageSession($page);
+        }// fin du else
         
-                    messageSession($page);
-            }// fin soumission modification/**/
-            }// fin de si error n'est pas NULL/**/
-            }// fin si pas d'erreur/**/
-        }// fin !empty $_POST
-    }
-}// fin !empty $_POST
+    }// fin si pas d'erreur/**/
+}//Si $_POST
 require_once '../inc/backheader.inc.php';
 ?>
 
 <h2>New event</h2>
 <?php $m=!empty($errorD) ? '<p class="text-danger">'.var_dump($errorD).'</p>' : '';
 echo $m;?>
-<?php foreach ($contents as $content): 
+<?php 
 if(isset($_GET['a']) && $_GET['a'] == 'edit'):
+    foreach ($content as $content):
 ?>
 <figure>
     <img alt="Vignette" src="../assets/img/<?= $content['name_media']; ?>" width="300px"></td>
 </figure>
-<?php endif;?>
+<?php endforeach;
+endif; ?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
@@ -109,9 +131,11 @@ if(isset($_GET['a']) && $_GET['a'] == 'edit'):
 
             <small class="text-danger">*</small>
             <label for="photoEvent" class="form-label">Photo</label>
+            <?php if(!isset($_GET['a'])):?>
             <input name="photoEvent" type="file" class="form-control">
-            <input type="hidden" name="photoEvent2" value="<?php $u=isset($_GET['a']) && $_GET['a'] == 'edit'? $content['media_name'] : '';
-                   echo $u;?>">
+            <?php else: ?>
+            <input type="file" name="photoEvent2" value="<?php echo $content['media_name'];?>">
+            <?php endif; ?>
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">
             <?php $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
@@ -125,9 +149,10 @@ if(isset($_GET['a']) && $_GET['a'] == 'edit'):
             
         </div>
         <input type="hidden" name="id_content" value="<?= $content['id_content'] ?? ''; ?>">
+        <input type="hidden" name="id_media" value="<?= $content['idM'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
-<?php endforeach; ?>
+
     <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
@@ -144,8 +169,8 @@ if(isset($_GET['a']) && $_GET['a'] == 'edit'):
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $content['id_content']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $content['id_content']; ?>&idM=<?= $content['idM']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $content['id_content']; ?>&idM=<?= $content['idM']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

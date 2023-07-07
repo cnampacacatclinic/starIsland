@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 06 juil. 2023 à 16:02
+-- Généré le : ven. 07 juil. 2023 à 10:48
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -76,7 +76,34 @@ INSERT INTO `content` (`id_content`, `title_content`, `description_content`, `id
 (10, 'cc', 'c', 7),
 (11, 'CC', 'c', 8),
 (12, 'dd', 'd', 9),
-(19, 'dsfsdfsd', 'fsdfsfsf', 4);
+(19, 'dsfsdfsd', 'fsdfsfsf', 4),
+(20, '', '', 4),
+(21, '', '', 4),
+(22, '', '', 4),
+(23, 'oooo', 'mmmmm', 4),
+(24, '', '', 4),
+(25, 'fdfds', '', 4),
+(26, '', '', 4),
+(27, '', '', 4),
+(28, '', '', 4),
+(29, '', '', 4),
+(30, '', '', 4),
+(31, '', '', 4),
+(32, '', '', 4),
+(33, '', '', 4),
+(34, 'trr', 'trtrtrtrt', 4),
+(35, '', '', 4),
+(36, 'rzerzerzerz', '', 4),
+(37, '', 'vvvv', 4),
+(38, 'rrrrr', 'rrrrrrrrrrrr', 4),
+(39, 'jhggj', 'jhgjhgjgh', 4),
+(40, 'o', 'o', 4),
+(41, 'tttt', 'tttttt', 4),
+(42, 'yyy', 'yyyyyy', 4),
+(43, 'ooooo', 'oooooooooo', 4),
+(44, 'aaaa', 'yyyyyy', 4),
+(45, '444', '4444444', 4),
+(46, 'ppp', 'oooooooo', 4);
 
 -- --------------------------------------------------------
 
@@ -97,7 +124,12 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`, `activated`) VALUES
 (1, '2023-06-26 19:47:35', '2024-06-26 19:47:35', 1),
-(4, '2023-07-13 00:00:00', '2023-07-26 00:00:00', 1);
+(4, '2023-07-13 00:00:00', '2023-07-26 00:00:00', 1),
+(5, '2023-07-21 00:00:00', '2023-07-29 00:00:00', 1),
+(6, '2023-07-27 00:00:00', '2023-07-31 00:00:00', 1),
+(7, '2023-07-16 00:00:00', '2023-07-31 00:00:00', 1),
+(8, '2023-07-30 00:00:00', '2023-08-31 00:00:00', 1),
+(9, '2023-07-29 00:00:00', '2023-07-13 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -118,7 +150,10 @@ CREATE TABLE `event_content` (
 
 INSERT INTO `event_content` (`id_event_content`, `id_event`, `id_content`, `id_media`) VALUES
 (1, 1, 7, 13),
-(2, 4, 19, 89);
+(2, 4, 19, 89),
+(9, 8, 44, 114),
+(10, 9, 45, 115),
+(11, 9, 46, 116);
 
 -- --------------------------------------------------------
 
@@ -178,7 +213,11 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (78, 'nous', '64a566c59ee9b05_07_2023_14_49_0920230425_153615.jpg', 6, 4),
 (79, 'nous', '64a566e17906105_07_2023_14_49_37Capture d’écran 2023-05-12 160534.png', 6, 4),
 (88, 'reeree', '64a57d1735b9a05_07_2023_16_24_2320230425_153615.jpg', 6, 4),
-(89, 'Photo de l\'event', 'teaser.jpg', 4, 3);
+(89, 'Photo de l\'event', 'teaser.jpg', 4, 3),
+(113, 'Photo de l\'event', '64a7cb3a804e507_07_2023_10_22_1820230425_153619.jpg', 4, 3),
+(114, 'Photo de l\'event', '64a7cb8a30ae107_07_2023_10_23_3820230425_153619.jpg', 4, 3),
+(115, 'Photo de l\'event', '64a7d07477d0d07_07_2023_10_44_3620230425_153615.jpg', 4, 3),
+(116, 'Photo de l\'event', '64a7d13841e8807_07_2023_10_47_5220230425_153619.jpg', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -449,25 +488,25 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT pour la table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -513,21 +552,21 @@ ALTER TABLE `comment`
 -- Contraintes pour la table `content`
 --
 ALTER TABLE `content`
-  ADD CONSTRAINT `fk_page_01` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`);
+  ADD CONSTRAINT `fk_page_01` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  ADD CONSTRAINT `fk_content_01` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_event_01` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_media_06` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_content_02` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_event_02` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_media_08` FOREIGN KEY (`id_media`) REFERENCES `media` (`id_media`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `media`
 --
 ALTER TABLE `media`
-  ADD CONSTRAINT `fk_media_media_type` FOREIGN KEY (`id_media_type`) REFERENCES `media_type` (`id_media_type`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_media_media_type` FOREIGN KEY (`id_media_type`) REFERENCES `media_type` (`id_media_type`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_page_2` FOREIGN KEY (`id_page`) REFERENCES `page` (`id_page`);
 COMMIT;
 

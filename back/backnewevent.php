@@ -4,11 +4,14 @@ require_once '../config/fonctionMod.php';
 $table="content";
 $idTable="id_content";
 $table2="media";
-$idTable2="id_content";
+$idTable2="id_media";
+$tableE="event";
+$idTable_e="id_event";
 $page='backnewevent.php';
 $errorI='';
+$errorD='';
 
-$contents = execute("SELECT event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
+$contents = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
 FROM event
 INNER JOIN event_content
 ON event_content.id_event=event.id_event
@@ -16,7 +19,7 @@ INNER JOIN content
 ON content.id_content=event_content.id_content GROUP BY event.id_event")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
-    $datas = execute("SELECT media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
+    $datas = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
     FROM event
     INNER JOIN event_content
     ON event_content.id_event=event.id_event
@@ -32,10 +35,13 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetchAll(PDO::FETCH_ASSOC);
 }
 
-/*On ne peut pas supprimer mais commme c'est demandé pour l'exercice,je l'ai fait quand même...*/
+/*On ne peut supprimer */
 Delete($table,$idTable,$page);
-$errorD = Delete($table,$idTable,$page);
 Delete($table2,$idTable2,$page);
+Delete($tableE,$idTable_e,$page);
+$errorD .=Delete($table,$idTable,$page);
+$errorD .=Delete($table2,$idTable2,$page);
+$errorD .=Delete($tableE,$idTable_e,$page);
 
 
 //Si on obtient un fichier
@@ -46,12 +52,12 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
 }//fin de si on obtient le fichier
 
 //TODO
-if (empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
+if (empty($_POST['start_date']) && empty($_POST['end_date']) && empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
 
     $error = '<p>Ce champs est obligatoire</p>';
 }
 
-if (!empty($_FILES) && !empty($_POST)) {
+if (!empty($_FILES) && !empty($_POST) && empty($_POST['id_event'])) {
  
     if (!isset($error) && errorImg($fileImg)==NULL) {
 
@@ -61,7 +67,13 @@ if (!empty($_FILES) && !empty($_POST)) {
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img
                     copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
-                    //On insert dans la table media
+
+
+                    //On insert dans les tables
+                    execute("INSERT INTO event(start_date_event,end_date_event) VALUES (:dateStart,:dateEnd)", array(
+                        ':dateStart' => $_POST['start_date'],
+                        ':dateEnd' => $_POST['end_date']
+                    ));
                     execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
                         ':title_media' => 'Photo de l\'event',
                         ':name_media' => $picture,
@@ -99,6 +111,13 @@ if (!empty($_FILES) && !empty($_POST)) {
             }
                     
             $pic = isset($picture) ? $picture : $_POST['photoEvent2'];
+
+            execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
+                ':id' => $_POST['id_event'],
+                ':dateStart' => $_POST['start_date'],
+                ':dateEnd' => $_POST['end_date']
+            ));
+
             execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:idM", array(
             ':idM' => $_GET['idM'],
             ':name_media' => $pic,
@@ -132,7 +151,33 @@ if(isset($_GET['a']) && $_GET['a'] == 'edit'):
 <?php endforeach;
 endif; ?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
-        <div class="form-group">
+            <div class="form-group">
+            <span><small class="text-danger">*</small>
+            <label for="start date" class="form-label"><?php
+            if(isset($_GET['idE'])){
+                echo 'Début : '.$data['start_date_event'];
+            }else{
+            echo 'Date de début';
+            }
+            ?></label>
+            <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" type="datetime-local"
+            value="<? //echo $data['start_date_event'] ?? ''; ?>" class="form-control">-->
+            <input min="<?=date('Y-m-d');?>" name="start_date" id="start_date" type="date"
+            value="<?=$data['start_date_event'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small><br>
+            <small class="text-danger">*</small>
+            <label for="end date" class="form-label">
+        <?php
+            if(isset($_GET['id'])){
+                echo 'Fin : '.$data['end_date_event'];
+            }else{
+                echo 'Date de fin';}
+        ?></label>
+            <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="end_date" id="en_date" placeholder="Date de fin" type="datetime-local" value="<? //echo $data['end_date_event'] ?? ''; ?>" class="form-control">-->
+            <input min="<?=date('Y-m-d');?>" name="end_date" id="en_date" placeholder="Date de fin" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
+            <small class="text-danger"><?= $error ?? ''; ?></small>
+            </span>
+
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Titre:</label>
             <input name="title_content" id="content" placeholder="Titre" type="text"
@@ -161,8 +206,10 @@ endif; ?>
         </div>
         <input type="hidden" name="id_content" value="<?php $d=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['id_content'] : '';
                    echo $d;?>">
-        <input type="hidden" name="id_media" value="<?php $d=isset($_GET['idM']) ? $_GET['idM'] : '';
-                   echo $d;?>">
+        <input type="hidden" name="id_media" value="<?php $y=isset($_GET['idM']) ? $_GET['idM'] : '';
+                   echo $y;?>">
+        <input type="hidden" name="id_event" value="<?php $t=isset($_GET['idE']) ? $_GET['idE'] : ''; 
+         echo $t; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
 
@@ -170,6 +217,8 @@ endif; ?>
         <thead>
         <tr>
             <th>Image</th>
+            <th>Date du lancement</th>
+            <th>Date de fin</th>
             <th>Titre</th>
             <th>Texte</th>
             <th>Actions</th>
@@ -194,11 +243,13 @@ endif; ?>
                 ?>
                 <td><img alt="Vignette" src="../assets/img/<?= $img['name_media']; ?>" width="100px"></td>
                 <?php endforeach;?>
+                <td><?= $content['start_date_event']; ?></td>
+                <td><?= $content['end_date_event']; ?></td>
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $content['id']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $content['id']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

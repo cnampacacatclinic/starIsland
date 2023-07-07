@@ -1,18 +1,59 @@
 <?php require_once '../config/function.php';
 require_once '../config/fonctionMod.php';
+
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
 $table="content";
 $idTable="id_content";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
-$table2="media";
-$idTable2="id_media";
-$idM=isset($_GET['idM']) ? $_GET['idM'] : '';
+//TODO
 $tableE="event";
-$idTable_e="id_event";
+$idTableE="id_event";
 $idE=isset($_GET['idE']) ? $_GET['idE'] : '';
+//echo $idE;
+//die('r');
+//TODO
+$tableM="media";
+$idTableM="id_media";
+$idM=isset($_GET['idM']) ? $_GET['idM'] : '';
+
 $page='backnewevent.php';
 $errorI='';
 $errorD='';
+
+/*On peut supprimer */
+Delete($table,$idTable,$idD,$page);
+//TODO
+Delete($tableE,$idTableE,$idE,$page);
+Delete($tableM,$idTableM,$idM,$page);
+
+$errorD .=Delete($table,$idTable,$idD,$page);
+$errorD .=Delete($tableM,$idTableM,$idM,$page);
+$errorD .=Delete($tableE,$idTableE,$idE,$page);
+
+//////////////////
+
+/*if (isset($_GET['id'])) {
+    echo 'id e '.$_POST['id_content'];
+    echo 'id m '.$_POST['id_media'];
+    echo 'id e '.$_POST['id_event'];
+    var_dump($_POST);
+
+    execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
+                ':id' => $_POST['id_event'],
+                ':dateStart' => $_POST['start_date'],
+                ':dateEnd' => $_POST['end_date']
+            ));
+
+            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
+            ':id' => $_POST['id_content'],
+            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
+            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
+            ));
+    die();
+}/**/
+
+
+////////////////
 
 $contents = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
 FROM event
@@ -38,14 +79,14 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetchAll(PDO::FETCH_ASSOC);
 }
 
-/*On ne peut supprimer */
-Delete($table,$idTable,$idD,$page);
-Delete($table2,$idTable2,$idM,$page);
-Delete($tableE,$idTable_e,$idE,$page);
-$errorD .=Delete($table,$idTable,$idD,$page);
-$errorD .=Delete($table2,$idTable2,$idM,$page);
-$errorD .=Delete($tableE,$idTable_e,$idE,$page);
 
+//TODO
+if (empty($_POST['start_date']) && empty($_POST['end_date']) && empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
+
+    $error = '<p>Ce champs est obligatoire</p>';
+}/**/
+
+if (!empty($_POST) && empty($_POST['id_event'])) {
 
 //Si on obtient un fichier
 if (!empty($_FILES) && isset($_FILES['photoEvent'])){
@@ -53,19 +94,44 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
     errorImg($fileImg);
     $errorI=errorImg($fileImg);
 }//fin de si on obtient le fichier
-
-//TODO
-if (empty($_POST['start_date']) && empty($_POST['end_date']) && empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
-
-    $error = '<p>Ce champs est obligatoire</p>';
-}
-
-if (!empty($_FILES) && !empty($_POST) && empty($_POST['id_event'])) {
  
-    if (!isset($error) && errorImg($fileImg)==NULL) {
+    if (!isset($error)) {
 
-        if (!isset($_GET['id']) && !empty($_FILES['photoEvent']['name'])) {
-            //if(!empty($_FILES['photoEvent']['name'])){
+        ///////////////////////////
+        if (isset($_GET['id'])) {
+           
+            if(!empty($_FILES['photoEvent']['name'])){
+                 // on renomme la photo
+                 $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
+                // on la copie dans le dossier d'img
+                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
+                //on insert dans la table media
+                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
+                    ':title_media' => 'Photo de l\'event',
+                    ':name_media' => $picture,
+                    ':id_media_type' => 3
+                ));
+            }
+
+            execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
+                ':id' => $_POST['id_event'],
+                ':dateStart' => $_POST['start_date'],
+                ':dateEnd' => $_POST['end_date']
+            ));
+
+            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
+            ':id' => $_POST['id_content'],
+            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
+            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
+            ));
+
+            messageSession($page);
+        }// fin du update
+        
+        ///////////////////////
+
+        if (!isset($_GET['id']) && errorImg($fileImg)==NULL) {
+            
                     // on renomme la photo
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img
@@ -102,39 +168,8 @@ if (!empty($_FILES) && !empty($_POST) && empty($_POST['id_event'])) {
                     ));
 
                     messageSession($page);
-            //}
-        }// fin soumission en insert
-         else {
-            if(!empty($_FILES['photoEvent']['name'])){
-                 // on renomme la photo
-                 $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
-                // on la copie dans le dossier d'img
-                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
-                //On insert dans la table media
-            }
-                    
-            $pic = isset($picture) ? $picture : $_POST['photoEvent2'];
-
-            execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
-                ':id' => $_POST['id_event'],
-                ':dateStart' => $_POST['start_date'],
-                ':dateEnd' => $_POST['end_date']
-            ));
-
-            execute("UPDATE media SET name_media=:name_media,title_media=:title_media WHERE id_media=:idM", array(
-            ':idM' => $_GET['idM'],
-            ':name_media' => $pic,
-            ':title_media' => 'Photo de l\'event'
-            ));
-
-            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
-            ':id' => $_GET['id_content'],
-            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
-            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
-            ));
-
-            messageSession($page);
-        }// fin du else
+            
+        }// fin soumission en insert/**/
         
     }// fin si pas d'erreur/**/
 }//Si $_POST
@@ -165,7 +200,7 @@ endif; ?>
             ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" type="datetime-local"
             value="<? //echo $data['start_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="start_date" id="start_date" type="date"
+            <input min="<?=date('Y-m-d');?>" name="start_date" type="date"
             value="<?=$data['start_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
             <small class="text-danger">*</small>
@@ -177,7 +212,7 @@ endif; ?>
                 echo 'Date de fin';}
         ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="end_date" id="en_date" placeholder="Date de fin" type="datetime-local" value="<? //echo $data['end_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="end_date" id="en_date" placeholder="Date de fin" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
+            <input min="<?=date('Y-m-d');?>" name="end_date" placeholder="Date de fin" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             </span>
 
@@ -190,10 +225,9 @@ endif; ?>
 
             <small class="text-danger">*</small>
             <label for="photoEvent" class="form-label">Photo</label>
-            <?php if(!isset($_GET['a'])):?>
             <input name="photoEvent" type="file" class="form-control">
-            <?php else: ?>
-            <input type="file" name="photoEvent2" value="<?php echo $data['media_name'];?>">
+            <?php if(!isset($_GET['a'])):?>
+            <input type="hidden" name="photoEvent2" value="<?php echo $data['name_media'];?>">
             <?php endif; ?>
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">
@@ -252,8 +286,7 @@ endif; ?>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
                     <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
-                       class="btn btn-outline-danger">Supprimer</a>
+                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')" class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach;?>

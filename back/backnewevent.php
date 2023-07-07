@@ -37,25 +37,26 @@ Delete($table,$idTable,$page);
 $errorD = Delete($table,$idTable,$page);
 Delete($table2,$idTable2,$page);
 
-if (!empty($_POST)) {
 
-    //TODO
-    if (empty($_POST['title_content']) && empty($_POST['description_content']) && empty($_FILES['photoEvent'])){
+//Si on obtient un fichier
+if (!empty($_FILES) && isset($_FILES['photoEvent'])){
+    $fileImg=$_FILES['photoEvent'];
+    errorImg($fileImg);
+    $errorI=errorImg($fileImg);
+}//fin de si on obtient le fichier
 
-            $error = '<p>Ce champs est obligatoire</p>';
-    }
+//TODO
+if (empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
 
-    //Si on obtient un fichier
-    if (isset($_FILES['photoEvent'])){
-        $fileImg=$_FILES['photoEvent'];
-        errorImg($fileImg);
-        $errorI=errorImg($fileImg);
-    }//fin de si on obtient le fichier
-    
-    if (!isset($error) || !isset($errorImg)) {
+    $error = '<p>Ce champs est obligatoire</p>';
+}
+
+if (!empty($_FILES) && !empty($_POST)) {
+ 
+    if (!isset($error) && errorImg($fileImg)==NULL) {
 
         if (!isset($_GET['id']) && !empty($_FILES['photoEvent']['name'])) {
-            if(!empty($_FILES['photoEvent']['name'])){
+            //if(!empty($_FILES['photoEvent']['name'])){
                     // on renomme la photo
                     $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                     // on la copie dans le dossier d'img
@@ -76,17 +77,17 @@ if (!empty($_POST)) {
                     //on demande les derniers ids
                     $last_id_content=execute("SELECT id_content FROM content ORDER BY id_content DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
                     $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-                    $last_id_event=execute("SELECT id_event FROM even ORDER BY id_even DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    $last_id_event=execute("SELECT id_event FROM event ORDER BY id_event DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
-                    //On insert dans la table intermediaire
+                   //On insert dans la table intermediaire
                     execute("INSERT INTO event_content (id_event,id_content,id_media) VALUES (:id_event,:id_content,:id_media)", array(
-                        ':id_media' => $last_id_media+1,
-                        ':id_content' => $last_id_content+1,
-                        ':id_media' => $last_id_event+1
+                        ':id_media' => $last_id_media['id_media'],
+                        ':id_content' => $last_id_content['id_content'],
+                        ':id_event' => $last_id_event['id_event']
                     ));
 
                     messageSession($page);
-            }
+            //}
         }// fin soumission en insert
          else {
             if(!empty($_FILES['photoEvent']['name'])){

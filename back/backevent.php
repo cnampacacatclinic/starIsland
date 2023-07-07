@@ -4,8 +4,9 @@ require_once '../config/fonctionMod.php';
 $table="event";
 $idTable="id_event";
 $page="backevent.php";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
-Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
 
 if (!empty($_POST)) {
 

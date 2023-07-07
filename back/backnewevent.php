@@ -3,10 +3,13 @@ require_once '../config/fonctionMod.php';
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
 $table="content";
 $idTable="id_content";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 $table2="media";
 $idTable2="id_media";
+$idM=isset($_GET['idM']) ? $_GET['idM'] : '';
 $tableE="event";
 $idTable_e="id_event";
+$idE=isset($_GET['idE']) ? $_GET['idE'] : '';
 $page='backnewevent.php';
 $errorI='';
 $errorD='';
@@ -36,12 +39,12 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 }
 
 /*On ne peut supprimer */
-Delete($table,$idTable,$page);
-Delete($table2,$idTable2,$page);
-Delete($tableE,$idTable_e,$page);
-$errorD .=Delete($table,$idTable,$page);
-$errorD .=Delete($table2,$idTable2,$page);
-$errorD .=Delete($tableE,$idTable_e,$page);
+Delete($table,$idTable,$idD,$page);
+Delete($table2,$idTable2,$idM,$page);
+Delete($tableE,$idTable_e,$idE,$page);
+$errorD .=Delete($table,$idTable,$idD,$page);
+$errorD .=Delete($table2,$idTable2,$idM,$page);
+$errorD .=Delete($tableE,$idTable_e,$idE,$page);
 
 
 //Si on obtient un fichier

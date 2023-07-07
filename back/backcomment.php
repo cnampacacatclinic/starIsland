@@ -4,16 +4,17 @@ require_once '../config/fonctionMod.php';
 $table="comment";
 $page="backcomment.php";
 $condition="id_comment";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!empty($_GET)) {
 
     if (isset(($_GET['e']))) {
-        
-    $value='activated=:activated';
-    $conditionUpdate='id_comment=:id';
-    update($table,$value,$conditionUpdate,array(
-        ':id' => $_GET['id'],
-        ':activated' => $activated
+     
+    $actived=$_GET['e']==1 ? 0 : 1;
+
+    execute("UPDATE comment SET activated=:activated WHERE id_comment=:id",array(
+        ':activated'=>$actived,
+        ':id'=>$idD
     ));
 
     messageSession($page);
@@ -23,7 +24,7 @@ if (!empty($_GET)) {
 
 $datas = execute("SELECT * FROM comment")->fetchAll(PDO::FETCH_ASSOC);
 
-Delete($table,$condition,$page);
+Delete($table,$condition,$idD,$page);
 
 
 require_once '../inc/backheader.inc.php';

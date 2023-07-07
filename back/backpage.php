@@ -4,9 +4,10 @@ require_once '../config/fonctionMod.php';
 $table="page";
 $idTable="id_page";
 $page="backpage.php";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
-Delete($table,$idTable,$page);
-$errorD =Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
+$errorD =Delete($table,$idTable,$idD,$page);
 
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {

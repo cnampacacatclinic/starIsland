@@ -4,6 +4,7 @@ require_once '../config/fonctionMod.php';
 $table="content";
 $idTable="id_content";
 $page='backcontent.php';
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 $contents = execute("SELECT id_content, title_content, description_content, content.id_page,title_page
 FROM content
@@ -22,7 +23,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
 
 if (!empty($_POST)) {
     //TODO

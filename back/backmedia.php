@@ -4,8 +4,9 @@ require_once '../config/fonctionMod.php';
 $table="media";
 $idTable="id_media";
 $page="backmedia.php";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
-Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
 
 $medias = execute("SELECT id_media, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
 INNER JOIN page

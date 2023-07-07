@@ -4,6 +4,7 @@ $result='';
 $table="team";
 $idTable="id_team";
 $page="backteam.php";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!empty($_POST)) {
  
@@ -169,7 +170,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
 
 //On est obligé de supprimer d'autres données avec d'autre identifiants
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {

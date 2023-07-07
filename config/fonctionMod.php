@@ -3,12 +3,12 @@
 $t;$c;$a;$array;$datas;$data='';
 
 //Delete
-function Delete($t,$c,$p){
+function Delete($t,$c,$id,$p){
     if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'del') {
         /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
         try{
             $success = execute("DELETE FROM $t WHERE $c=:id", array(
-                ':id' => $_GET['id']
+                ':id' => $id
             ));
     
             if ($success) {

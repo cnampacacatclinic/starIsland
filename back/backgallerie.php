@@ -4,6 +4,7 @@ require_once '../config/fonctionMod.php';
 $table="media";
 $page="backgallerie.php";
 $idTable="id_media";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 $errorI='';
 
 $imgs = execute("SELECT * FROM media WHERE id_page=6")->fetchAll(PDO::FETCH_ASSOC);
@@ -15,7 +16,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
 
 
 if (!empty($_POST)) {

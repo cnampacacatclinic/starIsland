@@ -4,6 +4,7 @@ require_once '../config/fonctionMod.php';
 $table="media_type";
 $page="media_type.php";
 $idTable="id_media_type";
+$idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!empty($_POST)) {
 
@@ -52,8 +53,8 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 
 }
 
-Delete($table,$idTable,$page);
-$errorD=Delete($table,$idTable,$page);
+Delete($table,$idTable,$idD,$page);
+$errorD=Delete($table,$idTable,$idD,$page);
 
 require_once '../inc/backheader.inc.php';
 ?>

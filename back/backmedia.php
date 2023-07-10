@@ -3,7 +3,7 @@
 
 $table="media";
 $idTable="id_media";
-$page="backmedia.php";
+$page="backmedia";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 Delete($table,$idTable,$idD,$page);

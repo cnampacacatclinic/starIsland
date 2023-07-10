@@ -17,7 +17,7 @@ $tableM="media";
 $idTableM="id_media";
 $idM=isset($_GET['idM']) ? $_GET['idM'] : '';
 
-$page='backnewevent.php';
+$page='backnewevent';
 $errorI;$errorD='';
 
 /////////////////ON SUPPRIME////////////////

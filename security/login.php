@@ -1,8 +1,12 @@
 
 <?php //TODO remettre l'action = post
-echo 'B@rbieD0ll , remettre l action = post<br>';?>
+echo 'B@rbieD0ll , remettre l action = post<br>';
+if(isset($_POST['m'])){
+    echo $_POST['m'];
+}
+?>
 
-<form action='back' class="mt-5 w-75 mx-auto" method="">
+<form action="back" class="mt-5 w-75 mx-auto" method="">
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>

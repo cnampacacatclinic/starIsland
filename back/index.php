@@ -1,29 +1,18 @@
 <?php     require_once '../config/function.php';
 require_once '../config/fonctionMod.php';
- /* si on est connecté */
-if (isset($_GET['a']) && $_GET['a']=='dis'){
-
-    unset($_SESSION['user']);
-    $_SESSION['messages']['info'][]='A bientôt !!';
-    header('location:./');
-    exit();
-}
 
 //si on n'a pas reçu une demande de page en get
 $p= !empty($_GET['p']) ? $_GET['p'] :'';
+$messageError='';
 
-
-debug($_POST);
-if (!empty($_REQUEST)){
+//debug($_POST);
+/*if (!empty($_REQUEST)){
     $emailM= isset($_REQUEST['email_connexion']) ? htmlspecialchars(trim($_REQUEST['email_connexion'])) : '';
     $MDP= isset($_REQUEST['password']) ? htmlspecialchars(trim($_REQUEST['password'])) : '';
-
+    $email='Email obligatoire';
     if (empty($emailM)) {
-        $email='Email obligatoire';
+        $messageError.='Email obligatoire';
         $error=true;
-///////////section message c'est vide lien vers le formulaire
-        echo $email;
-    
     }else{
         $user=execute("SELECT * FROM user WHERE email_user=:email",array(
             ':email'=>$emailM
@@ -35,34 +24,25 @@ if (!empty($_REQUEST)){
             if (password_verify($MDP, $user['password_user'])){
     
                 $_SESSION['user']=$user;
-                $hello= $_SESSION['messages']['success'][]="Bienvenue !";
-                echo $hello;
     
             }else{
-                $password='Erreur sur le mot de passe';
-                ///////////section Erreur sur le mot de passe lien vers le formulaire
-                echo $password;
+                $messageError.='Erreur sur le mot de passe';
             }
     
-    
-    
         }else{
-          $email='Aucun compte existant à cette adresse mail';
-          echo $email;
-          ///////////section Aucun compte existant à cette adresse mail lien vers le formulaire
+            $messageError.='Aucun compte existant à cette adresse mail';
         }
     }
 }else{
-    echo 'Vous n\'êtes pas connecté!';
+
+    $_SESSION['messages']['danger'][]=$messageError;
+    header('location:'. BASE_PATH.'/?page=dis');
 }  
 
 if(connect()==false):
     header('location:'. BASE_PATH.'/?page=dis');
 else :
-
-    if($p!=='backteam'){
-        require_once '../inc/backheader.inc.php';
-    }
+/**/
 
 //Selon la demande en get on affiche le contenu choisi
 switch ($p) {
@@ -91,10 +71,10 @@ switch ($p) {
         include 'media_type.php';
         break;
     default:
-    $_GET['page'] ='';
+    include 'backnewevent.php';
 }
 
 
  require_once '../inc/backfooter.inc.php';
  
- endif;?>
+ //endif;?>

@@ -3,7 +3,7 @@
 $result='';
 $table="team";
 $idTable="id_team";
-$page="backteam.php";
+$page="backteam";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!empty($_POST)) {

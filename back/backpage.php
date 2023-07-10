@@ -3,7 +3,7 @@
 
 $table="page";
 $idTable="id_page";
-$page="backpage.php";
+$page="backpage";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 Delete($table,$idTable,$idD,$page);

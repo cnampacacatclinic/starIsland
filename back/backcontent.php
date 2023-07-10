@@ -3,7 +3,7 @@
 
 $table="content";
 $idTable="id_content";
-$page='backcontent.php';
+$page='backcontent';
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 $contents = execute("SELECT id_content, title_content, description_content, content.id_page,title_page

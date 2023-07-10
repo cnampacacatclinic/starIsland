@@ -2,7 +2,7 @@
 //require_once '../config/fonctionMod.php';
 
 $table="media";
-$page="backgallerie.php";
+$page="backgallerie";
 $idTable="id_media";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 $errorI='';

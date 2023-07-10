@@ -2,7 +2,7 @@
 //require_once '../config/fonctionMod.php';
 
 $table="media_type";
-$page="media_type.php";
+$page="backmediatype";
 $idTable="id_media_type";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 

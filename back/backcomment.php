@@ -2,7 +2,7 @@
 //require_once '../config/fonctionMod.php';
 
 $table="comment";
-$page="backcomment.php";
+$page="backcomment";
 $condition="id_comment";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 

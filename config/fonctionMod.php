@@ -13,12 +13,12 @@ function Delete($t,$c,$id,$p){
     
             if ($success) {
                 $_SESSION['messages']['success'][] = '<p>Suppression effectuée</p>';
-                header('location:./'.$p.'');
+                header('location:./?p='.$p.'');
                 exit;
     
             } else {
                 $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-                header('location:./'.$p.'');
+                header('location:./?p='.$p.'');
                 exit;
             }
         }catch(Exception $e) { 
@@ -37,7 +37,7 @@ function Delete($t,$c,$id,$p){
 
 function messageSession($p){
     $_SESSION['messages']['success'][] = 'Requete reussie';
-    header('location:./'.$p.'');
+    header('location:./?p='.$p.'');
     exit();
 }
 

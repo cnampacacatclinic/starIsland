@@ -30,27 +30,49 @@ $errorD .=Delete($table,$idTable,$idD,$page);
 $errorD .=Delete($tableM,$idTableM,$idM,$page);
 $errorD .=Delete($tableE,$idTableE,$idE,$page);
 
-//////////////////
+/////////////////
 
-/*if (isset($_GET['id'])) {
-    echo 'id e '.$_POST['id_content'];
-    echo 'id m '.$_POST['id_media'];
-    echo 'id e '.$_POST['id_event'];
-    var_dump($_POST);
+if (isset($_GET['id'])) {
+    /*echo 'id e '.$_REQUEST['id'];
+    echo 'id m '.$_REQUEST['idM'];
+    echo 'id e '.$_REQUEST['idE'];
+    echo $_REQUEST['start_date'];
+    echo $_REQUEST['end_date'];
+    var_dump($_REQUEST);*/
+    if(isset($_REQUEST['start_date'])
+    && isset($_REQUEST['end_date']) &&
+    isset($_REQUEST['description_content'])
+    && isset($_REQUEST['title_content'])):
 
-    execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
-                ':id' => $_POST['id_event'],
-                ':dateStart' => $_POST['start_date'],
-                ':dateEnd' => $_POST['end_date']
-            ));
+        execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
+                    ':id' => $_REQUEST['idE'],
+                    ':dateStart' => $_REQUEST['start_date'],
+                    ':dateEnd' => $_REQUEST['end_date']
+        ));
 
-            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
-            ':id' => $_POST['id_content'],
-            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
-            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
-            ));
-    die();
-}/**/
+        execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
+                ':id' => $_REQUEST['id'],
+                ':title_content' => trim(htmlspecialchars($_REQUEST['title_content'])),
+                ':description_content' => trim(htmlspecialchars($_REQUEST['description_content']))
+        ));
+        if(!empty($_FILES['photoEvent']['name'])){
+                // on renomme la photo
+                $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
+                // on la copie dans le dossier d'img
+                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
+                //on insert dans la table media
+                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
+                    ':title_media' => 'Photo de l\'event',
+                    ':name_media' => $picture,
+                    ':id_media_type' => 3
+                ));
+        }
+        //debug($_FILES);
+        //die();
+        messageSession($page);
+    endif;
+
+}// fin du update/**/
 
 
 ////////////////
@@ -80,12 +102,6 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
 }
 
 
-//TODO
-if (empty($_POST['start_date']) && empty($_POST['end_date']) && empty($_FILES) && empty($_POST['title_content']) && empty($_POST['description_content'])){
-
-    $error = '<p>Ce champs est obligatoire</p>';
-}/**/
-
 if (!empty($_POST) && empty($_POST['id_event'])) {
 
 //Si on obtient un fichier
@@ -94,41 +110,13 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
     errorImg($fileImg);
     $errorI=errorImg($fileImg);
 }//fin de si on obtient le fichier
- 
+
+ //TODO
+if (empty($_POST['title_content']) && empty($_POST['description_content'])){
+
+    $error = '<p>Ce champs est obligatoire</p>';
+}/**/
     if (!isset($error)) {
-
-        ///////////////////////////
-        if (isset($_GET['id'])) {
-           
-            if(!empty($_FILES['photoEvent']['name'])){
-                 // on renomme la photo
-                 $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
-                // on la copie dans le dossier d'img
-                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
-                //on insert dans la table media
-                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
-                    ':title_media' => 'Photo de l\'event',
-                    ':name_media' => $picture,
-                    ':id_media_type' => 3
-                ));
-            }
-
-            execute("UPDATE event SET start_date_event=:dateStart,end_date_event=:dateEnd WHERE id_event=:id", array(
-                ':id' => $_POST['id_event'],
-                ':dateStart' => $_POST['start_date'],
-                ':dateEnd' => $_POST['end_date']
-            ));
-
-            execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
-            ':id' => $_POST['id_content'],
-            ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
-            ':description_content' => trim(htmlspecialchars($_POST['description_content']))
-            ));
-
-            messageSession($page);
-        }// fin du update
-        
-        ///////////////////////
 
         if (!isset($_GET['id']) && errorImg($fileImg)==NULL) {
             

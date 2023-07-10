@@ -5,10 +5,10 @@ require_once '../config/fonctionMod.php';
 $p= !empty($_GET['p']) ? $_GET['p'] :'';
 $messageError='';
 
-debug($_POST);
-/*if (!empty($_REQUEST)){
-    $emailM= isset($_REQUEST['email_connexion']) ? htmlspecialchars(trim($_REQUEST['email_connexion'])) : '';
-    $MDP= isset($_REQUEST['password']) ? htmlspecialchars(trim($_REQUEST['password'])) : '';
+//debug($_POST);
+/*if (!empty($_POST)){
+    $emailM= isset($_POST['email_connexion']) ? htmlspecialchars(trim($_POST['email_connexion'])) : '';
+    $MDP= isset($_POST['password']) ? htmlspecialchars(trim($_POST['password'])) : '';
     $email='Email obligatoire';
     if (empty($emailM)) {
         $messageError.='Email obligatoire';
@@ -24,7 +24,8 @@ debug($_POST);
             if (password_verify($MDP, $user['password_user'])){
     
                 $_SESSION['user']=$user;
-    
+                $_SESSION['messages']['success'][]='Bienvenue !';
+
             }else{
                 $messageError.='Erreur sur le mot de passe';
             }
@@ -35,7 +36,7 @@ debug($_POST);
     }
 }else{
 
-    $_SESSION['messages']['danger'][]=$messageError;
+    $_SESSION['error']['danger'][]=$messageError;
     header('location:'. BASE_PATH.'/?page=dis');
 }  
 

@@ -1,5 +1,6 @@
 <?php require_once '../config/function.php';
 require_once '../config/fonctionMod.php';
+
 /////////////////INITIALISATION DES VARIABLES////////////
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
 $table="content";
@@ -17,8 +18,7 @@ $idTableM="id_media";
 $idM=isset($_GET['idM']) ? $_GET['idM'] : '';
 
 $page='backnewevent.php';
-$errorI='';
-$errorD='';
+$errorI;$errorD='';
 
 /////////////////ON SUPPRIME////////////////
 Delete($table,$idTable,$idD,$page);
@@ -42,12 +42,6 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
 ////////////////ON UPDATE////////////////
 
 if (isset($_GET['id'])) {
-    /*echo 'id e '.$_REQUEST['id'];
-    echo 'id m '.$_REQUEST['idM'];
-    echo 'id e '.$_REQUEST['idE'];
-    echo $_REQUEST['start_date'];
-    echo $_REQUEST['end_date'];
-    var_dump($_REQUEST);*/
     if(isset($_REQUEST['start_date'])
     && isset($_REQUEST['end_date']) &&
     isset($_REQUEST['description_content'])
@@ -64,22 +58,43 @@ if (isset($_GET['id'])) {
                 ':title_content' => trim(htmlspecialchars($_REQUEST['title_content'])),
                 ':description_content' => trim(htmlspecialchars($_REQUEST['description_content']))
         ));
-        if(!empty($_FILES['photoEvent']['name']) && $errorI==NULL){
-                // on renomme la photo
-                $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
-                // on la copie dans le dossier d'img
-                copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
-                //on insert dans la table media
-                execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
-                    ':title_media' => 'Photo de l\'event',
-                    ':name_media' => $picture,
-                    ':id_media_type' => 3
-                ));
-        }
-        //debug($_FILES);
-        //die();
-        messageSession($page);
     endif;
+    if(isset($_FILES['photoEvent'])){
+        //On teste si le fichier est au bon format
+        errorImg($_FILES['photoEvent']);
+        //Si le fichier est au bon format
+        if(errorImg($_FILES['photoEvent'])==NULL){
+            if(!empty($_FILES['photoEvent']['name'])){
+                    // on renomme la photo
+                    $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
+                    // on la copie dans le dossier d'img
+                    copy($_FILES['photoEvent']['tmp_name'],'../assets/img/'.$picture);
+                    //on insert dans la table media
+                    $result= execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,4,:id_media_type)", array(
+                        ':title_media' => 'Photo de l\'event',
+                        ':name_media' => $picture,
+                        ':id_media_type' => 3
+                    ));
+
+                    //on demande les derniers ids
+                    $last_id_media=execute("SELECT id_media FROM media ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+                    
+                    //On update dans la table intermediaire
+                    execute("UPDATE event_content SET id_media=:id_media WHERE id_content=:id_content", array(
+                        ':id_media' => $last_id_media['id_media'],
+                        ':id_content' => $_REQUEST['id']
+                    ));
+                    //On supprime le précédent média
+                    if($result){
+                        Delete($tableM,$idTableM,$idM,$page);
+                    }
+                messageSession($page);
+            }
+        }
+    }
+        /*var_dump(errorImg($fileImg));
+        debug($_FILES);
+        die();/**/
 
 }// fin du update/**/
 
@@ -259,7 +274,7 @@ endif; ?>
             INNER JOIN event_content
             ON event_content.id_event=event.id_event
             INNER JOIN media
-            ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE",array(
+            ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE ORDER BY media.id_media DESC LIMIT 1",array(
                 ':idE'=>$content['idE']
             ))->fetchAll(PDO::FETCH_ASSOC);
             ?>

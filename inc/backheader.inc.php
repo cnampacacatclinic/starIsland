@@ -49,7 +49,9 @@
         </li>
         -->
         <?php     if (connect()==true):  ?>
-            <div><a href="<?=  BASE_PATH.'?page=dis'; ?>" class="btn btn-primary">Déconnexion</a></div>
+            <li class="nav-item">
+                <a class="nav-link collapsed text-gray-800 btn" href="<?=  BASE_PATH.'?page=dis'; ?>">Déconnexion</a>
+        </li>
         <?php        endif;        ?>
         <li class="nav-item">
         <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backnewevent';?>" >

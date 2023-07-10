@@ -1,6 +1,6 @@
 <?php require_once '../config/function.php';
 require_once '../config/fonctionMod.php';
-
+/////////////////INITIALISATION DES VARIABLES////////////
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
 $table="content";
 $idTable="id_content";
@@ -20,7 +20,7 @@ $page='backnewevent.php';
 $errorI='';
 $errorD='';
 
-/*On peut supprimer */
+/////////////////ON SUPPRIME////////////////
 Delete($table,$idTable,$idD,$page);
 //TODO
 Delete($tableE,$idTableE,$idE,$page);
@@ -30,7 +30,16 @@ $errorD .=Delete($table,$idTable,$idD,$page);
 $errorD .=Delete($tableM,$idTableM,$idM,$page);
 $errorD .=Delete($tableE,$idTableE,$idE,$page);
 
-/////////////////
+////////////////ON TEST LE FICHIER////////////////
+
+//Si on obtient un fichier
+if (!empty($_FILES) && isset($_FILES['photoEvent'])){
+    $fileImg=$_FILES['photoEvent'];
+    errorImg($fileImg);
+    $errorI=errorImg($fileImg);
+}//fin de si on obtient le fichier
+
+////////////////ON UPDATE////////////////
 
 if (isset($_GET['id'])) {
     /*echo 'id e '.$_REQUEST['id'];
@@ -55,7 +64,7 @@ if (isset($_GET['id'])) {
                 ':title_content' => trim(htmlspecialchars($_REQUEST['title_content'])),
                 ':description_content' => trim(htmlspecialchars($_REQUEST['description_content']))
         ));
-        if(!empty($_FILES['photoEvent']['name'])){
+        if(!empty($_FILES['photoEvent']['name']) && $errorI==NULL){
                 // on renomme la photo
                 $picture=uniqid().date_format(new DateTime(),'d_m_Y_H_i_s').$_FILES['photoEvent']['name'];
                 // on la copie dans le dossier d'img
@@ -75,7 +84,7 @@ if (isset($_GET['id'])) {
 }// fin du update/**/
 
 
-////////////////
+//////////////// ON AFFICHE ////////////////
 
 $contents = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
 FROM event
@@ -101,15 +110,8 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
+//////////////// ON INSERT ////////////////
 if (!empty($_POST) && empty($_POST['id_event'])) {
-
-//Si on obtient un fichier
-if (!empty($_FILES) && isset($_FILES['photoEvent'])){
-    $fileImg=$_FILES['photoEvent'];
-    errorImg($fileImg);
-    $errorI=errorImg($fileImg);
-}//fin de si on obtient le fichier
 
  //TODO
 if (empty($_POST['title_content']) && empty($_POST['description_content'])){

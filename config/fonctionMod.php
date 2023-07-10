@@ -35,21 +35,6 @@ function Delete($t,$c,$id,$p){
     return $me;
 }
 
-//select condition
-function selectCondition($a,$t){
-    $datas = execute("SELECT $a FROM $t")->fetchAll(PDO::FETCH_ASSOC);
-    return $datas;
-}
-
-//Insert
-function insertion($t,$a,$c,array $x){
-    execute("INSERT INTO $t($a) VALUES ($c)", $x);
-}
-//update
-function update($t,$c,$a,array $x){
-    execute("UPDATE $t SET $c WHERE $a", $x);
-}
-
 function messageSession($p){
     $_SESSION['messages']['success'][] = 'Requete reussie';
     header('location:./'.$p.'');

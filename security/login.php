@@ -5,16 +5,16 @@ if(isset($_POST['m'])){
     echo $_POST['m'];
 }
 ?>
-
-<form action="back" class="mt-5 w-75 mx-auto" method="">
+<!-- On est obligé d'indiquer le fichier index.php si on met seulement "back", il n'y a pas de post ... -->
+<form action="back/index.php" class="mt-5 w-75 mx-auto" method="post">
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input name="email_connexion" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="email_connexion" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+        <input name="password" type="password" class="form-control" id="exampleInputPassword1" value="">
     </div>
 
 

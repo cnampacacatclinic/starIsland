@@ -5,7 +5,7 @@ require_once '../config/fonctionMod.php';
 $p= !empty($_GET['p']) ? $_GET['p'] :'';
 $messageError='';
 
-//debug($_POST);
+debug($_POST);
 /*if (!empty($_REQUEST)){
     $emailM= isset($_REQUEST['email_connexion']) ? htmlspecialchars(trim($_REQUEST['email_connexion'])) : '';
     $MDP= isset($_REQUEST['password']) ? htmlspecialchars(trim($_REQUEST['password'])) : '';

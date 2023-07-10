@@ -1,5 +1,5 @@
-<?php require_once '../config/function.php';
-require_once '../config/fonctionMod.php';
+<?php //require_once '../config/function.php';
+//require_once '../config/fonctionMod.php';
 
 $table="media_type";
 $page="media_type.php";

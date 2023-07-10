@@ -1,5 +1,5 @@
-<?php require_once '../config/function.php';
-require_once '../config/fonctionMod.php';
+<?php //require_once '../config/function.php';
+//require_once '../config/fonctionMod.php';
 
 $table="content";
 $idTable="id_content";
@@ -138,4 +138,4 @@ require_once '../inc/backheader.inc.php';
     </table>
 
 
-<?php require_once '../inc/backfooter.inc.php'; ?>
+<?php //require_once '../inc/backfooter.inc.php'; ?>

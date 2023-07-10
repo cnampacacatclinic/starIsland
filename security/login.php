@@ -1,63 +1,16 @@
-<?php      require_once '../config/function.php';
-require_once '../inc/header.inc.php';
 
-if (!empty($_POST)){
+<?php //TODO remettre l'action = post
+echo 'B@rbieD0ll , remettre l action = post<br>';?>
 
-if (empty($_POST['email'])) {
-    $email='Email obligatoire';
-    $error=true;
-
-}else{
-    $user=execute("SELECT * FROM user WHERE email_user=:email",array(
-        ':email'=>$_POST['email']
-    ));
-    // vérification de l'existence d'un utilisateur à cette adresse mail
-    if ($user->rowCount()==1){
-        // verification du mot passe provenant du formulaire avec le mot de passe haché provenant de la BDD
-        $user=$user->fetch(PDO::FETCH_ASSOC);
-        if (password_verify($_POST['password'], $user['password_user'])){
-
-            $_SESSION['user']=$user;
-            $_SESSION['messages']['success'][]="Bienvenue $user[nickname]!!!!";
-            header('location:../');
-            exit();
-
-
-        }else{
-            $password='Erreur sur le mot de passe';
-
-        }
-
-
-
-    }else{
-      $email='Aucun compte existant à cette adresse mail';
-    }
-}
-
-
-
-
-
-
-
-}// fin de soumission formulaire
-
-
-
-?>
-
-<form class="mt-5 w-75 mx-auto" method="post" enctype="multipart/form-data">
+<form action='back' class="mt-5 w-75 mx-auto" method="">
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <small class="text-danger"><?= $email ?? ""; ?></small>
+        <input name="email_connexion" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
         <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-        <small class="text-danger"><?= $password  ?? ""; ?></small>
     </div>
 
 
@@ -67,7 +20,3 @@ if (empty($_POST['email'])) {
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
-
-<?php require_once '../inc/footer.inc.php';    ?>

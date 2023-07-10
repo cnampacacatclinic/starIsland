@@ -5,14 +5,6 @@ require_once 'config/function.php';
 /* l'entête */
 require_once 'inc/header.inc.php';
 
-/* si on est connecté */
-if (isset($_GET['a']) && $_GET['a']=='dis'){
-
-  unset($_SESSION['user']);
-  $_SESSION['messages']['info'][]='A bientôt !!';
-  header('location:./');
-  exit();
-}
 //si on n'a pas reçu une demande de page en get
 $page= !empty($_GET['page']) ? $_GET['page'] :'';
 
@@ -52,6 +44,15 @@ switch ($page) {
     case 'vote':
         include 'inc/sections/topserveurVote.inc.php';
     break;
+    case 'login':
+        include 'security/login.php';
+        break;
+    case 'dis':
+        //unset($_SESSION['user']);
+        session_destroy();
+        $_SESSION['messages']['info'][]='A bientôt !!';
+        include 'security/login.php';
+        break;
     default:
     $_GET['page'] ='';
 }

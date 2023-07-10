@@ -1,5 +1,5 @@
-<?php require_once '../config/function.php';
-require_once '../config/fonctionMod.php';
+<?php //require_once '../config/function.php';
+//require_once '../config/fonctionMod.php';
 
 $table="media";
 $page="backgallerie.php";
@@ -112,4 +112,4 @@ echo $m;?>
     </table>
 
 
-<?php require_once '../inc/backfooter.inc.php'; ?>
+<?php //require_once '../inc/backfooter.inc.php'; ?>

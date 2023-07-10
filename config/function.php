@@ -81,15 +81,4 @@ function connect()
     }
 }
 
-/*function admin()
-{
-    if (connect() && $_SESSION['user']['role']=='ROLE_ADMIN'){
-
-        return true;
-    }else{
-        return false;
-    }
-
-}*/
-
 

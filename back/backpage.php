@@ -1,5 +1,5 @@
-<?php require_once '../config/function.php';
-require_once '../config/fonctionMod.php';
+<?php //require_once '../config/function.php';
+//require_once '../config/fonctionMod.php';
 
 $table="page";
 $idTable="id_page";
@@ -93,4 +93,4 @@ echo $m;?>
         <?php endforeach; ?>
         </tbody>
     </table>
-<?php require_once '../inc/backfooter.inc.php'; ?>
+<?php // require_once '../inc/backfooter.inc.php'; ?>

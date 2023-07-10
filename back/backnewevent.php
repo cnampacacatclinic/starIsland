@@ -1,5 +1,5 @@
-<?php require_once '../config/function.php';
-require_once '../config/fonctionMod.php';
+<?php //require_once '../config/function.php';
+//require_once '../config/fonctionMod.php';
 
 /////////////////INITIALISATION DES VARIABLES////////////
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
@@ -274,7 +274,7 @@ endif; ?>
             INNER JOIN event_content
             ON event_content.id_event=event.id_event
             INNER JOIN media
-            ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE ORDER BY media.id_media DESC LIMIT 1",array(
+            ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE",array(
                 ':idE'=>$content['idE']
             ))->fetchAll(PDO::FETCH_ASSOC);
             ?>
@@ -299,4 +299,4 @@ endif; ?>
     </table>
 
 
-<?php require_once '../inc/backfooter.inc.php'; ?>
+<?php // require_once '../inc/backfooter.inc.php'; ?>

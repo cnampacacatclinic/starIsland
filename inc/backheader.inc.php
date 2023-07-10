@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -48,56 +48,53 @@
             </div>
         </li>
         -->
+        <?php     if (connect()==true):  ?>
+            <div><a href="<?=  BASE_PATH.'?page=dis'; ?>" class="btn btn-primary">Déconnexion</a></div>
+        <?php        endif;        ?>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backnewevent.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backnewevent';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Nouvel event</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backevent.php';?>" >
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Timer event</span>
-            </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backcomment.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backcomment';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion des commentaires</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backteam.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backteam';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Team</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backgallerie.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backgallerie';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Album</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/media_type.php';?>" >
+            <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backmediatype';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion du type de média</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backmedia.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backmedia';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion des médias</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backpage.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backpage';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Les pages</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/backcontent.php';?>" >
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backcontent';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Contenu des pages</span>
             </a>
@@ -167,15 +164,17 @@
 
             <div class="container-fluid">
 
-                <?php if (isset($_SESSION['messages'])) :  ?>
-                    <?php foreach ($_SESSION['messages'] as $type => $messages) : ?>
-                        <?php foreach ($messages as $message) : ?>
-                            <div class=" w-25 rounded  text-center ml-5  alert alert-<?= $type ?>"><h3><?= $message ?></h3></div>
-                        <?php endforeach; ?>
-                    <?php endforeach; ?>
-                    <?php unset($_SESSION['messages']); ?>
-                <?php endif; ?>
-
+    <?php if (isset($_SESSION['messages']) && !empty($_SESSION['messages'])): 
+                foreach ($_SESSION['messages'] as $type=>$messages):
+                    foreach ($messages as $key=>$message):?>
+                        <div class="alert alert-<?=  $type; ?> text-center w-50 mx-auto">
+                            <p><?=  $message; ?></p>
+                        </div>
+    <?php               unset($_SESSION['messages'][$type][$key]);
+                    endforeach;
+                endforeach;
+            endif;
+    ?>
 
 
 

@@ -1,5 +1,6 @@
 
-<?php require_once 'config/function.php'; ?>
+<?php require_once 'config/function.php'; 
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -69,22 +70,6 @@
                 <li class="nav-item liSmall">
                     <a class="nav-link" href="#">Tuto</a>
                 </li>
-     <?php     if (connect()):           ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?=  BASE_PATH.'back/userList.php'; ?>">Gestion utilisateur</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?=  BASE_PATH.'back/'; ?>">Accès Back-office</a>
-                    </div>
-                </li>
-                <?php     endif;           ?>
-            </ul>
-            <?php     if (connect()):           ?>
-            <a href="<?=  BASE_PATH.'?a=dis'; ?>" class="btn btn-primary">Déconnexion</a>
-            <?php        endif;        ?>
             <div id="divEventTuto">
                 <ul id="buttonsNav">
                         <li class="nav-item liBig">
@@ -99,13 +84,3 @@
 </nav>
 </header>
 <main class="paddingMarginZero">
-    <?php     if (isset($_SESSION['messages']) && !empty($_SESSION['messages'])):           ?>
-    <?php     foreach ($_SESSION['messages'] as $type=>$messages):
-      ?>
-    <?php     foreach ($messages as $key=>$message):           ?>
-    <div class="alert alert-<?=  $type; ?> text-center w-50 mx-auto">
-        <p><?=  $message; ?></p>
-    </div>
-
-    <?php   unset($_SESSION['messages'][$type][$key]);
-            endforeach;  endforeach;  endif;           ?>

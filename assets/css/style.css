@@ -488,7 +488,8 @@ header, nav {
     display: flex;
     flex-direction: row;
     justify-content:flex-end;
-    width: 30%;
+    width: 10%;
+    margin-left: 200px;
 }
 
 .liSmall{

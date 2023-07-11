@@ -16,42 +16,44 @@ $p= !empty($_GET['p']) ? $_GET['p'] :'';
 $messageError='';
 
 //debug($_POST);
-/*if (!empty($_POST)){
-    $emailM= isset($_POST['email_connexion']) ? htmlspecialchars(trim($_POST['email_connexion'])) : '';
-    $MDP= isset($_POST['password']) ? htmlspecialchars(trim($_POST['password'])) : '';
-    $email='Email obligatoire';
-    if (empty($emailM)) {
-        $messageError.='Email obligatoire';
-        $error=true;
-    }else{
-        $user=execute("SELECT * FROM user WHERE email_user=:email",array(
-            ':email'=>$emailM
-        ));
-        // vérification de l'existence d'un utilisateur à cette adresse mail
-        if ($user->rowCount()==1){
-            // verification du mot passe provenant du formulaire avec le mot de passe haché provenant de la BDD
-            $user=$user->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($MDP, $user['password_user'])){
-    
-                $_SESSION['user']=$user;
-                $_SESSION['messages']['success'][]='Bienvenue !';
-
-            }else{
-                $messageError.='Erreur sur le mot de passe';
-            }
-    
+if(connect()==false){
+    if (!empty($_POST)){
+        $emailM= isset($_POST['email_connexion']) ? htmlspecialchars(trim($_POST['email_connexion'])) : '';
+        $MDP= isset($_POST['password']) ? htmlspecialchars(trim($_POST['password'])) : '';
+        
+        if (empty($emailM)) {
+            $messageError.='Email obligatoire';
+            $error=true;
         }else{
-            $messageError.='Aucun compte existant à cette adresse mail';
-        }
-    }
-}else{
+            $user=execute("SELECT * FROM user WHERE email_user=:email",array(
+                ':email'=>$emailM
+            ));
+            // vérification de l'existence d'un utilisateur à cette adresse mail
+            if ($user->rowCount()==1){
+                // verification du mot passe provenant du formulaire avec le mot de passe haché provenant de la BDD
+                $user=$user->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($MDP, $user['password_user'])){
+        
+                    $_SESSION['user']=$user;
+                    //$_SESSION['messages']['success'][]='Bienvenue !';
 
-    $_SESSION['error']['danger'][]=$messageError;
-    header('location:'. BASE_PATH.'/?page=dis');
-}  
+                }else{
+                    $messageError.='Erreur sur le mot de passe';
+                }
+        
+            }else{
+                $messageError.='Aucun compte existant à cette adresse mail';
+            }
+        }
+        }else{
+
+        $_SESSION['messages']['danger'][]=$messageError;
+        header('location:'. BASE_PATH.'?page=dis');
+    }  
+}
 
 if(connect()==false):
-    header('location:'. BASE_PATH.'/?page=dis');
+    header('location:'. BASE_PATH.'?page=dis');
 else :
 /**/
 
@@ -88,4 +90,4 @@ switch ($p) {
 
  require_once '../inc/backfooter.inc.php';
  
- //endif;?>
+ endif;?>

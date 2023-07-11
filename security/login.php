@@ -10,8 +10,8 @@ car c'était demandé pour cet
 exercice.
 /////////////////////////////////*/
 
-if(isset($_POST['m'])){
-    echo $_POST['m'];
+if(isset($_SESSION['messages'])){
+    $_SESSION['messages'];
 }
 ?>
 <section id="avis" class="fontImage2">

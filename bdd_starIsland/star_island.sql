@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 07 juil. 2023 à 16:04
+-- Généré le : mar. 11 juil. 2023 à 15:11
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -47,7 +47,7 @@ INSERT INTO `comment` (`id_comment`, `rating_comment`, `comment_text`, `publish_
 (4, 5, 'Très satisfait. Toujours content. Vos êtes les meilleurs ! Vraiment, c\'est sincère.', '2023-06-19', 'Carlos', 10, 1),
 (5, 4, 'Lorem ipsum dolor sit ameur saepe, molestias fugit obcaecati, quam excepturi!', '2023-06-04', 'Pseudo', 8, 1),
 (6, 1, 'J\'ai pas du tout aimé ! X(', '2023-07-03', 'Ambre', 9, 0),
-(7, 1, 'Bonjour entreprise.\r\nJe vous propose mon service afin prospe', '2023-07-04', 'Vous', 8, 1);
+(27, 4, 'Vous êtes formidables ! Je suis votre plus grand fan !!!', '2023-07-11', 'g', 157, 1);
 
 -- --------------------------------------------------------
 
@@ -71,9 +71,7 @@ INSERT INTO `content` (`id_content`, `title_content`, `description_content`, `id
 (5, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.\r\n            ', 5),
 (6, 'V.I.P.', 'Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.<br>\r\n                Lorem ipsum dolor sit, reprehenderit quam inventore quas nulla repellendus facilis tenetur iste laboriosam! Repudiandae, neque.', 5),
 (7, 'Titre de l\'event', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Error quisquam neque, provident expedita excepturi reprehenderit nihil doloremque illo assumenda vitae.<br>\r\n      Est totam delectus natus exercitationem possimus, inventore dolorum? Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>\r\n      Illo assumenda vitae est totam delectus natus exercitationem possimus?', 4),
-(10, 'cc', 'c', 7),
-(11, 'CC', 'c', 8),
-(12, 'dd', 'd', 9);
+(10, 'ccgdg', 'cgdgdfg', 7);
 
 -- --------------------------------------------------------
 
@@ -85,7 +83,7 @@ CREATE TABLE `event` (
   `id_event` bigint(20) NOT NULL,
   `start_date_event` date DEFAULT NULL,
   `end_date_event` date DEFAULT NULL,
-  `activated` tinyint(1) NOT NULL DEFAULT 1
+  `activated` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -94,10 +92,9 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id_event`, `start_date_event`, `end_date_event`, `activated`) VALUES
 (1, '2023-06-26', '2024-06-26', 1),
-(4, '2023-07-13', '2023-07-26', 1),
-(31, '2023-07-15', '2023-07-29', 1),
-(32, '2023-07-08', '2023-07-27', 1),
-(33, '2023-07-22', '2023-07-29', 1);
+(4, '2023-07-13', '2023-07-26', 0),
+(36, '2023-07-12', '2023-07-28', 0),
+(37, '2023-07-29', '2023-07-31', 0);
 
 -- --------------------------------------------------------
 
@@ -156,28 +153,24 @@ INSERT INTO `media` (`id_media`, `title_media`, `name_media`, `id_page`, `id_med
 (33, 'facebook', 'http://henri.ok', 2, 1),
 (36, 'twitter', 'https://autre.ion', 2, 1),
 (38, 'discord', 'https://fsd.fd', 2, 1),
-(46, 'Portrait de Lune mem', '64a3ec407c8b804_07_2023_11_54_08avatar-9.png', 2, 2),
-(47, 'Portrait de Creation', '64a3ed8d460b404_07_2023_11_59_41avatar-4.png', 2, 2),
-(48, 'Portrait de yvette m', '64a3ee9802dff04_07_2023_12_04_0864a3e40d296e504_07_2023_11_19_09avatar-9.png', 2, 2),
-(49, 'Portrait de Rose mem', '64a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
-(50, 'Portrait de test mem', '64a3eff6290d504_07_2023_12_09_58avatar-4.png', 2, 2),
-(51, 'Portrait de rzere me', '64a3f0c899da004_07_2023_12_13_2864a3ddb0a610804_07_2023_10_52_00avatar-7.png', 2, 2),
-(52, 'Portrait de Creation', '64a3f16a7dd7d04_07_2023_12_16_10avatar-2.png', 2, 2),
-(53, 'Portrait de Rose mem', '64a3f2d39eb2704_07_2023_12_22_1164a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
 (54, 'autre', 'https://klmkm.lm', 2, 1),
 (55, 'autre', 'https://fsfsdf.lm', 2, 1),
 (56, 'youtube', 'https://sfjldfjlsm.lm', 2, 1),
 (57, 'youtube', 'https://gdgdf.lm', 2, 1),
-(58, 'Portrait de Georgett', '64a3f6924a16e04_07_2023_12_38_1064a3ef922756204_07_2023_12_08_18avatar-9.png', 2, 2),
-(60, 'Portrait de Rose mem', '64a3f71842b2504_07_2023_12_40_2464a3f16a7dd7d04_07_2023_12_16_10avatar-2.png', 2, 2),
+(58, 'Portrait de Georgett', '64a3fd085e9c704_07_2023_13_05_44couleur-degrade.png', 2, 2),
 (70, 'photo gallerie 1', 'Loading1.png', 6, 4),
 (71, 'photo gallerie 2', 'Loading2.png', 6, 4),
 (72, 'plongeur', 'Loading3.png', 6, 4),
 (73, 'arbres', 'Loading4.png', 6, 4),
-(78, 'nous', '64a566c59ee9b05_07_2023_14_49_0920230425_153615.jpg', 6, 4),
-(88, 'reeree', '64a57d1735b9a05_07_2023_16_24_2320230425_153615.jpg', 6, 4),
-(89, 'Photo de l\'event', 'teaser.jpg', 4, 3),
-(141, 'Photo de l\'event', '64a803a4f02c507_07_2023_14_23_00des policier en civile surveille la plage.png', 4, 3);
+(141, 'Photo de l\'event', '64a803a4f02c507_07_2023_14_23_00des policier en civile surveille la plage.png', 4, 3),
+(143, 'Photo de l\'event', '64a81f402a73707_07_2023_16_20_48ellios.png', 4, 3),
+(145, 'Photo de l\'event', '64ad07e27b8f211_07_2023_09_42_2664a3eff6290d504_07_2023_12_09_58avatar-4.png', 4, 3),
+(153, 'avatar', 'avatar-7.png', 3, 2),
+(154, 'Photo de l\'event', '64ad48d0ded3111_07_2023_14_19_28ellios.png', 4, 3),
+(155, 'Photo de l\'event', '64ad4904854b711_07_2023_14_20_20ellios.png', 4, 3),
+(157, 'avatar', 'avatar-9.png', 3, 2),
+(162, 'Portrait de g membre', '64ad530189f3111_07_2023_15_02_57ellios.png', 2, 2),
+(163, 'autre', 'https://fsdf.lm', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -223,12 +216,7 @@ INSERT INTO `page` (`id_page`, `title_page`, `url`) VALUES
 (4, 'event', 'event'),
 (5, 'vip', 'vip'),
 (6, 'album-gallerie', 'album-gallerie'),
-(7, 'page7', ''),
-(8, 'page8', ''),
-(9, 'page9', ''),
-(10, 'page10', ''),
-(12, 'page12', ''),
-(13, 'page13', '');
+(7, 'page-test', 'page-test');
 
 -- --------------------------------------------------------
 
@@ -259,10 +247,7 @@ INSERT INTO `team` (`id_team`, `role_team`, `nickname_team`) VALUES
 (11, 'Mappers', 'Corine '),
 (12, 'Staff/Modos', 'Carlos '),
 (13, 'Staff/Modos', 'Mathieu '),
-(14, 'Staff/Modos', 'Laurent'),
-(15, 'Mappers', 'Rose'),
-(34, 'Staff/Modos', 'test'),
-(37, 'Staff/Modos', 'Georgettte');
+(14, 'Staff/Modos', 'Laurent');
 
 -- --------------------------------------------------------
 
@@ -336,7 +321,17 @@ INSERT INTO `team_media` (`id_team_media`, `id_media`, `id_team`) VALUES
 (77, 57, 37),
 (78, 58, 37),
 (80, 60, 15),
-(81, 61, 36);
+(81, 61, 36),
+(90, 144, 45),
+(92, 148, 48),
+(93, 149, 46),
+(94, 150, 49),
+(95, 151, 50),
+(96, 152, 50),
+(97, 158, 51),
+(98, 159, 51),
+(99, 162, 52),
+(100, 163, 52);
 
 -- --------------------------------------------------------
 
@@ -438,31 +433,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_comment` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_event` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT pour la table `event_content`
 --
 ALTER TABLE `event_content`
-  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_event_content` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id_media` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT pour la table `media_type`
@@ -474,19 +469,19 @@ ALTER TABLE `media_type`
 -- AUTO_INCREMENT pour la table `page`
 --
 ALTER TABLE `page`
-  MODIFY `id_page` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_page` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_team` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `team_media`
 --
 ALTER TABLE `team_media`
-  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_team_media` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT pour la table `user`

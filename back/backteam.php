@@ -50,11 +50,13 @@ if (!empty($_POST)) {
             $_SESSION['messages']['success'][] = '<p>Membre de l\'équipe ajouté</p>';
         }// fin soumission en insert
         else {
+
+            $roleTeam=!empty($_POST['role']) ? $_POST['role'] : $_POST['role2'];
             //modification du role et du pseudo
             execute("UPDATE team SET nickname_team=:nickname_team,role_team=:role_team WHERE id_team=:id", array(
                 ':id' => $_POST['id_team'],
                 ':nickname_team' => $_POST['nickname_team'],
-                ':role_team' => $_POST['role']
+                ':role_team' => $roleTeam
             ));
 
             $_SESSION['messages']['success'][] = '<p>Membre de l\'équipe modifié</p>';
@@ -161,6 +163,7 @@ if (!empty($_POST)) {
 }// fin !empty $_POST
 
 $teams = execute("SELECT * FROM team")->fetchAll(PDO::FETCH_ASSOC);
+$roles = execute("SELECT DISTINCT role_team FROM team")->fetchAll(PDO::FETCH_ASSOC);
 
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
@@ -198,15 +201,23 @@ require_once '../inc/backheader.inc.php';
                    value="<?= $team['nickname_team'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 
+            <!-- TODO -->
             <small class="text-danger">*</small>
             <label for="team" class="form-label">Role</label>
-            <input name="role" id="roleTeam" placeholder="Role" type="text"
-                   value="<?= $team['role_team'] ?? ''; ?>" class="form-control">
+            <select class="custom-select" name="role">
+                <option selected value="">
+                    Choisir un role *
+                </option>
+                <?php foreach ($roles as $role): ; ?>
+                    <option value="<?= $role['role_team']; ?>"><?=$role['role_team'];?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="hidden" name="role2" value="<?= $team['role_team'] ?? ''; ?>">
+           <!-- FIN SELECT -->
             <small class="text-danger"><?= $error ?? ''; ?></small>
-
             <label for="avatar" class="form-label">Avatar</label>
             <input name="avatar" type="file" class="form-control" id="avatar">
-            <!-- TODO avatar requete imgTeam -->
+            
             <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
             <small class="text-danger"><?php
             echo $errorImg ?? '';

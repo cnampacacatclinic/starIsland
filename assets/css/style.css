@@ -768,6 +768,20 @@ header, nav {
     width: 3em;
     margin:1em;
 }
+/*////////// Section login ///////////*/
+#login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 500px !important;
+}
+
+#login fieldset{
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 1px #EA4C6F;
+    border-radius: 30px;
+}
+
 
 @media (max-width: 991px) {
     #navbarNavDropdown #favHome{
@@ -960,6 +974,10 @@ header, nav {
     }
 }
 @media (max-width: 600px) {
+    #login {
+        width: 95% !important;
+    }
+
     #petitLogo{
      position: relative;
      margin:0;

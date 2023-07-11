@@ -1,4 +1,14 @@
-<?php
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
 //on affiche dans la page le texte
 $contentVIP=execute("SELECT title_content,description_content,content.id_page,name_media FROM content
 INNER JOIN page

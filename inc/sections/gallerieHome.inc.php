@@ -1,4 +1,14 @@
-<?php
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
   //On veut les trois dernières photos de la gallerie rangée par ordre decroissant d'id
   $gallerie=execute("SELECT * FROM media WHERE id_page=6 ORDER BY id_media DESC LIMIT 2")->fetchAll(PDO::FETCH_ASSOC);
 ?>

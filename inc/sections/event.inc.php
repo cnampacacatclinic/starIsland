@@ -1,4 +1,14 @@
-<?php
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
 $dataEvent=execute("SELECT * FROM event
 INNER JOIN event_content
 ON event_content.id_event=event.id_event

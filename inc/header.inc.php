@@ -1,5 +1,15 @@
 
-<?php require_once 'config/function.php'; 
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+ require_once 'config/function.php'; 
 ?>
 
 <!doctype html>

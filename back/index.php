@@ -1,4 +1,14 @@
-<?php     require_once '../config/function.php';
+<?php /*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
+require_once '../config/function.php';
 require_once '../config/fonctionMod.php';
 
 //si on n'a pas reçu une demande de page en get

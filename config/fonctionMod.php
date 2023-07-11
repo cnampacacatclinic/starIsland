@@ -1,4 +1,14 @@
 <?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
 //Initialisation de variables
 $t;$c;$a;$array;$datas;$data='';
 

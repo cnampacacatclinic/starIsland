@@ -1,3 +1,15 @@
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+?>
+
 <section id="topserveurVote" class="fontImage1">
     <form id="topServeur2" class="form-group">
         <fieldset class="form-group">

@@ -1,3 +1,15 @@
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+?>
+
 <section id="avis" class="fontImage2">
 <h2>Les avis &#10084;</h2>
 <div>    

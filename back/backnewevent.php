@@ -1,5 +1,12 @@
-<?php //require_once '../config/function.php';
-//require_once '../config/fonctionMod.php';
+<?php /*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
 
 /////////////////INITIALISATION DES VARIABLES////////////
 //TODO prevoir dans la table une page qui s'afficchera si ils supprime tous les events
@@ -319,6 +326,3 @@ endif; ?>
         <?php endforeach;?>
         </tbody>
     </table>
-
-
-<?php // require_once '../inc/backfooter.inc.php'; ?>

@@ -1,4 +1,14 @@
 <?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
+
 //on demande la liste des roles
 $roles=execute("SELECT DISTINCT role_team FROM team ORDER BY role_team")->fetchAll(PDO::FETCH_ASSOC);
 //on demande les renseignements sur les membres de l'equipe

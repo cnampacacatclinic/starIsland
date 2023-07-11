@@ -1,5 +1,13 @@
-<?php //require_once '../config/function.php';
-//require_once '../config/fonctionMod.php';
+<?php 
+/*/////////////////////////////////
+* Catherine Jules
+* Date : Juin / Juillet 2023
+* TP pour SIMPLON
+* CDA
+* NB: Le TP est en PHP procédural 
+car c'était demandé pour cet
+exercice.
+/////////////////////////////////*/
 
 $table="media_type";
 $page="backmediatype";
@@ -94,6 +102,3 @@ echo $m;?>
         <?php endforeach; ?>
         </tbody>
     </table>
-
-
-<?php require_once '../inc/backfooter.inc.php'; ?>

@@ -10,12 +10,12 @@ exercice.
 /////////////////////////////////*/
 $table="media";
 $idTable="id_media";
-$page="backmedia";
+$pb="backmedia";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
-Delete($table,$idTable,$idD,$page);
+Delete($table,$idTable,$idD,$pb);
 
-$medias = execute("SELECT id_media, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
+$medias = execute("SELECT media.id_media AS idM, title_media, name_media, page.id_page, media_type.id_media_type, title_media_type,title_page FROM media
 INNER JOIN page
 ON page.id_page=media.id_page
 INNER JOIN media_type
@@ -26,7 +26,7 @@ $mediasType = execute("SELECT * FROM media_type GROUP BY id_media_type")->fetchA
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
-    $media = execute("SELECT id_media, title_media, name_media, page.id_page AS idPage, media_type.id_media_type AS idMedia, title_media_type,title_page FROM media
+    $media = execute("SELECT media.id_media AS idM, title_media, name_media, page.id_page AS idPage, media_type.id_media_type AS idMedia, title_media_type,title_page FROM media
 INNER JOIN page
 ON page.id_page=media.id_page
 INNER JOIN media_type
@@ -55,7 +55,7 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($_POST['id_type1']))
             ));
 
-            messageSession($page);
+            messageSession($pb);
 
         }// fin soumission en insert
         else {
@@ -70,7 +70,7 @@ if (!empty($_POST)) {
                 ':id_media_type' => trim(htmlspecialchars($idMedia))
             ));
 
-            messageSession($page);
+            messageSession($pb);
 
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -164,8 +164,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $media2['title_media_type']; ?></td>
                 <td><?= $media2['title_page']; ?></td>
                 <td class="text-center">
-                    <a href="?p=<?= $page; ?>&id=<?= $media2['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?p=<?= $page; ?>&id=<?= $media2['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $pb; ?>&id=<?= $media2['idM']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $pb; ?>&id=<?= $media2['idM']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

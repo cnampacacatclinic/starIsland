@@ -9,7 +9,7 @@ exercice.
 /////////////////////////////////*/
 $table="content";
 $idTable="id_content";
-$page='backcontent';
+$pc='backcontent';
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 $contents = execute("SELECT id_content, title_content, description_content, content.id_page,title_page
@@ -29,7 +29,7 @@ if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'e
     ))->fetch(PDO::FETCH_ASSOC);
 }
 
-Delete($table,$idTable,$idD,$page);
+Delete($table,$idTable,$idD,$pc);
 
 if (!empty($_POST)) {
     //TODO
@@ -58,7 +58,7 @@ if (!empty($_POST)) {
                     ':id_page' => trim(htmlspecialchars($_POST['id_page1']))
                 ));
 
-                messageSession($page);
+                messageSession($pc);
             }
         }// fin soumission en insert
         else {
@@ -71,7 +71,7 @@ if (!empty($_POST)) {
                     ':id_page' => trim(htmlspecialchars($idPage))
                 ));
 
-                messageSession($page);
+                messageSession($pc);
 
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -134,8 +134,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?p=<?= $page; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?p=<?= $page; ?>&id=<?= $content['id_content']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $pc; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $pc; ?>&id=<?= $content['id_content']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

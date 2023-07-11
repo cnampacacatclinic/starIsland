@@ -10,11 +10,11 @@ exercice.
 /////////////////////////////////*/
 $table="page";
 $idTable="id_page";
-$page="backpage";
+$pp="backpage";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
-Delete($table,$idTable,$idD,$page);
-$errorD =Delete($table,$idTable,$idD,$page);
+Delete($table,$idTable,$idD,$pp);
+$errorD =Delete($table,$idTable,$idD,$pp);
 
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
@@ -28,7 +28,7 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            messageSession($page);
+            messageSession($pp);
 
         }// fin soumission en insert
         else {
@@ -38,7 +38,7 @@ if (!empty($_POST)) {
                 ':urlPage' => trim(htmlspecialchars($_POST['url']))
             ));
 
-            messageSession($page);
+            messageSession($pp);
             
         }// fin soumission modification
     }// fin si pas d'erreur
@@ -92,8 +92,8 @@ echo $m;?>
                 <td><?= $page['title_page']; ?></td>
                 <td><?= $page['url']; ?></td>
                 <td class="text-center">
-                    <a href="?p=<?= $page; ?>&id=<?= $page['id_page']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?p=<?= $page; ?>&id=<?= $page['id_page']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $pp; ?>&id=<?= $page['id_page']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $pp; ?>&id=<?= $page['id_page']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

@@ -41,6 +41,19 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
 
 ////////////////ON UPDATE////////////////
 
+if (isset(($_GET['e']))) {
+     
+    $actived=$_GET['e']==1 ? 0 : 1;
+
+    execute("UPDATE event SET activated=:activated WHERE id_event=:idE",array(
+        ':activated'=>$actived,
+        ':idE'=>$idE
+    ));
+
+    messageSession($page);
+ 
+}//fin de isset($activated)
+
 if (isset($_GET['id'])) {
     if(isset($_REQUEST['start_date'])
     && isset($_REQUEST['end_date']) &&
@@ -101,7 +114,7 @@ if (isset($_GET['id'])) {
 
 //////////////// ON AFFICHE ////////////////
 
-$contents = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
+$contents = execute("SELECT activated,start_date_event,end_date_event, event.id_event AS idE, event_content.id_media AS idM,content.id_content AS id, title_content, description_content, content.id_page
 FROM event
 INNER JOIN event_content
 ON event_content.id_event=event.id_event
@@ -109,7 +122,7 @@ INNER JOIN content
 ON content.id_content=event_content.id_content GROUP BY event.id_event")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
-    $datas = execute("SELECT start_date_event,end_date_event, event.id_event AS idE, media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
+    $datas = execute("SELECT activated,start_date_event,end_date_event, event.id_event AS idE, media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
     FROM event
     INNER JOIN event_content
     ON event_content.id_event=event.id_event
@@ -290,6 +303,15 @@ endif; ?>
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
+                    <a href="?p=<?= $page; ?>&idE=<?= $content['idE']; ?>&e=<?=$content['activated'];?>" class="btn btn-outline-info">
+                        <?php
+                        if($content['activated']==1){
+                            echo 'Désactiver';
+                        }else{
+                            echo 'Activer';
+                        }
+                    ?>
+                    </a>
                     <a href="?p=<?= $page; ?>&id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                     <a href="?p=<?= $page; ?>&id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')" class="btn btn-outline-danger">Supprimer</a>
                 </td>

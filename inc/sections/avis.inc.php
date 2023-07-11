@@ -14,7 +14,7 @@
   foreach($imgComment as $avatarComment):
   ?> 
     <figure>
-        <img class="avisAvatar" src="assets/avatar/<?= $avatarComment['name_media']; ?>">
+        <img class="avisAvatar" src="assets/comment-avatar/<?= $avatarComment['name_media']; ?>">
         <figcaption>
           <p><?= $comment['nickname_comment']; ?>
               <span>

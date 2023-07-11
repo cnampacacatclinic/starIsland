@@ -90,6 +90,12 @@ exercice.
             </a>
         </li>
         <li class="nav-item">
+        <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backvip';?>" >
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>V.I.P</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed text-gray-800" href="<?=BASE_PATH.'back/?p=backmediatype';?>" >
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Gestion du type de média</span>

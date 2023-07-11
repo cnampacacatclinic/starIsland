@@ -83,6 +83,9 @@ switch ($p) {
     case 'backmediatype':
         include 'media_type.php';
         break;
+    case 'backvip':
+        include 'backvip.php';
+        break;
     default:
     include 'backnewevent.php';
 }

@@ -15,9 +15,6 @@ $page="backteam";
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!empty($_POST)) {
- 
-    //debug($_FILES);
-    //  die();
 
     //Si on obtient un fichier
     if (!empty($_FILES)){
@@ -241,7 +238,7 @@ require_once '../inc/backheader.inc.php';
 
             <label for="reseau" class="form-label">Type de réseau</label>
             <select class="custom-select" name="title_media">
-                <option selected value="">
+                <option selected value="autre">
                     Choisir
                 </option>
                 <option value="discord">Discord</option>

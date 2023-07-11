@@ -52,11 +52,23 @@
           if (isset($_POST['nickname_comment'])) {
             //on genere un media random pour l'avatar
             $avatarC=random_int(7,9);
+            $numAvatar=random_int(1,9);
+            $avatarComment='avatar-'.$numAvatar.'.png';
+
+            execute("INSERT INTO media(title_media,name_media,id_page,id_media_type) VALUES (:title_media,:name_media,:id_page,:id_media_type)", array(
+              ':title_media' => 'avatar',
+              ':name_media' => $avatarComment,
+              ':id_page'=>3,
+              ':id_media_type'=>2
+            ));
+
+            $last_id_media=execute("SELECT id_media FROM media WHERE id_media_type=2 AND id_page=3 ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+            
              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
                   ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
                   ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
                   ':rating_comment' => trim(htmlspecialchars($ratingComment)),
-                  ':id_media' => $avatarC
+                  ':id_media' => $last_id_media['id_media']
               ));
               $reussite=true;
           }// fin soumission en insert

@@ -8,6 +8,7 @@ INNER JOIN page
 ON page.id_page=content.id_page
 INNER JOIN media
 ON page.id_page=media.id_page
+WHERE activated=1 
 ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section id="event" class="fontImgEvent">

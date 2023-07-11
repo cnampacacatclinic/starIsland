@@ -290,8 +290,8 @@ endif; ?>
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')" class="btn btn-outline-danger">Supprimer</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $content['id']; ?>&idE=<?= $content['idE']; ?>&idM=<?= $imgEvent; ?>&a=del" onclick="return confirm('Etes-vous sûr?')" class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach;?>

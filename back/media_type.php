@@ -86,8 +86,8 @@ echo $m;?>
             <tr>
                 <td><?= $media_type['title_media_type']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $media_type['id_media_type']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $media_type['id_media_type']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $media_type['id_media_type']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

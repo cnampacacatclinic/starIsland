@@ -155,7 +155,7 @@ if (!empty($_POST)) {
         
         }
 
-        header('location:./backteam.php');
+        header('location:./?p=backteam');
         exit();
     }// fin si pas d'erreur
 }// fin !empty $_POST
@@ -269,8 +269,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $team['nickname_team']; ?></td>
                 <td><?= $team['role_team']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $team['id_team']; ?>&im=<?= $imgAvatar['idMed']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

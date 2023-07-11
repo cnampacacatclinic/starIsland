@@ -102,8 +102,8 @@ echo $m;?>
                 <td><img alt="Vignette" src="../assets/album/<?= $img['name_media']; ?>" width="100px"></td>
                 <td><?= $img['title_media']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $img['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $img['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $img['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $img['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

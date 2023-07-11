@@ -85,8 +85,8 @@ echo $m;?>
                 <td><?= $page['title_page']; ?></td>
                 <td><?= $page['url']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $page['id_page']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $page['id_page']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $page['id_page']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $page['id_page']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

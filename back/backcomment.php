@@ -48,7 +48,7 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $data['publish_date_comment']; ?></td>
                 <td><?= $data['comment_text']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $data['id_comment']; ?>&a=edit&e=<?=$data['activated'];?>" class="btn btn-outline-info">
+                    <a href="?p=<?= $page; ?>&id=<?= $data['id_comment']; ?>&a=edit&e=<?=$data['activated'];?>" class="btn btn-outline-info">
                     <?php
                     if($data['activated']==1){
                         echo 'Désactiver';
@@ -57,7 +57,7 @@ require_once '../inc/backheader.inc.php';
                     }
                     ?>
                     </a>
-                    <a href="?id=<?= $data['id_comment']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $data['id_comment']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

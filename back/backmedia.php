@@ -157,8 +157,8 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $media2['title_media_type']; ?></td>
                 <td><?= $media2['title_page']; ?></td>
                 <td class="text-center">
-                    <a href="?id=<?= $media2['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
-                    <a href="?id=<?= $media2['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
+                    <a href="?p=<?= $page; ?>&id=<?= $media2['id_media']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $page; ?>&id=<?= $media2['id_media']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"
                        class="btn btn-outline-danger">Supprimer</a>
                 </td>
             </tr>

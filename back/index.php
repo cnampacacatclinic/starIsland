@@ -86,6 +86,9 @@ switch ($p) {
     case 'backvip':
         include 'backvip.php';
         break;
+    case 'backhome':
+        include 'backhome.php';
+        break;
     default:
     include 'backnewevent.php';
 }

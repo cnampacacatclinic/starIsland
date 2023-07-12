@@ -7,16 +7,15 @@
 car c'était demandé pour cet
 exercice.
 /////////////////////////////////*/
-
-$pv='backvip';
+$ph='backhome';
 $idD=isset($_GET['id']) ? $_GET['id'] : '';
 
 $contents = execute("SELECT id_content, title_content, description_content, content.id_page,title_page
 FROM content
 LEFT JOIN page
-ON page.id_page=content.id_page WHERE content.id_page=5")->fetchAll(PDO::FETCH_ASSOC);
+ON page.id_page=content.id_page WHERE content.id_page=1")->fetchAll(PDO::FETCH_ASSOC);
 
-//$pageVIP = execute("SELECT * FROM page WHERE id_page=5")->fetchAll(PDO::FETCH_ASSOC);
+//$pageVIP = execute("SELECT * FROM page WHERE id_page=1")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
 
@@ -41,10 +40,10 @@ if (!empty($_POST)) {
                     ':id' => trim(htmlspecialchars($_POST['id_content'])),
                     ':title' => trim(htmlspecialchars($_POST['title_content'])),
                     ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
-                    ':id_page' => 5
+                    ':id_page' => 1
                 ));
 
-                messageSession($pv);
+                messageSession($ph);
 
     }// fin si pas d'erreur
 
@@ -52,9 +51,8 @@ if (!empty($_POST)) {
 require_once '../inc/backheader.inc.php';
 ?>
 
-<h2>V.I.P.</h2>
-
-<?php if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') { ?>
+<h2>Page d'acceuil</h2>
+<?php if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit'):?>
     <form action="" method="post" class="w-75 mx-auto mt-5 mb-5">
         <div class="form-group">
             <small class="text-danger">*</small>
@@ -71,7 +69,7 @@ require_once '../inc/backheader.inc.php';
         <input type="hidden" name="id_content" value="<?= $content2['id_content'] ?? ''; ?>">
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
-<?php }?>
+<?php endif; ?>
     <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
@@ -86,7 +84,7 @@ require_once '../inc/backheader.inc.php';
                 <td><?= $content['title_content']; ?></td>
                 <td><?= $content['description_content']; ?></td>
                 <td class="text-center">
-                    <a href="?p=<?= $pv; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
+                    <a href="?p=<?= $ph; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                 </td>
             </tr>
         <?php endforeach; ?>

@@ -1,0 +1,82 @@
+# Un robot (Ici Google Bot) avant de crawler un site va regarder si un fichier "robots.txt" existe à la racine du site (à côté de index)
+	# Il va sur un url et ajoute /robots.txt
+		# ex: Aller sur "fnac.com" et ajouter "/robots.txt" a la fin.
+
+# Le fichier robots.txt est DONC a placer sur votre site internet pour indiquer aux moteurs de recherche les pages à ne pas indexer. 
+# Le fichier robots.txt doit faire moins de 500kb (soit 62 ko) pour Google. Toute directive entrée au delà de cette limite sera ignorée
+
+# Il y a que deux commandes qui soit bien reconnus par tous les robots.
+
+
+# Créer un fichier "robots.txt" et ecrire :
+
+
+# Interdire le crawl sur tout le site
+
+	User-Agent: *
+	Disallow: /
+
+
+# Interdire l'indexation de toutes les pages d'un site à tous les robots revient au même que ne pas mettre en place de fichier robots.txt. (Mais cela peut etre utile en fin de document avec un nom de robot particulier)
+	User-Agent: *
+	Disallow:
+	
+
+# Interdire le crawl pour une seule pages:
+	User-agent: *
+	Disallow: /page.html
+
+# Interdire le crawl pour plusieurs pages:
+	User-agent: *
+	Disallow: /page.html
+	Disallow: dossier/page.html
+	Disallow: dossier/page2.html
+	Disallow: dossier/sous-dossier/page.html
+	Interdit l'accès aux dossiers
+
+
+# Interdire l'accès à plusieurs dossier en quelques lignes:
+
+	User-agent: *
+	Disallow: /administrateur/
+	Disallow: /dossier/
+	Disallow: /dossier2/
+	Disallow: /dossier3/sous-dossier/
+	Noms des robots
+
+
+ 
+# ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+# EXTRA (A présenter ou pas) │▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+# Interdire le crawl des pages /contenu et des pages /contenu/toto mais pas des pages /contenu/ (avec slash final) :
+	User-agent: *
+	Disallow: /contenu
+	Allow: /contenu/$
+
+# Autoriser le crawl de la page 527.html en interdisant toutes les autres 5xx.html (encore une fois faites très attention à ce qui peut matcher) :
+	User-agent: *
+	Disallow: /5*.html
+	Allow: /527.html
+	
+# On peut indiquer le nom d'un robot particulier pour que se ne soit que celui-ci qui respecte les règles que vous expliquez.
+Par exemple, le nom du robot utilisé par Google c'est: 
+
+	"Googlebot".
+
+
+Il existe des listes des noms de nombreux robots:
+
+    Liste de robotstxt.org
+    Liste de user-agents.org
+
+Exclure un robots particulier
+
+En connaissant les noms de principaux robots vous pouvez rédiger un code encore plus personnel en fonction de vos besoin.
+
+Empêcher le crawl de votre site par certains robots particulier:
+
+	User-Agent: Le-Nom-Du-Robot
+	Disallow: /
+	User-Agent: *
+	Disallow:

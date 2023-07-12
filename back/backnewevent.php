@@ -28,14 +28,19 @@ $page='backnewevent';
 $errorI;$errorD='';
 
 /////////////////ON SUPPRIME////////////////
-Delete($table,$idTable,$idD,$page);
-//TODO
-Delete($tableE,$idTableE,$idE,$page);
-Delete($tableM,$idTableM,$idM,$page);
 
-$errorD .=Delete($table,$idTable,$idD,$page);
-$errorD .=Delete($tableM,$idTableM,$idM,$page);
-$errorD .=Delete($tableE,$idTableE,$idE,$page);
+
+Delete($table,$idTable,$idD,$page, 'toto');
+//TODO
+$er=Delete($tableE,$idTableE,$idE,$page, 'toto');    
+
+Delete($tableM,$idTableM,$idM,$page);  
+
+
+
+// $errorD .=Delete($table,$idTable,$idD,$page);
+// $errorD .=Delete($tableM,$idTableM,$idM,$page);
+// $errorD .=Delete($tableE,$idTableE,$idE,$page);
 
 ////////////////ON TEST LE FICHIER////////////////
 
@@ -48,7 +53,7 @@ if (!empty($_FILES) && isset($_FILES['photoEvent'])){
 
 ////////////////ON UPDATE////////////////
 
-if (isset(($_GET['e']))) {
+if (isset($_GET['e'])) {
      
     $actived=$_GET['e']==1 ? 0 : 1;
 
@@ -127,6 +132,7 @@ INNER JOIN event_content
 ON event_content.id_event=event.id_event
 INNER JOIN content
 ON content.id_content=event_content.id_content GROUP BY event.id_event")->fetchAll(PDO::FETCH_ASSOC);
+
 
 if (!empty($_GET) && isset($_GET['id']) && isset($_GET['a']) && $_GET['a'] == 'edit') {
     $datas = execute("SELECT activated,start_date_event,end_date_event, event.id_event AS idE, media.id_media AS idM,content.id_content, title_content, description_content, content.id_page,title_media,name_media
@@ -244,7 +250,7 @@ endif; ?>
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Titre:</label>
             <input name="title_content" id="content" placeholder="Titre" type="text"
-                   value="<?php $a=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['title_content'] : '';
+                   value="<?php $a=(isset($_GET['a']) && ($_GET['a'] == 'edit'))? $data['title_content'] : '';
                    echo $a;?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 
@@ -252,11 +258,11 @@ endif; ?>
             <label for="photoEvent" class="form-label">Photo</label>
             <input name="photoEvent" type="file" class="form-control">
             <?php if(!isset($_GET['a'])):?>
-            <input type="hidden" name="photoEvent2" value="<?php echo $data['name_media'];?>">
+            <input type="hidden" name="photoEvent2" value="<?php echo $data['name_media'] ?? '';?>">
             <?php endif; ?>
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">
-            <?php $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
+            <?php    $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
             echo $m;?></small>
             
             <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
@@ -271,10 +277,11 @@ endif; ?>
         <input type="hidden" name="id_media" value="<?php $y=isset($_GET['idM']) ? $_GET['idM'] : '';
                    echo $y;?>">
         <input type="hidden" name="id_event" value="<?php $t=isset($_GET['idE']) ? $_GET['idE'] : ''; 
-         echo $t; ?>">
+         echo $t; ?>"> 
+      
         <button type="submit" class="btn btn-primary mt-2">Valider</button>
     </form>
-
+ <?php //die('coucou');  ?>
     <table class="table table-light table-striped w-75 mx-auto">
         <thead>
         <tr>
@@ -297,6 +304,7 @@ endif; ?>
             ON media.id_media=event_content.id_media WHERE event_content.id_event=:idE",array(
                 ':idE'=>$content['idE']
             ))->fetchAll(PDO::FETCH_ASSOC);
+      
             ?>
             <tr>
                 <?php foreach ($imgs as $img):

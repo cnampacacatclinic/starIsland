@@ -21,3 +21,21 @@ const CONFIG=[
 
 const BASE_PATH='/starisland/';
 
+/*const CONFIG=[
+    'db'=>[
+        'HOST'=>'localhost',
+        'PORT'=>'3306',
+        'NAME'=>'dece5725_cathy',
+        'USER'=>'dece5725_cezdigitevogue',
+        'PWD'=>'Cezevogue1986@'
+
+    ],
+    'app'=>[
+        'name'=>'starisland',
+        'projecturl'=>'https://catherine.cezdigit.com'
+    ]
+
+];
+
+const BASE_PATH='/';*/
+

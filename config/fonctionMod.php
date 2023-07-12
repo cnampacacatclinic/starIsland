@@ -13,7 +13,7 @@ exercice.
 $t;$c;$a;$array;$datas;$data='';
 
 //Delete
-function Delete($t,$c,$id,$p){
+function Delete($t,$c,$id,$p,$opt=null){
     if (!empty($_GET) && isset($id) && isset($_GET['a']) && $_GET['a'] == 'del') {
         /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/
         try{
@@ -23,14 +23,18 @@ function Delete($t,$c,$id,$p){
     
             if ($success) {
                 $_SESSION['messages']['success'][] = '<p>Suppression effectuée</p>';
-                header('location:./?p='.$p.'');
-                exit;
+               
     
             } else {
                 $_SESSION['messages']['danger'][] = '<p>Problème de traitement, veuillez réitérer</p>';
-                header('location:./?p='.$p.'');
-                exit;
+                
             }
+            
+            if($opt==null){
+                header('location:./?p='.$p.'');
+                exit; 
+            }
+           
         }catch(Exception $e) { 
             $_SESSION['messages']['danger'][] = '<p>Exception !</p>';
             //var_dump($e);

@@ -13,6 +13,7 @@ exercice.
 $t;$c;$a;$array;$datas;$data='';
 
 //Delete
+//*On a du ajouter un parametre obsionnel $opt pour eviter le header('location car dans certain cas il empeche les requetes precedentes
 function Delete($t,$c,$id,$p,$opt=null){
     if (!empty($_GET) && isset($id) && isset($_GET['a']) && $_GET['a'] == 'del') {
         /*Note de Catherine : J'ai ajouté le try catch parce que les erreurs ne s'affichent pas dans la page !!!!*/

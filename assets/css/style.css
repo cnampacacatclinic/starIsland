@@ -357,7 +357,7 @@ a:hover{
 }
 #avis figcaption{
 width: 322px;
-height: 105px;
+height: auto;
 left: 337px;
 top: 95px;
 background: rgba(255, 255, 255, 0.7);

@@ -521,6 +521,9 @@ header, nav {
     background-color: #212121;
 }
 
+#navbarNavDropdown{
+    z-index:1000 !important;
+}
 /* //////////// Section devenir VIP //////////// */
 #devenirVIP{
     flex-direction: column;

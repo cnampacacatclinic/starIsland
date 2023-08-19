@@ -107,17 +107,20 @@ exercice.
                 <img id="start4" alt="note 4 icone etoile" class="etoile unchecked st"  src="assets/fontawesome-free/svgs/solid/star.svg">
                 <img id="start5" alt="note 5 icone etoile" class="etoile unchecked st" src="assets/fontawesome-free/svgs/solid/star.svg">
             </span>
+            <p id="textErrorModal" class="danger"></p>
             <input name="note" id="note" type="hidden" value="">
             <p class="danger"><?= $error ?? ''; ?></p>
             <input id="pseudoVisiteur" required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
-            <p class="danger">* le nombre de caractères pour le pseudo est limité à 20.</p>
+            <p>* le nombre de caractères pour le pseudo est limité à 20.</p>
             <p class="danger"><?= $error ?? ''; ?></p>
             <textarea id="textComment" class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
-            <p class="danger">* le nombre de caractères pour le texte est limité à 250.</p>
+            <p>* le nombre de caractères pour le texte est limité à 250.</p>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>
 </section>
+
+
 <script>
   const collection = document.getElementsByClassName('st');
   let note = document.getElementById('note');
@@ -138,13 +141,28 @@ exercice.
   let textComment = document.getElementById('textComment');
   let formAvis = document.getElementById('topServeur');
 
+  let modal1 =document.getElementById('modal1');
+  //modal1.style.display = "none";
+
   formAvis.addEventListener('submit', function(e) {
     if(textComment.value.length>250 || pseudoVisiteur.value.length>20){
 
-      alert('<p>C\'est trop long !<br>Pseudo : '+pseudoVisiteur.value.length+' caractères<br>Texte : '+textComment.value.length+' caractères</p>');
+      document.getElementById('textErrorModal').innerHTML='C\'est trop long !<br>';
+
+      //alert('<p>C\'est trop long !<br>Pseudo : '+pseudoVisiteur.value.length+' caractères<br>Texte : '+textComment.value.length+' caractères</p>');
+      if(pseudoVisiteur.value.length>20){
+        document.getElementById('textErrorModal').innerHTML+='Pseudo : '+pseudoVisiteur.value.length+' caractères. Il en faut 20 max.<br>';
+      }
+      if(textComment.value.length>20){
+        document.getElementById('textErrorModal').innerHTML+='Texte : '+textComment.value.length+' caractères. Il en faut 250 max.';
+      }
+
       e.preventDefault();
+      
 
     }
   })
+
+
 
 </script>

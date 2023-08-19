@@ -844,8 +844,9 @@ header, nav {
         background-color: transparent;
         flex-direction: column;
     }
-    #avis figure{
-        margin:0;
+    #avis figure {
+        width: 320px;
+        margin: 0;
         margin-bottom: 1.5em;
         margin-top: 1.5em;
     }
@@ -1027,9 +1028,9 @@ header, nav {
         font-size: 1.5em;
     }
 
-    /*#avis figure{
-        width: 360px;
-    }*/
+    #avis figure {
+        width: 250px;
+    }
 
     #avis figcaption{
     width: 300px;

@@ -935,14 +935,15 @@ header, nav {
     #team h2{
         margin-bottom: 100px;
     }
-    #team figcaption{
+    /*Le overlay marche dans la version telephonique car le navigateur en fait un click*/
+    /*#team figcaption{
         opacity: 1;
         display: block;
         background-color: rgba(255, 255, 255, 0.3);
         border: solid 1px #EA4C6F;
         border-top-left-radius: 45%;
         border-bottom-right-radius: 45%;
-    }
+    }/**/
     #team figure{
         background-color: transparent;
         border: none;

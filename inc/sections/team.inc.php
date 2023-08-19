@@ -63,6 +63,10 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
                 echo 'avatar-1.png';
             endif;
             ?>">
+            <!--///////////////////////////////////////////////////////////////////////////////////-->
+            <!-- NOTE : Le overlay marche dans la version téléphonique contraierment à la légende !-->
+            <!--// Testé avec trois téléphones dont un model datant de 2014 //-->
+            <!--///////////////////////////////////////////////////////////////////////////////////-->
             <figcaption class="teamReseauxSociaux">
                 Role: <?php echo $membre['role_team'];?><br>
                 <?php echo $avatar['nickname_team'];

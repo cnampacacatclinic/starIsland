@@ -99,6 +99,7 @@ section{
     padding-top: 90px;
     padding-bottom: 90px;
 }
+
 .backgroundColor{
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -384,6 +385,11 @@ margin-bottom: 1.5em;
     padding:0;
     margin: 0.5em;
 }
+
+#avis .danger{
+    color:red !important;
+}
+
 #avis .etoile{
     width: 1.2em;
     margin:0.2;
@@ -782,7 +788,9 @@ header, nav {
     border-radius: 30px;
 }
 
-
+.danger{
+    color:red;
+}
 @media (max-width: 991px) {
     #navbarNavDropdown #favHome{
         padding: 0;

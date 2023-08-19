@@ -79,9 +79,9 @@ exercice.
             $last_id_media=execute("SELECT id_media FROM media WHERE id_media_type=2 AND id_page=3 ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             
              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
-                  ':nickname_comment' => trim(htmlspecialchars(mb_convert_encoding($_POST['nickname_comment'],'UTF-8'))),
-                  
-                  ':comment_text' => trim(htmlspecialchars(mb_convert_encoding($_POST['comment'],'UTF-8'))),
+                  ':nickname_comment' => trim(htmlspecialchars(mb_convert_encoding(substr($_POST['nickname_comment'],0,20),'UTF-8'))),
+                  //limite à 250 caracteres
+                  ':comment_text' => trim(htmlspecialchars(mb_convert_encoding(substr($_POST['comment'],0,250),'UTF-8'))),
                   ':rating_comment' => trim(htmlspecialchars($ratingComment)),
                   ':id_media' => $last_id_media['id_media']
               ));
@@ -109,9 +109,11 @@ exercice.
             </span>
             <input name="note" id="note" type="hidden" value="">
             <p class="danger"><?= $error ?? ''; ?></p>
-            <input required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
+            <input id="pseudoVisiteur" required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
+            <p class="danger">* le nombre de caractères pour le pseudo est limité à 20.</p>
             <p class="danger"><?= $error ?? ''; ?></p>
-            <textarea class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
+            <textarea id="textComment" class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
+            <p class="danger">* le nombre de caractères pour le texte est limité à 250.</p>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>
     </form>
@@ -132,4 +134,17 @@ exercice.
       }
     });
   }
+
+  let textComment = document.getElementById('textComment');
+  let formAvis = document.getElementById('topServeur');
+
+  formAvis.addEventListener('submit', function(e) {
+    if(textComment.value.length>250 || pseudoVisiteur.value.length>20){
+
+      alert('<p>C\'est trop long !<br>Pseudo : '+pseudoVisiteur.value.length+' caractères<br>Texte : '+textComment.value.length+' caractères</p>');
+      e.preventDefault();
+
+    }
+  })
+
 </script>

@@ -81,8 +81,8 @@ require_once '../inc/backheader.inc.php';
         <tbody>
         <?php foreach ($contents as $content): ?>
             <tr>
-                <td><?= $content['title_content']; ?></td>
-                <td><?= $content['description_content']; ?></td>
+                <td><?= htmlspecialchars_decode($content['title_content']); ?></td>
+                <td><?= htmlspecialchars_decode($content['description_content']); ?></td>
                 <td class="text-center">
                     <a href="?p=<?= $ph; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                 </td>

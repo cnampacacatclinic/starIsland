@@ -40,6 +40,7 @@ if (!empty($_POST)) {
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
                     ':id' => trim(htmlspecialchars($_POST['id_content'])),
                     ':title' => trim(htmlspecialchars($_POST['title_content'])),
+                    //htmlspecialchars n'y est pas pourvoir inserer des balises textes
                     ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
                     ':id_page' => 5
                 ));
@@ -83,8 +84,8 @@ require_once '../inc/backheader.inc.php';
         <tbody>
         <?php foreach ($contents as $content): ?>
             <tr>
-                <td><?= $content['title_content']; ?></td>
-                <td><?= $content['description_content']; ?></td>
+                <td><?= htmlspecialchars_decode($content['title_content']); ?></td>
+                <td><?= htmlspecialchars_decode($content['description_content']); ?></td>
                 <td class="text-center">
                     <a href="?p=<?= $pv; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                 </td>

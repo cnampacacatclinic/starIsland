@@ -122,6 +122,7 @@ if (isset($_GET['id'])) {
         execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
                 ':id' => $_REQUEST['id'],
                 ':title_content' => trim(htmlspecialchars($_REQUEST['title_content'])),
+                //htmlspecialchars n'y est pas pour pouvoir inserrer les balises textes
                 ':description_content' => trim(htmlspecialchars($_REQUEST['description_content']))
         ));
         messageSession($page);
@@ -191,6 +192,7 @@ if (empty($_POST['title_content']) && empty($_POST['description_content'])){
                     ));
                     execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
                         ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
+                        //htmlspecialchars n'y est pas pour pouvoir inserrer les balises textes
                         ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
                         ':id_page' => 4
                     ));
@@ -325,8 +327,8 @@ endif; ?>
                 <?php endforeach;?>
                 <td><?= $content['start_date_event']; ?></td>
                 <td><?= $content['end_date_event']; ?></td>
-                <td><?= $content['title_content']; ?></td>
-                <td><?= $content['description_content']; ?></td>
+                <td><?= htmlspecialchars_decode($content['title_content']); ?></td>
+                <td><?= htmlspecialchars_decode($content['description_content']); ?></td>
                 <td class="text-center">
                     <a href="?p=<?= $page; ?>&idE=<?= $content['idE']; ?>&e=<?=$content['activated'];?>" class="btn btn-outline-info">
                         <?php

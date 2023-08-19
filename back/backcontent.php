@@ -55,7 +55,7 @@ if (!empty($_POST)) {
                 execute("INSERT INTO content (title_content,description_content,id_page) VALUES (:title_content,:description_content,:id_page)", array(
                     ':title_content' => trim(htmlspecialchars($_POST['title_content'])),
                     ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
-                    ':id_page' => trim(htmlspecialchars($_POST['id_page1']))
+                    ':id_page' =>$_POST['id_page1']
                 ));
 
                 messageSession($pc);
@@ -65,10 +65,10 @@ if (!empty($_POST)) {
                 $idPage = $_POST['id_page1'] ? $_POST['id_page1'] : $_POST['id_page2'];
 
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
-                    ':id' => trim(htmlspecialchars($_POST['id_content'])),
+                    ':id' => $_POST['id_content'],
                     ':title' => trim(htmlspecialchars($_POST['title_content'])),
                     ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
-                    ':id_page' => trim(htmlspecialchars($idPage))
+                    ':id_page' => $idPage
                 ));
 
                 messageSession($pc);
@@ -130,9 +130,9 @@ require_once '../inc/backheader.inc.php';
         <tbody>
         <?php foreach ($contents as $content): ?>
             <tr>
-                <td><?= $content['title_page']; ?></td>
-                <td><?= $content['title_content']; ?></td>
-                <td><?= $content['description_content']; ?></td>
+                <td><?= htmlspecialchars_decode($content['title_page']); ?></td>
+                <td><?= htmlspecialchars_decode($content['title_content']); ?></td>
+                <td><?= htmlspecialchars_decode($content['description_content']); ?></td>
                 <td class="text-center">
                     <a href="?p=<?= $pc; ?>&id=<?= $content['id_content']; ?>&a=edit" class="btn btn-outline-info">Modifier</a>
                     <a href="?p=<?= $pc; ?>&id=<?= $content['id_content']; ?>&a=del" onclick="return confirm('Etes-vous sûr?')"

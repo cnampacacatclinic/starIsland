@@ -57,6 +57,9 @@ switch ($page) {
     case 'login':
         include 'security/login.php';
         break;
+    case 'page404':
+            include 'inc/sections/page404.inc.php';
+        break;
     case 'dis':
         //unset($_SESSION['user']);
         session_destroy();

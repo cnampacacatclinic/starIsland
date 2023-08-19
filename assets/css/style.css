@@ -359,8 +359,9 @@ a:hover{
 #avis figcaption{
 width: 322px;
 height: auto;
+/*position: relative;
 left: 337px;
-top: 95px;
+top: 95px;*/
 background: rgba(255, 255, 255, 0.7);
 border: 1px solid rgba(0, 0, 0, 0.5);
 text-align: center;
@@ -389,6 +390,7 @@ margin-bottom: 1.5em;
 #avis .blockSuccess{
     font-size: 1em;
     color: green;
+    width: 80%;
 }
 
 #avis .danger{
@@ -1020,12 +1022,19 @@ header, nav {
      margin:0;
      left: 0;
     }
-    #avis figure{
-        width: 360px;
+
+    #topServeur label {
+        font-size: 1.5em;
     }
+
+    /*#avis figure{
+        width: 360px;
+    }*/
+
     #avis figcaption{
     width: 300px;
     }
+
     #avis p{
        margin: 0;
        padding: 3px;

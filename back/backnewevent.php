@@ -30,9 +30,9 @@ $errorI;$errorD='';
 /////////////////ON SUPPRIME////////////////
 
 
-Delete($table,$idTable,$idD,$page, 'toto');
+Delete($table,$idTable,$idD,$page, 'opt');
 //TODO
-$er=Delete($tableE,$idTableE,$idE,$page, 'toto');    
+$er=Delete($tableE,$idTableE,$idE,$page, 'opt');    
 
 Delete($tableM,$idTableM,$idM,$page);  
 
@@ -250,7 +250,7 @@ endif; ?>
             <small class="text-danger">*</small>
             <label for="content" class="form-label">Titre:</label>
             <input name="title_content" id="content" placeholder="Titre" type="text"
-                   value="<?php $a=(isset($_GET['a']) && ($_GET['a'] == 'edit'))? $data['title_content'] : '';
+                   value="<?php $a=isset($_GET['a']) && ($_GET['a'] == 'edit') ? $data['title_content'] : '';
                    echo $a;?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 

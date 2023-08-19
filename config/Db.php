@@ -10,7 +10,8 @@ class Db{
 
         return   $pdo=new PDO('mysql:host='.CONFIG['db']['HOST'].';dbname='.CONFIG['db']['NAME'].';port='.CONFIG['db']['PORT'],CONFIG['db']['USER'],CONFIG['db']['PWD'],array(
                 PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-                PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8'
+                //changer utf8mb4 pour pouvoir inserrer des emojis dans la bdd
+                PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8mb4'
 
             ) );
 

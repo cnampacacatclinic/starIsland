@@ -28,6 +28,7 @@ exercice.
     <figure>
         <img class="avisAvatar" src="assets/comment-avatar/<?= $avatarComment['name_media']; ?>">
         <figcaption>
+          
           <p><?= $comment['nickname_comment']; ?>
               <span>
                 <?php 
@@ -39,6 +40,7 @@ exercice.
                 ?>
                 </span>
           </p>
+          
           <p><?= $comment['comment_text']; ?></p>
           <p><?= $comment['publish_date_comment']; ?></p>
         </figcaption>
@@ -77,8 +79,9 @@ exercice.
             $last_id_media=execute("SELECT id_media FROM media WHERE id_media_type=2 AND id_page=3 ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             
              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
-                  ':nickname_comment' => trim(htmlspecialchars($_POST['nickname_comment'])),
-                  ':comment_text' => trim(htmlspecialchars($_POST['comment'])),
+                  ':nickname_comment' => trim(htmlspecialchars(mb_convert_encoding($_POST['nickname_comment'],'UTF-8'))),
+                  
+                  ':comment_text' => trim(htmlspecialchars(mb_convert_encoding($_POST['comment'],'UTF-8'))),
                   ':rating_comment' => trim(htmlspecialchars($ratingComment)),
                   ':id_media' => $last_id_media['id_media']
               ));

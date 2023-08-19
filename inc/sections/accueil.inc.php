@@ -19,7 +19,7 @@ WHERE url='home'")->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach($contentHome as $textHome):
     ?>
     <h1><?=$textHome['title_content'];?></h1>
-    <p><?=$textHome['description_content'];?></p>
+    <p><?=mb_convert_encoding($textHome['description_content'],'UTF-8');?></p>
     <?php endforeach; ?>
 </div>
 </section>

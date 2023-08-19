@@ -91,7 +91,7 @@ exercice.
     }// fin de si on obtient un $_POST
 
     if($reussite==true){
-      $message ='<p class="w-25 rounded text-center alert alert-success">&#10084; Merci pour votre commentaire ! &#10084;</p>';
+      $message ='<p class="rounded text-center alert alert-success blockSuccess">&#10084; Merci ! &#10084<br>Votre commentaire apparaitra après validation.</p>';
     }
 
     ?>

@@ -386,6 +386,11 @@ margin-bottom: 1.5em;
     margin: 0.5em;
 }
 
+#avis .blockSuccess{
+    font-size: 1em;
+    color: green;
+}
+
 #avis .danger{
     color:red !important;
     font-size: 1em;

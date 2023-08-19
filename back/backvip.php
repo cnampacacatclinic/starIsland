@@ -40,7 +40,6 @@ if (!empty($_POST)) {
                 execute("UPDATE content SET title_content=:title,description_content=:description_content,id_page=:id_page WHERE id_content=:id", array(
                     ':id' => trim(htmlspecialchars($_POST['id_content'])),
                     ':title' => trim(htmlspecialchars($_POST['title_content'])),
-                    //htmlspecialchars n'y est pas pourvoir inserer des balises textes
                     ':description_content' => trim(htmlspecialchars($_POST['description_content'])),
                     ':id_page' => 5
                 ));

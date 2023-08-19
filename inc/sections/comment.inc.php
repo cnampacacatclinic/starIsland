@@ -26,7 +26,7 @@ exercice.
     <figure>
         <img class="avisAvatar" src="assets/avatar/<?= $avatarComment['name_media']; ?>">
         <figcaption>
-          <p><?= $comment['nickname_comment']; ?>
+          <p><?= htmlspecialchars_decode($comment['nickname_comment']); ?>
               <span>
               <?php 
                 for ($i=1; $i <= $comment['rating_comment']; $i++) { ?>
@@ -37,7 +37,7 @@ exercice.
               ?>
               </span>
           </p>
-          <p><?= $comment['comment_text']; ?></p>
+          <p><?= htmlspecialchars_decode($comment['comment_text']); ?></p>
           <p><?= $comment['publish_date_comment']; ?></p>
         </figcaption>
     </figure>

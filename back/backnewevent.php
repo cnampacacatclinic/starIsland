@@ -122,7 +122,6 @@ if (isset($_GET['id'])) {
         execute("UPDATE content SET title_content=:title_content,description_content=:description_content WHERE id_content=:id", array(
                 ':id' => $_REQUEST['id'],
                 ':title_content' => trim(htmlspecialchars($_REQUEST['title_content'])),
-                //htmlspecialchars n'y est pas pour pouvoir inserrer les balises textes
                 ':description_content' => trim(htmlspecialchars($_REQUEST['description_content']))
         ));
         messageSession($page);

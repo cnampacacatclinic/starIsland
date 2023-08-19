@@ -27,8 +27,8 @@ WHERE url='vip' GROUP BY name_media")->fetchAll(PDO::FETCH_ASSOC);
         <article class="divFlexRow">
         <figure><img alt="portrait d'un membre VIP" src="assets/img/<?= $textVip['name_media'];?>"></figure>
         <div>
-            <h3><?=$textVip['title_content'];?></h3>
-            <p><?=$textVip['description_content'];?></p>
+            <h3><?=htmlspecialchars_decode($textVip['title_content']);?></h3>
+            <p><?=htmlspecialchars_decode($textVip['description_content']);?></p>
         </div>
     </article>
     <?php endforeach;?>

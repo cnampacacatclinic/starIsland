@@ -38,8 +38,8 @@ ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
         <input id="idDateFin" type=hidden id=variableAPasser value=<?=$dateFin;?>>
       <div id="timerJs"></div>
 
-      <h3><?= $event['title_content']; ?></h3>
-      <p><?= $event['description_content']; ?></p>
+      <h3><?= htmlspecialchars_decode($event['title_content']); ?></h3>
+      <p><?= htmlspecialchars_decode($event['description_content']); ?></p>
     </div>
   <?php
       endforeach;

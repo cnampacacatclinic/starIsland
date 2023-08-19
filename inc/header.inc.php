@@ -20,9 +20,10 @@ exercice.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Star's Island</title>
-	<meta name="description" content="Page du site du serveur Star's Island">
+    <!--    On change le titre et la description en fonction de la page    -->
+    <?php $namePageDescription=isset($_GET['page'])? 'Page : '.$_GET['page'] :''; ?>
+    <title>Star's Island <?php echo $namePageDescription; ?></title>
+	<meta name="description" content="<?php echo $namePageDescription; ?> du site du serveur Star's Island">
     
     <!-- Debut des balises meta Facebook-->
     <meta property="og:site_name" content="Star's Island serveur GTA 5">

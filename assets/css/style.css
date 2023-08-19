@@ -840,6 +840,7 @@ header, nav {
     h1{
         margin-bottom: 10px;
     }
+    
     #navFooter ul{
         background-color: transparent;
         flex-direction: column;
@@ -998,7 +999,10 @@ header, nav {
     #login {
         width: 95% !important;
     }
-
+    .linkButton{
+        height: auto;
+        width: auto;
+    }
     #petitLogo{
      position: relative;
      margin:0;
@@ -1029,7 +1033,7 @@ header, nav {
     }
 
     #avis figure {
-        width: 250px;
+        width: 290px;
     }
 
     #avis figcaption{

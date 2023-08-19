@@ -79,7 +79,7 @@ exercice.
             $last_id_media=execute("SELECT id_media FROM media WHERE id_media_type=2 AND id_page=3 ORDER BY id_media DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             
              execute("INSERT INTO comment(rating_comment,comment_text,publish_date_comment,nickname_comment,id_media) VALUES (:rating_comment,:comment_text,CURRENT_TIMESTAMP(),:nickname_comment,:id_media)", array(
-                  ':nickname_comment' => trim(htmlspecialchars(mb_convert_encoding(substr($_POST['nickname_comment'],0,20),'UTF-8'))),
+                  ':nickname_comment' => trim(htmlspecialchars(mb_convert_encoding(substr($_POST['nickname_comment'],0,15),'UTF-8'))),
                   //limite à 250 caracteres
                   ':comment_text' => trim(htmlspecialchars(mb_convert_encoding(substr($_POST['comment'],0,250),'UTF-8'))),
                   ':rating_comment' => trim(htmlspecialchars($ratingComment)),
@@ -111,7 +111,7 @@ exercice.
             <input name="note" id="note" type="hidden" value="">
             <p class="danger"><?= $error ?? ''; ?></p>
             <input id="pseudoVisiteur" required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
-            <p>* le nombre de caractères pour le pseudo est limité à 20.</p>
+            <p>* le nombre de caractères pour le pseudo est limité à 15.</p>
             <p class="danger"><?= $error ?? ''; ?></p>
             <textarea id="textComment" class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
             <p>* le nombre de caractères pour le texte est limité à 250.</p>
@@ -145,15 +145,15 @@ exercice.
   //modal1.style.display = "none";
 
   formAvis.addEventListener('submit', function(e) {
-    if(textComment.value.length>250 || pseudoVisiteur.value.length>20){
+    if(textComment.value.length>250 || pseudoVisiteur.value.length>15){
 
       document.getElementById('textErrorModal').innerHTML='C\'est trop long !<br>';
 
       //alert('<p>C\'est trop long !<br>Pseudo : '+pseudoVisiteur.value.length+' caractères<br>Texte : '+textComment.value.length+' caractères</p>');
-      if(pseudoVisiteur.value.length>20){
+      if(pseudoVisiteur.value.length>15){
         document.getElementById('textErrorModal').innerHTML+='Pseudo : '+pseudoVisiteur.value.length+' caractères. Il en faut 20 max.<br>';
       }
-      if(textComment.value.length>20){
+      if(textComment.value.length>250){
         document.getElementById('textErrorModal').innerHTML+='Texte : '+textComment.value.length+' caractères. Il en faut 250 max.';
       }
 

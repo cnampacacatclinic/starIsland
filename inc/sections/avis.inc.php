@@ -157,5 +157,12 @@ exercice.
       
 
     }
+
+    if(textComment.value.trim()=='' || pseudoVisiteur.value.trim()==''){
+
+      document.getElementById('textErrorModal').innerHTML='Veuillez remplir tous les champs.';
+      e.preventDefault();
+    }
+
   })
 </script>

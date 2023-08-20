@@ -124,10 +124,10 @@ exercice.
 <script>
   const collection = document.getElementsByClassName('st');
   let note = document.getElementById('note');
-  //console.log(collection.length);
+
  console.log(collection);
  for(let num=0;num<collection.length;num++){
-  //console.log(num);
+
     collection[num].addEventListener('click', function() {
       for(let i=0;i<=num;i++){
         collection[i].style.width = '2em';
@@ -141,17 +141,13 @@ exercice.
   let textComment = document.getElementById('textComment');
   let formAvis = document.getElementById('topServeur');
 
-  let modal1 =document.getElementById('modal1');
-  //modal1.style.display = "none";
-
   formAvis.addEventListener('submit', function(e) {
     if(textComment.value.length>250 || pseudoVisiteur.value.length>15){
 
       document.getElementById('textErrorModal').innerHTML='C\'est trop long !<br>';
 
-      //alert('<p>C\'est trop long !<br>Pseudo : '+pseudoVisiteur.value.length+' caractères<br>Texte : '+textComment.value.length+' caractères</p>');
       if(pseudoVisiteur.value.length>15){
-        document.getElementById('textErrorModal').innerHTML+='Pseudo : '+pseudoVisiteur.value.length+' caractères. Il en faut 20 max.<br>';
+        document.getElementById('textErrorModal').innerHTML+='Pseudo : '+pseudoVisiteur.value.length+' caractères. Il en faut 15 max.<br>';
       }
       if(textComment.value.length>250){
         document.getElementById('textErrorModal').innerHTML+='Texte : '+textComment.value.length+' caractères. Il en faut 250 max.';
@@ -162,7 +158,4 @@ exercice.
 
     }
   })
-
-
-
 </script>

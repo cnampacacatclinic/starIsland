@@ -55,6 +55,7 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
 
         foreach($img as $avatar):
     ?>
+        
         <figure>
             <img alt="<?=$avatar['title_media'] ?? 'Avatar';?>" class="teamAvatar" src="assets/avatar/<?php 
             if($avatar!==NULL):
@@ -103,7 +104,22 @@ if(isset($_GET['r']) && $_GET['r']!=='tout'){
                 </ul>
             </figcaption>
         </figure>
-        <?php endforeach;
-        endforeach; ?>
+        <?php endforeach;//2;
+    endforeach; //1
+    ?>
     </div>
 </section>
+<script>
+const teamAlbum = document.getElementById('teamAlbum');
+const figures = teamAlbum.querySelectorAll('figure');
+
+for (let i = 0; i < figures.length; i++) {
+  if (i % 2 === 0) {
+    // Lignes paires
+    figures[i].style.flexBasis = `calc(${100 / 4}% - 10px)`;
+  } else {
+    // Lignes impaires
+    figures[i].style.flexBasis = `calc(${100 / 8}% - 10px)`;
+  }
+}
+</script>

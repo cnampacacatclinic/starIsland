@@ -686,6 +686,45 @@ header, nav {
     flex-direction: column;
     align-items: center;
 }
+/*TODO
+#teamAlbum {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+ /*#teamAlbum > figure:nth-child(even) {
+    flex-basis: calc(25% - 10px); /* Pour 4 images sur les lignes impaires */
+  /*}
+  
+  #teamAlbum > figure:nth-child(odd) {
+    flex-basis: calc(16.67% - 10px); /* Pour 6 images sur les lignes paires */
+ /* }*/
+
+#teamAlbum {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacement entre les images */
+  }
+  
+  /*#teamAlbum > figure:nth-child(4n + 1),
+  #teamAlbum > figure:nth-child(4n + 2),
+  #teamAlbum > figure:nth-child(4n + 3),
+  #teamAlbum > figure:nth-child(4n + 4) {
+    flex-basis: calc(25% - 10px); /* Pour 4 images sur les lignes impaires */
+  /*}
+  
+  #teamAlbum > figure:nth-child(4n + 5),
+  #teamAlbum > figure:nth-child(4n + 6),
+  #teamAlbum > figure:nth-child(4n + 7),
+  #teamAlbum > figure:nth-child(4n + 8),
+  #teamAlbum > figure:nth-child(4n + 9),
+  #teamAlbum > figure:nth-child(4n + 10) {
+    flex-basis: calc(16.67% - 10px); /* Pour 6 images sur les lignes paires */
+  /*}
+/************************/
+
 #team figure:hover{
     background-color: rgba(255, 255, 255, 0.3);
     border: solid 1px #EA4C6F;

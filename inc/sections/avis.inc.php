@@ -26,7 +26,7 @@ exercice.
   foreach($imgComment as $avatarComment):
   ?> 
     <figure>
-        <img class="avisAvatar" src="assets/comment-avatar/<?= $avatarComment['name_media']; ?>">
+        <img class="avisAvatar" alt="avatar" src="assets/comment-avatar/<?= $avatarComment['name_media']; ?>">
         <figcaption>
           
           <p><?= htmlspecialchars_decode($comment['nickname_comment']); ?>
@@ -113,7 +113,7 @@ exercice.
             <input id="pseudoVisiteur" required type="text" name="nickname_comment" class="form-control" placeholder="Votre pseudo" value="">
             <p>* le nombre de caractères pour le pseudo est limité à 15.</p>
             <p class="danger"><?= $error ?? ''; ?></p>
-            <textarea id="textComment" class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required value=""></textarea>
+            <textarea id="textComment" class="form-control" rows="4" cols="25" name="comment" placeholder="Ecrire votre commentaire" required></textarea>
             <p>* le nombre de caractères pour le texte est limité à 250.</p>
             <button type="submit" class="btn btn-light">Publier</button>
         </fieldset>

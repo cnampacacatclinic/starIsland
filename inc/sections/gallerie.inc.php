@@ -59,3 +59,5 @@ exercice.
   </figure>
   <?php
 } ?>
+</div>
+</section>

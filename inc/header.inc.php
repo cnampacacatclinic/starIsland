@@ -81,6 +81,7 @@ exercice.
                 <li class="nav-item liSmall">
                     <a class="nav-link" href="#">Tuto</a>
                 </li>
+            </ul>
             <div id="divEventTuto">
                 <ul id="buttonsNav">
                         <li class="nav-item liBig">

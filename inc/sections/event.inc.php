@@ -33,7 +33,7 @@ ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
   ?>
     <figure><img alt="event" src="assets/img/<?= $event['name_media'];?>"></figure>
     <div>
-      <h3>Time reaming<h3>
+      <h3>Time reaming</h3>
         <!-- cet input est pour transmettre la date au fichier javascript timerJs.js-->
         <input id="idDateFin" type=hidden id=variableAPasser value=<?=$dateFin;?>>
       <div id="timerJs"></div>

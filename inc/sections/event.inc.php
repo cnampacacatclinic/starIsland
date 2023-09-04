@@ -35,7 +35,7 @@ ORDER BY end_date_event DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC);
     <div>
       <h3>Time reaming</h3>
         <!-- cet input est pour transmettre la date au fichier javascript timerJs.js-->
-        <input id="idDateFin" type=hidden id=variableAPasser value=<?=$dateFin;?>>
+        <input id="idDateFin" type="hidden" id="variableAPasser" value="<?=$dateFin;?>">
       <div id="timerJs"></div>
 
       <h3><?= htmlspecialchars_decode($event['title_content']); ?></h3>

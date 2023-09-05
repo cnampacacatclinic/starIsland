@@ -93,7 +93,7 @@ require_once '../inc/backheader.inc.php';
                         echo 'Page:';}
                 ?>
             </label>
-            <select class="custom-select" name="id_page1">
+            <select id="page" class="custom-select" name="id_page1">
                 <option selected value="">
                     Choisir une page *
                 </option>
@@ -104,14 +104,14 @@ require_once '../inc/backheader.inc.php';
             <input type="hidden" name="id_page2" value="<?=$content2['idPage'] ?? ''; ?>">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
-            <label for="content" class="form-label">Titre:</label>
-            <input name="title_content" id="content" placeholder="Titre" type="text"
+            <label for="titleContent" class="form-label">Titre:</label>
+            <input name="title_content" id="titleContent" placeholder="Titre" type="text"
                    value="<?= $content2['title_content'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">*</small>
-            <label for="content" class="form-label">Texte:</label>
+            <label for="description_content" class="form-label">Texte:</label>
             <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
-                   value="<?= $content2['description_content'] ?? ''; ?>" class="form-control"><?= $content2['description_content'] ?? ''; ?></textarea>
+                   value="<?= $content2['description_content'] ?? ''; ?>"><?= $content2['description_content'] ?? ''; ?></textarea>
             <small class="text-danger"><?= $error ?? ''; ?></small>
         </div>
         <input type="hidden" name="id_content" value="<?= $content2['id_content'] ?? ''; ?>">

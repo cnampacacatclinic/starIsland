@@ -150,9 +150,11 @@ exercice.
 <!--            </div>-->
       <!--  </li>-->
         <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        <li class="text-center d-none d-md-inline">
+            
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            
+        </li>
     </ul>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">

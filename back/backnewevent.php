@@ -233,7 +233,7 @@ endif; ?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
             <div class="form-group">
             <span><small class="text-danger">*</small>
-            <label for="start_date" class="form-label"><?php
+            <label for="startDate" class="form-label"><?php
             if(isset($_GET['idE'])){
                 echo 'Début : '.$data['start_date_event'];
             }else{
@@ -242,11 +242,11 @@ endif; ?>
             ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="start_date" id="start_date" type="datetime-local"
             value="<? //echo $data['start_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="start_date" type="date"
+            <input id="startDate" min="<?=date('Y-m-d');?>" name="start_date" type="date"
             value="<?=$data['start_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
             <small class="text-danger">*</small>
-            <label for="end_date" class="form-label">
+            <label for="endDate" class="form-label">
         <?php
             if(isset($_GET['id'])){
                 echo 'Fin : '.$data['end_date_event'];
@@ -254,20 +254,20 @@ endif; ?>
                 echo 'Date de fin';}
         ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="end_date" id="en_date" placeholder="Date de fin" type="datetime-local" value="<? //echo $data['end_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="end_date" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
+            <input id="endDate" min="<?=date('Y-m-d');?>" name="end_date" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             </span>
 
             <small class="text-danger">*</small>
-            <label for="content" class="form-label">Titre:</label>
-            <input name="title_content" id="content" placeholder="Titre" type="text"
+            <label for="titleContent" class="form-label">Titre:</label>
+            <input name="title_content" id="titleContent" placeholder="Titre" type="text"
                    value="<?php $a=isset($_GET['a']) && ($_GET['a'] == 'edit') ? $data['title_content'] : '';
                    echo $a;?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 
             <small class="text-danger">*</small>
             <label for="photoEvent" class="form-label">Photo</label>
-            <input name="photoEvent" type="file" class="form-control">
+            <input id="photoEvent" name="photoEvent" type="file" class="form-control">
             <?php if(isset($_GET['a'])&&$_GET['a']=='edit'):?>
             <input type="hidden" name="photoEvent2" value="<?php echo $data['name_media'] ?? '';?>">
             <?php endif; ?>

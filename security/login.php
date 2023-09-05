@@ -16,7 +16,8 @@ if(isset($_SESSION['messages'])){
 ?>
 <section id="avis" class="fontImage2">
     <h2>Connexion</h2>
-    B@rbieD0ll
+  <!--  Mail : B@rbieD0ll.com -->
+  <!--  MDP : B@rbieD0ll -->
 <!-- On est obligé d'indiquer le fichier index.php si on met seulement "back", il n'y a pas de post ... -->
 <form id="login" action="back/index.php" class="mt-5 w-75 mx-auto" method="post">
     <fieldset>

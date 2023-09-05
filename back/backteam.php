@@ -40,7 +40,7 @@ if (!empty($_POST)) {
     //lors de la première insertion la photo est obligatoire
     //Si on n'a pas la photo et qu'ii ne s'agit pas d'un modification
     if(empty($_FILES['avatar']['name']) && empty($_GET['id'])){
-        $errorImg2='<p>Vous avez oublié l\'image.</p>';
+        $errorImg2='Vous avez oublié l\'image.';
     }
 
     if (!isset($error) || !isset($errorImg) || !isset($errorImg2) ) {
@@ -202,14 +202,14 @@ require_once '../inc/backheader.inc.php';
         <div class="form-group">
             <small class="text-danger">*</small>
             <label for="team" class="form-label">Nickname</label>
-            <input name="nickname_team" id="nicknameTeam" placeholder="Nickname" type="text"
+            <input id="team" name="nickname_team" id="nicknameTeam" placeholder="Nickname" type="text"
                    value="<?= $team['nickname_team'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
 
             <!-- TODO -->
             <small class="text-danger">*</small>
-            <label for="team" class="form-label">Role</label>
-            <select class="custom-select" name="role">
+            <label for="selectTeam" class="form-label">Role</label>
+            <select id="selectTeam" class="custom-select" name="role">
                 <option selected value="">
                     Choisir un role *
                 </option>
@@ -221,7 +221,7 @@ require_once '../inc/backheader.inc.php';
            <!-- FIN SELECT -->
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <label for="avatar" class="form-label">Avatar</label>
-            <input name="avatar" type="file" class="form-control" id="avatar">
+            <input id="avatar" name="avatar" type="file" class="form-control">
             
             <input type="hidden" name="avatar2" value="<?= $team['imgTeam'] ?? 'avatar-1.png';?>">
             <small class="text-danger"><?php
@@ -232,12 +232,12 @@ require_once '../inc/backheader.inc.php';
             }
             ?></small>
 
-            <label for="lien" class="form-label">Réseau / lien externe</label>
+            <label for="name_media" class="form-label">Réseau / lien externe</label>
             <input name="name_media" id="name_media" placeholder="https://etc.." type="url"
                    value="<?= $team['name_media'] ?? ''; ?>" class="form-control">
 
             <label for="reseau" class="form-label">Type de réseau</label>
-            <select class="custom-select" name="title_media">
+            <select id="reseau" class="custom-select" name="title_media">
                 <option selected value="autre">
                     Choisir
                 </option>

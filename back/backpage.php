@@ -18,7 +18,7 @@ $errorD =Delete($table,$idTable,$idD,$pp);
 
 if (!empty($_POST)) {
     if (empty($_POST['title_page']) || empty($_POST['url'])) {
-        $error = '<p>Ce champs est obligatoire</p>';
+        $error = 'Ce champs est obligatoire';
     }
 
     if (!isset($error)) {

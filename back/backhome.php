@@ -31,7 +31,7 @@ if (!empty($_POST)) {
     //TODO
     if (empty($_POST['title_content']) && empty($_POST['description_content'])){
 
-            $error = '<p>Ce champs est obligatoire</p>';
+            $error = 'Ce champs est obligatoire.';
     }
 
     if (!isset($error)) {

@@ -19,7 +19,7 @@ if (!empty($_POST)) {
 
     if (empty($_POST['title_media_type'])) {
 
-        $error = '<p>Ce champs est obligatoire</p>';
+        $error = 'Ce champs est obligatoire.';
 
     }
 

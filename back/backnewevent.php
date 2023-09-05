@@ -167,7 +167,7 @@ if (!empty($_POST) && empty($_POST['id_event'])) {
  //TODO
 if (empty($_POST['title_content']) && empty($_POST['description_content'])){
 
-    $error = '<p>Ce champs est obligatoire</p>';
+    $error = 'Ce champs est obligatoire';
 }/**/
     if (!isset($error)) {
 
@@ -233,7 +233,7 @@ endif; ?>
     <form enctype="multipart/form-data" action="" method="post" class="w-75 mx-auto mt-5 mb-5">
             <div class="form-group">
             <span><small class="text-danger">*</small>
-            <label for="start date" class="form-label"><?php
+            <label for="start_date" class="form-label"><?php
             if(isset($_GET['idE'])){
                 echo 'Début : '.$data['start_date_event'];
             }else{
@@ -246,7 +246,7 @@ endif; ?>
             value="<?=$data['start_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
             <small class="text-danger">*</small>
-            <label for="end date" class="form-label">
+            <label for="end_date" class="form-label">
         <?php
             if(isset($_GET['id'])){
                 echo 'Fin : '.$data['end_date_event'];
@@ -276,7 +276,7 @@ endif; ?>
             <?php    $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
             echo $m;?></small>
             
-            <textarea class="form-control" rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
+            <textarea rows="4" cols="25" name="description_content" id="description_content" placeholder="Texte" style="max-height:550px;min-height:250px"
                    value="<?php $d=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['description_content'] : '';
                    echo $d;?>" class="form-control"><?php $k=isset($_GET['a']) && $_GET['a'] == 'edit'? $data['description_content'] : '';
                    echo $k;?></textarea>

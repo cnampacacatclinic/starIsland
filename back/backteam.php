@@ -35,7 +35,7 @@ if (!empty($_POST)) {
     /*DONNEES OBLIGATOIRES*/
     if (empty($_POST['nickname_team']) && empty($_POST['role_team'])) {
 
-        $error = '<p>Ce champs est obligatoire</p>';
+        $error = 'Ce champs est obligatoire';
     }
     //lors de la première insertion la photo est obligatoire
     //Si on n'a pas la photo et qu'ii ne s'agit pas d'un modification

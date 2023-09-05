@@ -41,7 +41,7 @@ exercice.
             <div class="sidebar-brand-icon rotate-n-15">
                 <img id="logo2" alt="logo" src="../assets/img/starisland.png" width="120em">
             </div>
-            <div class="sidebar-brand-text mx-3 text-gray-800">Admin</sup></div>
+            <div class="sidebar-brand-text mx-3 text-gray-800">Admin</div>
         </a>
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -201,7 +201,7 @@ exercice.
                 endforeach;
             endif;
     ?>
-
+</div>
 
 
 

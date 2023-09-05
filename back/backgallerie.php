@@ -28,7 +28,7 @@ Delete($table,$idTable,$idD,$page);
 if (!empty($_POST)) {
 
     if (empty($_POST['title_media']) && isset($_FILES)) {
-        $error = '<p>Ce champs est obligatoire</p>';
+        $error = 'Ce champs est obligatoire.';
     }
 
     //Si on obtient un fichier
@@ -87,7 +87,7 @@ require_once '../inc/backheader.inc.php';
             <small class="text-danger"><?= $error ?? ''; ?></small>
             <small class="text-danger">
             <?php $m=!empty($errorI) ? '<p class="text-danger">'.$errorI.'</p>' : '';
-echo $m;?>
+echo $m;?></small>
         </div>
         <input type="hidden" name="id_media" value="<?= $media['id_media'] ?? ''; ?>">
         <input type="hidden" name="name_media" value="<?= $media['name_media'] ?? ''; ?>">

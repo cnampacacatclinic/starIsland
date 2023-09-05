@@ -21,7 +21,7 @@ if(isset($_SESSION['messages'])){
 <form id="login" action="back/index.php" class="mt-5 w-75 mx-auto" method="post">
     <fieldset>
         <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input name="email_connexion" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
+        <input name="email_connexion" type="text" class="form-control" id="exampleInputEmail1" value="">
 
         <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
         <input name="password" type="password" class="form-control" id="exampleInputPassword1" value="">

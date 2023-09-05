@@ -71,7 +71,7 @@ echo $m;?>
             <p>NB : Il ne s'agit pas d'une URL à proprement parler mais d'un nom 
                 qui servira pour nommer le chemin vers la page.
             </p>
-            <input name="url" id="page" placeholder="Chemin de la page" type="text"
+            <input name="url" id="urlPage" placeholder="Chemin de la page" type="text"
                    value="<?= $page['url'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
         </div>
@@ -84,6 +84,7 @@ echo $m;?>
         <tr>
             <th>Titre</th>
             <th>URL</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>

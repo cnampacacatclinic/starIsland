@@ -36,16 +36,20 @@ exercice.
 
 <body id="page-top">
 <div id="wrapper">
-    <ul class="navbar-nav  text-white sidebar sidebar-light accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=  BASE_PATH.'back/'; ?>">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <img id="logo2" alt="logo" src="../assets/img/starisland.png" width="120em">
-            </div>
-            <div class="sidebar-brand-text mx-3 text-gray-800">Admin</div>
-        </a>
+    <ul class="navbar-nav text-white sidebar sidebar-light accordion" id="accordionSidebar">
+            <li class="nav-item">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=  BASE_PATH.'back/'; ?>">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <img id="logo2" alt="logo" src="../assets/img/starisland.png" width="120em">
+                    </div>
+                    <div class="sidebar-brand-text mx-3 text-gray-800">Admin</div>
+                </a>
+            </li>
         <!-- Heading -->
-        <div class="sidebar-heading">
-        </div>
+        <li class="nav-item">
+                <div class="sidebar-heading">
+                </div>
+        </li>
        <!-- <li class="nav-item">
             <a class="nav-link collapsed text-gray-800" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">

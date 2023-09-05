@@ -254,7 +254,7 @@ endif; ?>
                 echo 'Date de fin';}
         ?></label>
             <!--<input min="<? //echo date('Y-m-d H:i:s');?>" name="end_date" id="en_date" placeholder="Date de fin" type="datetime-local" value="<? //echo $data['end_date_event'] ?? ''; ?>" class="form-control">-->
-            <input min="<?=date('Y-m-d');?>" name="end_date" placeholder="Date de fin" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
+            <input min="<?=date('Y-m-d');?>" name="end_date" type="date" value="<?=$data['end_date_event'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small>
             </span>
 

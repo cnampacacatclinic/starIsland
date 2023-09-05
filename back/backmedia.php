@@ -134,7 +134,7 @@ require_once '../inc/backheader.inc.php';
             <!-- Input pour obtenir le lien vers le média -->
             <small class="text-danger">*</small>
             <label for="media" class="form-label">Lien vers le média:</label>
-            <input name="lien_media" id="media" placeholder="Lien vers le média" type="text"
+            <input name="lien_media" id="lien_media" placeholder="Lien vers le média" type="text"
                    value="<?= $media['name_media'] ?? ''; ?>" class="form-control">
             <small class="text-danger"><?= $error ?? ''; ?></small><br>
         </div>

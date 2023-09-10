@@ -26,7 +26,7 @@ exercice.
 	<meta name="description" content="<?php echo $namePageDescription; ?> du site du serveur Star's Island">
     
     <!-- Debut des balises meta Facebook-->
-    <meta property="og:site_name" content="Star's Island serveur GTA 5">
+    <meta property="og:site_name" content="Star's Island serveur FiveM">
     <meta property="og:title" content="Star's Island">
     <meta property="og:description" content="Page du site du serveur Star's Island">
     <meta property="og:url" content="https://starisland.fr">
@@ -35,7 +35,7 @@ exercice.
     <meta property="og:type" content="website">
  
     <!-- Debut des balises meta Twitter-->
-    <meta name="twitter:title" content="Star's Island serveur GTA 5">
+    <meta name="twitter:title" content="Star's Island serveur FiveM">
     <meta name="twitter:description" content="Page du site du serveur Star's Island">
     <meta name="twitter:image" content="assets/img/logo_starisland.png">
     <meta name="twitter:domain" content="https://starisland.fr">
@@ -46,6 +46,9 @@ exercice.
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap.css.map" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="assets/bootstrap/scss/bootstrap-reboot.css" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="starIslandIco.ico">
     
 </head>
 <body class="fontInter">
